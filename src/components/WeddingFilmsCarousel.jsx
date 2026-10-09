@@ -92,10 +92,31 @@ export default function WeddingFilmsCarousel() {
     return () => clearInterval(timer);
   }, [isPaused, selectedFilm, reducedMotion, scrollOneCard]);
 
-  // Close modal on escape key & lock body scroll
+  // Navigate between films inside modal
+  const handlePrevFilm = useCallback(() => {
+    if (!selectedFilm) return;
+    const currentIndex = weddingFilmsData.findIndex(f => f.id === selectedFilm.id);
+    const prevIndex = (currentIndex - 1 + weddingFilmsData.length) % weddingFilmsData.length;
+    setSelectedFilm(weddingFilmsData[prevIndex]);
+  }, [selectedFilm]);
+
+  const handleNextFilm = useCallback(() => {
+    if (!selectedFilm) return;
+    const currentIndex = weddingFilmsData.findIndex(f => f.id === selectedFilm.id);
+    const nextIndex = (currentIndex + 1) % weddingFilmsData.length;
+    setSelectedFilm(weddingFilmsData[nextIndex]);
+  }, [selectedFilm]);
+
+  // Close modal on escape key, arrow keys navigation & lock body scroll
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (e.key === 'Escape') setSelectedFilm(null);
+      if (e.key === 'Escape') {
+        setSelectedFilm(null);
+      } else if (e.key === 'ArrowLeft') {
+        handlePrevFilm();
+      } else if (e.key === 'ArrowRight') {
+        handleNextFilm();
+      }
     };
     if (selectedFilm) {
       window.addEventListener('keydown', handleKeyDown);
@@ -107,20 +128,7 @@ export default function WeddingFilmsCarousel() {
       window.removeEventListener('keydown', handleKeyDown);
       document.body.style.overflow = '';
     };
-  }, [selectedFilm]);
-
-  // Navigate between films inside modal
-  const handlePrevFilm = () => {
-    const currentIndex = weddingFilmsData.findIndex(f => f.id === selectedFilm.id);
-    const prevIndex = (currentIndex - 1 + weddingFilmsData.length) % weddingFilmsData.length;
-    setSelectedFilm(weddingFilmsData[prevIndex]);
-  };
-
-  const handleNextFilm = () => {
-    const currentIndex = weddingFilmsData.findIndex(f => f.id === selectedFilm.id);
-    const nextIndex = (currentIndex + 1) % weddingFilmsData.length;
-    setSelectedFilm(weddingFilmsData[nextIndex]);
-  };
+  }, [selectedFilm, handlePrevFilm, handleNextFilm]);
 
   return (
     <section 
@@ -314,97 +322,103 @@ export default function WeddingFilmsCarousel() {
 
       </div>
 
-      {/* 3. YouTube Cinematic Video Modal Player */}
+      {/* 3. YouTube Cinematic Video Modal Screening Room */}
       {selectedFilm && (
         <div 
-          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 lg:p-8 animate-in fade-in duration-300"
+          className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-3 sm:p-5 md:p-8 animate-in fade-in duration-300 select-none"
           onClick={() => setSelectedFilm(null)}
+          role="dialog"
+          aria-modal="true"
+          aria-label={`${selectedFilm.title} - ${selectedFilm.couple} Wedding Film`}
         >
           <div 
-            className="relative w-full max-w-4xl bg-[#0e0e12] rounded-2xl overflow-hidden border border-white/15 shadow-2xl"
+            className="relative w-full max-w-5xl xl:max-w-6xl bg-[#09090b] rounded-none overflow-hidden border border-white/20 shadow-[0_25px_70px_rgba(0,0,0,0.95)] flex flex-col max-h-[92vh]"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Modal Header */}
-            <div className="flex items-center justify-between px-5 py-4 border-b border-white/10 bg-black/70">
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg bg-white/10 border border-white/20 flex items-center justify-center text-white">
-                  <Film className="w-4 h-4" />
+            {/* Slim Cinematic Modal Header */}
+            <div className="flex items-center justify-between px-4 sm:px-6 py-3 sm:py-3.5 border-b border-white/10 bg-black/90 flex-shrink-0">
+              <div className="flex items-center gap-3 sm:gap-3.5 min-w-0 pr-3">
+                {/* Film Icon in sharp rectangular frame */}
+                <div className="w-8 h-8 rounded-none bg-white/5 border border-white/15 flex items-center justify-center text-white/90 flex-shrink-0">
+                  <Film className="w-4 h-4 stroke-[1.75]" />
                 </div>
-                <div>
+                <div className="min-w-0">
                   <h4 
-                    className="text-base sm:text-lg font-normal text-white uppercase tracking-wider leading-tight"
+                    className="text-sm sm:text-base md:text-lg font-normal text-white uppercase tracking-[0.18em] truncate leading-tight"
                     style={{ fontFamily: "'Cormorant Garamond', 'Playfair Display', Georgia, serif" }}
                   >
                     {selectedFilm.title} — {selectedFilm.couple}
                   </h4>
-                  <p className="text-[11px] text-slate-400 font-mono">
+                  <p className="text-[10px] sm:text-[11px] text-neutral-400 font-mono tracking-wider truncate mt-0.5">
                     {selectedFilm.chapter} • {selectedFilm.location}
                   </p>
                 </div>
               </div>
 
-              {/* Close Button */}
+              {/* Close Button on the right with sharp rectangular styling */}
               <button
                 onClick={() => setSelectedFilm(null)}
-                className="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors cursor-pointer"
-                aria-label="Close video player"
+                className="w-8 h-8 sm:w-9 sm:h-9 rounded-none bg-white/5 hover:bg-white/15 active:bg-white/25 border border-white/15 text-white/80 hover:text-white flex items-center justify-center transition-all duration-200 cursor-pointer flex-shrink-0 focus:outline-none focus-visible:ring-1 focus-visible:ring-white"
+                aria-label="Close cinematic video player"
               >
-                <X className="w-5 h-5" />
+                <X className="w-4 h-4 sm:w-5 sm:h-5 stroke-[2]" />
               </button>
             </div>
 
             {/* Video Player Area: Lazy Loaded Responsive 16:9 YouTube Iframe */}
-            <div className="relative aspect-video w-full bg-black">
+            <div className="relative aspect-video w-full bg-black flex-1 min-h-0">
               {selectedFilm.youtubeId ? (
                 <iframe
-                  src={`https://www.youtube.com/embed/${selectedFilm.youtubeId}?autoplay=1&rel=0&modestbranding=1`}
+                  src={`https://www.youtube.com/embed/${selectedFilm.youtubeId}?autoplay=1&rel=0&modestbranding=1&enablejsapi=1`}
                   title={`${selectedFilm.title} - ${selectedFilm.couple} Wedding Film`}
                   className="w-full h-full border-none"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowFullScreen
                 />
               ) : (
                 <div className="w-full h-full flex flex-col items-center justify-center p-8 text-center bg-gradient-to-b from-[#14141a] to-[#08080a]">
-                  <div className="w-16 h-16 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white mb-4 shadow-lg">
-                    <PlayIcon className="w-7 h-7 fill-white ml-0.5" />
+                  <div className="w-14 h-14 rounded-none bg-white/5 border border-white/15 flex items-center justify-center text-white mb-3 shadow-lg">
+                    <PlayIcon className="w-6 h-6 fill-white ml-0.5" />
                   </div>
                   <h5 
-                    className="text-xl sm:text-2xl font-normal text-white uppercase tracking-wider"
+                    className="text-lg sm:text-xl font-normal text-white uppercase tracking-wider"
                     style={{ fontFamily: "'Cormorant Garamond', 'Playfair Display', Georgia, serif" }}
                   >
                     {selectedFilm.title}
                   </h5>
-                  <p className="text-slate-300 text-sm mt-1 max-w-md">
+                  <p className="text-neutral-400 text-xs mt-1 max-w-md">
                     JumpClicks Cinematic Wedding Film for {selectedFilm.couple} ({selectedFilm.location}).
                   </p>
                 </div>
               )}
             </div>
 
-            {/* Modal Footer Controls */}
-            <div className="px-5 py-3.5 bg-black/80 border-t border-white/5 flex items-center justify-between text-xs text-slate-400">
-              <div className="flex items-center gap-2 text-[11px] text-slate-400">
-                <Volume2 className="w-3.5 h-3.5 text-white/80" />
-                <span className="text-white/90 font-semibold uppercase tracking-wider">
-                  JumpClicks Wedding Cinema
+            {/* Slim Custom Player Footer */}
+            <div className="px-4 sm:px-6 py-2.5 sm:py-3 bg-black/95 border-t border-white/10 flex items-center justify-between text-xs text-neutral-400 flex-shrink-0">
+              <div className="flex items-center gap-2 text-neutral-400">
+                <Volume2 className="w-3.5 h-3.5 text-neutral-400" />
+                <span className="text-[10px] sm:text-[11px] font-medium uppercase tracking-[0.22em] text-neutral-300 font-mono">
+                  JUMPCLICKS WEDDING CINEMA
                 </span>
               </div>
 
-              {/* Prev / Next Film Switcher */}
+              {/* Functional Prev / Next Film Switcher */}
               <div className="flex items-center gap-2">
                 <button
                   onClick={handlePrevFilm}
-                  className="px-3 py-1 rounded-lg bg-white/5 hover:bg-white/10 text-white text-[11px] flex items-center gap-1 transition-colors cursor-pointer"
+                  className="px-3 sm:px-3.5 py-1.5 rounded-none bg-white/5 hover:bg-white/15 active:bg-white/20 border border-white/15 hover:border-white/30 text-white text-[10px] sm:text-[11px] font-mono uppercase tracking-wider flex items-center gap-1.5 transition-all duration-200 cursor-pointer focus:outline-none focus-visible:ring-1 focus-visible:ring-white"
+                  aria-label="Previous wedding film"
                 >
-                  <ChevronLeft className="w-3 h-3" />
+                  <ChevronLeft className="w-3.5 h-3.5 stroke-[2]" />
                   <span>Prev Film</span>
                 </button>
                 <button
                   onClick={handleNextFilm}
-                  className="px-3 py-1 rounded-lg bg-white/5 hover:bg-white/10 text-white text-[11px] flex items-center gap-1 transition-colors cursor-pointer"
+                  className="px-3 sm:px-3.5 py-1.5 rounded-none bg-white/5 hover:bg-white/15 active:bg-white/20 border border-white/15 hover:border-white/30 text-white text-[10px] sm:text-[11px] font-mono uppercase tracking-wider flex items-center gap-1.5 transition-all duration-200 cursor-pointer focus:outline-none focus-visible:ring-1 focus-visible:ring-white"
+                  aria-label="Next wedding film"
                 >
                   <span>Next Film</span>
-                  <ChevronRight className="w-3 h-3" />
+                  <ChevronRight className="w-3.5 h-3.5 stroke-[2]" />
                 </button>
               </div>
             </div>

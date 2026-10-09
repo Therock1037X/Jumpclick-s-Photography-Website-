@@ -14,7 +14,7 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#df2531]/10 text-[#df2531] text-xs font-semibold uppercase tracking-wider mb-4 border border-[#df2531]/30">
             <Camera className="w-3.5 h-3.5" />
-            <span>ESTABLISHED IN 2020</span>
+            <span>ESTABLISHED IN 2022</span>
           </div>
           <h1 className="text-4xl sm:text-6xl font-extrabold text-white tracking-tight">
             About Jumpclicks Photography
@@ -32,16 +32,16 @@ export default function AboutPage() {
             
             <div className="lg:col-span-7 space-y-6">
               <span className="text-xs font-mono text-[#df2531] uppercase tracking-widest font-semibold">
-                OUR GENESIS // 2020
+                OUR GENESIS // 2022
               </span>
               <h2 className="text-3xl sm:text-4xl font-extrabold text-white leading-tight">
                 Born From a Deep Love for Authentic Human Emotion
               </h2>
               <p className="text-slate-300 leading-relaxed">
-                When <strong className="text-white">Jumpclicks Photography</strong> was founded in 2020, our goal was clear: to move away from stiff, generic studio posing and capture real, spontaneous moments. The stolen glances between a bride and groom, the emotional tears of parents during the vidaai, and the innocent laughter of newborns.
+                When <strong className="text-white">Jumpclicks Photography</strong> was founded in 2022, our goal was clear: to move away from stiff, generic studio posing and capture real, spontaneous moments. The stolen glances between a bride and groom, the emotional tears of parents during the vidaai, and the innocent laughter of newborns.
               </p>
               <p className="text-slate-300 leading-relaxed">
-                Over the past 5+ years, we have had the honor of documenting over 1,200 unique celebrations across 25+ cities in India, including Nagpur, Mumbai, Pune, Udaipur, Goa, and Delhi NCR.
+                Over the past 4+ years, we have had the honor of documenting over 1,200 unique celebrations across 25+ cities in India, including Nagpur, Mumbai, Pune, Udaipur, Goa, and Delhi NCR.
               </p>
 
               <div className="pt-2">
@@ -129,7 +129,7 @@ export default function AboutPage() {
               <p className="text-xs text-slate-400 mt-1 uppercase font-semibold">Events Covered</p>
             </div>
             <div>
-              <div className="text-3xl sm:text-4xl font-extrabold text-white">2020</div>
+              <div className="text-3xl sm:text-4xl font-extrabold text-white">2022</div>
               <p className="text-xs text-slate-400 mt-1 uppercase font-semibold">Established Year</p>
             </div>
             <div>

@@ -148,7 +148,7 @@ export const faqs = [
   },
   {
     q: 'Do you travel across India for destination shoots?',
-    a: 'Yes, absolutely! Since our inception in 2020, we have traveled across multiple cities and scenic destinations in India for weddings, pre-weddings, and private events. Travel and accommodation details are transparently discussed beforehand.'
+    a: 'Yes, absolutely! Since our inception in 2022, we have traveled across multiple cities and scenic destinations in India for weddings, pre-weddings, and private events. Travel and accommodation details are transparently discussed beforehand.'
   },
   {
     q: 'Do you provide raw files as well as edited photos?',

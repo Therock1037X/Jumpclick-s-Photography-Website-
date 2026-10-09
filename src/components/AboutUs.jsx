@@ -19,7 +19,7 @@ export default function AboutUs({ onNavigate }) {
             </span>
           </h2>
           <p className="mt-4 text-slate-300 text-base sm:text-lg leading-relaxed">
-            Founded in 2020, we are a close-knit collective of photographers and cinematographers dedicated to telling genuine, heartfelt visual stories.
+            Founded in 2022, we are a close-knit collective of photographers and cinematographers dedicated to telling genuine, heartfelt visual stories.
           </p>
         </div>
 
@@ -29,7 +29,7 @@ export default function AboutUs({ onNavigate }) {
           {/* Left Column: Narrative */}
           <div className="lg:col-span-7 space-y-6">
             <div className="inline-block px-3 py-1 rounded-md bg-amber-400/10 border border-amber-400/20 text-xs font-mono text-amber-300">
-              EST. 2020 // PASSION DRIVEN
+              EST. 2022 // PASSION DRIVEN
             </div>
             
             <h3 className="text-2xl sm:text-3xl font-bold text-white leading-snug">
@@ -37,7 +37,7 @@ export default function AboutUs({ onNavigate }) {
             </h3>
             
             <p className="text-slate-300 leading-relaxed">
-              When we started <strong className="text-white">Jumpclicks Photography in 2020</strong>, our vision was simple: move away from rigid, unnatural poses and focus on authentic emotions—the quiet glances, joyful laughter, unscripted tears, and genuine warmth of Indian families.
+              When we started <strong className="text-white">Jumpclicks Photography in 2022</strong>, our vision was simple: move away from rigid, unnatural poses and focus on authentic emotions—the quiet glances, joyful laughter, unscripted tears, and genuine warmth of Indian families.
             </p>
             
             <p className="text-slate-300 leading-relaxed">
@@ -113,7 +113,7 @@ export default function AboutUs({ onNavigate }) {
                   </div>
                   <div>
                     <div className="text-[10px] text-slate-400 uppercase tracking-widest font-bold">Inception</div>
-                    <div className="text-sm font-extrabold text-white">Year 2020</div>
+                    <div className="text-sm font-extrabold text-white">Year 2022</div>
                   </div>
                 </div>
 

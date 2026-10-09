@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { X, ChevronLeft, ChevronRight, Sparkles, MessageCircle, Maximize2, Camera } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight, MessageCircle, Camera } from 'lucide-react';
 
 export default function Lightbox({ item, items, onClose, onSelect }) {
   if (!item) return null;
@@ -29,7 +29,7 @@ export default function Lightbox({ item, items, onClose, onSelect }) {
   }, [currentIndex, hasPrev, hasNext, items, onClose, onSelect]);
 
   const handleInquireStyle = () => {
-    const text = `Hi Jumpclicks! I saw this photo (${item.categoryName} - ${item.id}) on your website and would love to achieve a similar style for my upcoming shoot.`;
+    const text = `Hi Jumpclicks Photography! I loved this photograph (${item.categoryName}) on your website and would like to achieve a similar shoot style.`;
     window.open(`https://wa.me/919172322302?text=${encodeURIComponent(text)}`, '_blank');
   };
 
@@ -44,11 +44,11 @@ export default function Lightbox({ item, items, onClose, onSelect }) {
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center gap-3">
-          <span className="text-xs font-mono uppercase tracking-widest px-3 py-1 rounded-full bg-white/10 text-indigo-300 border border-white/10">
+          <span className="text-xs uppercase tracking-wider font-semibold px-3 py-1 rounded-full bg-white/10 text-amber-200 border border-white/10">
             {item.categoryName}
           </span>
-          <span className="text-xs font-mono text-slate-400">
-            {currentIndex + 1} / {items.length}
+          <span className="text-xs text-slate-400">
+            {currentIndex + 1} of {items.length}
           </span>
         </div>
 
@@ -99,31 +99,24 @@ export default function Lightbox({ item, items, onClose, onSelect }) {
         )}
       </div>
 
-      {/* Bottom Metadata & Action Bar */}
+      {/* Bottom Action Bar */}
       <div 
         className="w-full max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 bg-white/5 border border-white/10 rounded-2xl p-4 backdrop-blur-md z-10"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="flex flex-wrap items-center gap-4 text-xs text-slate-300">
-          <div className="flex items-center gap-1.5 font-medium text-white">
-            <Camera className="w-4 h-4 text-indigo-400" />
-            <span>Sony Cinema Line FX-Series</span>
-          </div>
-          <span className="hidden sm:inline text-slate-600">•</span>
-          <div className="flex items-center gap-1.5 text-slate-400">
-            <Sparkles className="w-3.5 h-3.5 text-pink-400" />
-            <span>AI Neural Color Grade</span>
-          </div>
-          <span className="hidden sm:inline text-slate-600">•</span>
-          <span className="text-slate-400 font-mono">DCI-P3 High Dynamic Gamut</span>
+        <div className="flex items-center gap-2 text-xs text-slate-300">
+          <Camera className="w-4 h-4 text-amber-400" />
+          <span className="font-medium text-white">Jumpclicks Photography Studio</span>
+          <span className="text-slate-500">•</span>
+          <span className="text-slate-400">High-Resolution Master</span>
         </div>
 
         <button
           onClick={handleInquireStyle}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-white font-semibold text-xs shadow-lg shadow-emerald-500/20 cursor-pointer transition-all"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs shadow-lg shadow-emerald-500/20 cursor-pointer transition-all"
         >
-          <MessageCircle className="w-3.5 h-3.5" />
-          <span>Inquire This Style on WhatsApp</span>
+          <MessageCircle className="w-3.5 h-3.5 fill-slate-950" />
+          <span>Inquire About This Style on WhatsApp</span>
         </button>
       </div>
     </div>

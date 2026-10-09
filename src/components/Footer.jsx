@@ -1,5 +1,5 @@
 import React from 'react';
-import { Camera, Sparkles, MessageCircle, Heart, ArrowUp } from 'lucide-react';
+import { Camera, MessageCircle, Heart, ArrowUp } from 'lucide-react';
 
 export default function Footer({ onNavigate }) {
   const scrollToTop = () => {
@@ -15,8 +15,8 @@ export default function Footer({ onNavigate }) {
           {/* Brand Info (5 cols) */}
           <div className="lg:col-span-5 space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 to-pink-500 p-0.5 shadow-lg">
-                <div className="w-full h-full bg-[#090A0F] rounded-[10px] flex items-center justify-center overflow-hidden">
+              <div className="w-9 h-9 rounded-xl bg-white/10 p-0.5 border border-white/20">
+                <div className="w-full h-full bg-[#090A0F] rounded-[9px] flex items-center justify-center overflow-hidden">
                   <img
                     src="/images/logo.webp"
                     alt="Jumpclicks Photography"
@@ -25,21 +25,20 @@ export default function Footer({ onNavigate }) {
                       e.currentTarget.style.display = 'none';
                     }}
                   />
-                  <Camera className="w-4 h-4 text-indigo-400" />
+                  <Camera className="w-4 h-4 text-slate-300" />
                 </div>
               </div>
-              <span className="font-heading font-extrabold text-lg tracking-tight text-white">
+              <span className="font-heading font-extrabold text-lg tracking-wide text-white">
                 JUMPCLICKS PHOTOGRAPHY
               </span>
             </div>
 
             <p className="text-slate-300 leading-relaxed max-w-sm">
-              Founded in 2020, Jumpclicks is an avant-garde visual media startup redefining Indian wedding, commercial, and editorial photography through cinema-grade optics and AI-accelerated workflows.
+              Founded in 2020, Jumpclicks Photography is a premier photography and cinematography studio capturing genuine, heartfelt moments across weddings, pre-weddings, portraits, and family milestones in India.
             </p>
 
-            <div className="flex items-center gap-2 text-indigo-400 text-[11px] font-mono">
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>EST. 2020 • PAN-INDIA PRODUCTIONS</span>
+            <div className="flex items-center gap-2 text-amber-300 text-[11px] font-medium">
+              <span>ESTABLISHED 2020 • PAN-INDIA COVERAGE</span>
             </div>
           </div>
 
@@ -74,22 +73,22 @@ export default function Footer({ onNavigate }) {
           {/* Verticals (3 cols) */}
           <div className="lg:col-span-3 space-y-3">
             <h4 className="text-xs font-semibold text-white uppercase tracking-wider font-mono">
-              Core Verticals
+              Photography Verticals
             </h4>
             <ul className="space-y-2 text-slate-400">
-              <li>Cinematic Royal Weddings</li>
-              <li>AI Pre-Wedding Narratives</li>
-              <li>Editorial Bridal Portraits</li>
-              <li>Brand & Fashion Lookbooks</li>
-              <li>Maternity & Baby Chronicles</li>
-              <li>Milestone Celebrations</li>
+              <li>Wedding & Reception</li>
+              <li>Pre-Wedding & Couple Sessions</li>
+              <li>Bridal & Groom Portraits</li>
+              <li>Maternity & Newborn</li>
+              <li>Baby Milestones</li>
+              <li>Events & Birthdays</li>
             </ul>
           </div>
 
           {/* Contact Fast Track (2 cols) */}
           <div className="lg:col-span-2 space-y-3">
             <h4 className="text-xs font-semibold text-white uppercase tracking-wider font-mono">
-              Quick Connect
+              Direct Contact
             </h4>
             <a
               href="https://wa.me/919172322302?text=Hi%20Jumpclicks%20team,%20I'd%20like%20to%20inquire%20about%20a%20shoot."
@@ -114,7 +113,7 @@ export default function Footer({ onNavigate }) {
           </div>
 
           <div className="flex items-center gap-2">
-            <span>Engineered with React & Vite</span>
+            <span>Made with Care for Cherished Moments</span>
             <span>•</span>
             <button
               onClick={scrollToTop}

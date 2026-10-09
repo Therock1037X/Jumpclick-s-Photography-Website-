@@ -1,265 +1,172 @@
-import React, { useState } from 'react';
-import { 
-  Sparkles, 
-  ArrowRight, 
-  Play, 
-  Sliders, 
-  Zap, 
-  ShieldCheck, 
-  Clock, 
-  Camera, 
-  ChevronRight,
-  Flame
-} from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { ArrowRight, ChevronRight, Camera, Award, MapPin, Heart, Calendar } from 'lucide-react';
 
 export default function Hero({ onNavigate }) {
-  const [sliderPosition, setSliderPosition] = useState(50);
-  const [isDragging, setIsDragging] = useState(false);
+  // Curated hero showcase photographs from real Jumpclicks archive
+  const heroImages = [
+    {
+      src: '/gallery/web/wedding/wedding_1.webp',
+      title: 'Grand Wedding Celebration',
+      category: 'Weddings',
+    },
+    {
+      src: '/gallery/web/prewedding/prewedding_1.webp',
+      title: 'Romantic Pre-Wedding Chronicle',
+      category: 'Pre-Wedding',
+    },
+    {
+      src: '/gallery/web/bridal/bridal_1.webp',
+      title: 'Royal Bridal Portrait',
+      category: 'Bridal Editorial',
+    },
+    {
+      src: '/gallery/web/engagement/engagement_1.webp',
+      title: 'Intimate Ring Ceremony',
+      category: 'Engagements',
+    },
+  ];
 
-  const handleSliderMove = (e) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = Math.max(0, Math.min(e.clientX - rect.left, rect.width));
-    const percent = Math.max(5, Math.min(95, (x / rect.width) * 100));
-    setSliderPosition(percent);
-  };
+  const [activeSlide, setActiveSlide] = useState(0);
 
-  const handleTouchMove = (e) => {
-    if (!e.touches[0]) return;
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = Math.max(0, Math.min(e.touches[0].clientX - rect.left, rect.width));
-    const percent = Math.max(5, Math.min(95, (x / rect.width) * 100));
-    setSliderPosition(percent);
-  };
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveSlide((prev) => (prev + 1) % heroImages.length);
+    }, 4500);
+    return () => clearInterval(timer);
+  }, [heroImages.length]);
 
   return (
-    <section id="home" className="relative min-h-screen pt-28 pb-20 flex flex-col justify-center overflow-hidden">
-      {/* Dynamic Background Glows */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[650px] h-[350px] bg-indigo-600/15 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute top-1/3 right-10 w-[400px] h-[400px] bg-pink-500/10 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute top-2/3 left-10 w-[350px] h-[350px] bg-cyan-500/10 rounded-full blur-[110px] pointer-events-none" />
+    <section id="home" className="relative min-h-[92vh] pt-28 pb-16 flex flex-col justify-center overflow-hidden">
+      {/* Subtle ambient lighting */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-indigo-900/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-1/3 right-10 w-[400px] h-[400px] bg-amber-600/5 rounded-full blur-[130px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         
-        {/* Top Startup Badge */}
+        {/* Top Studio Badge */}
         <div className="flex justify-center mb-6">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-indigo-950/60 border border-indigo-500/30 backdrop-blur-md shadow-inner text-xs font-semibold text-indigo-300">
-            <span className="flex h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span className="tracking-wide">Pioneering Tech-Enabled Photography Since 2020</span>
-            <span className="text-slate-500">•</span>
-            <span className="text-pink-400 font-bold flex items-center gap-1">
-              <Flame className="w-3 h-3 text-pink-400" />
-              Not Just Another Studio
-            </span>
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-md text-xs font-medium text-slate-300">
+            <span className="w-2 h-2 rounded-full bg-amber-400" />
+            <span>Founded in 2020 • Professional Photography Studio</span>
           </div>
         </div>
 
-        {/* Hero Headings */}
+        {/* Hero Headline & Intro */}
         <div className="text-center max-w-4xl mx-auto mb-10">
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.1] mb-6">
-            THE NEW CODE OF <br className="hidden sm:inline" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-300 to-pink-500">
-              VISUAL STORYTELLING
+          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.1] mb-5">
+            Capturing Life's Most <br className="hidden sm:inline" />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-white to-amber-100 font-serif italic font-normal">
+              Timeless Moments
             </span>
           </h1>
-          <p className="text-lg sm:text-xl text-slate-300 font-normal leading-relaxed max-w-2xl mx-auto">
-            Where cinema-grade optics meet artificial intelligence. We replace outdated wedding and event photography chaos with 
-            <span className="text-white font-semibold"> 8K Sony cinema gear</span>, 
-            <span className="text-indigo-300 font-semibold"> proprietary neural color science</span>, and 
-            <span className="text-pink-400 font-semibold"> 48-hour delivery</span>.
+          <p className="text-base sm:text-xl text-slate-300 font-normal leading-relaxed max-w-2xl mx-auto">
+            Welcome to <strong className="text-white">Jumpclicks Photography</strong>. We tell genuine, emotional stories through natural candid moments, artistic lighting, and cinematic visual craft.
           </p>
 
           {/* Action CTAs */}
           <div className="flex flex-wrap items-center justify-center gap-4 mt-8">
             <button
               onClick={() => onNavigate('gallery')}
-              className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-2xl bg-gradient-to-r from-indigo-600 via-indigo-500 to-pink-600 text-white font-semibold text-sm shadow-xl shadow-indigo-600/30 hover:shadow-indigo-500/50 hover:scale-[1.02] transition-all cursor-pointer group"
+              className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-2xl bg-white text-slate-950 font-bold text-sm shadow-xl hover:bg-slate-200 transition-all cursor-pointer group"
             >
-              <span>Explore 180+ Works</span>
+              <span>Explore Gallery (180+ Photos)</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </button>
 
             <button
-              onClick={() => onNavigate('services')}
-              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-2xl bg-white/5 hover:bg-white/10 text-white font-semibold text-sm border border-white/15 backdrop-blur-md hover:border-indigo-400/40 transition-all cursor-pointer"
+              onClick={() => onNavigate('contact')}
+              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-2xl bg-white/5 hover:bg-white/10 text-white font-semibold text-sm border border-white/15 backdrop-blur-md transition-all cursor-pointer"
             >
-              <Zap className="w-4 h-4 text-cyan-400" />
-              <span>AI Shoot Price Estimator</span>
-            </button>
-
-            <button
-              onClick={() => onNavigate('about')}
-              className="inline-flex items-center gap-1.5 px-5 py-3.5 rounded-2xl text-slate-300 hover:text-white text-sm font-medium transition-colors"
-            >
-              <span>Why Jumpclicks?</span>
-              <ChevronRight className="w-4 h-4 text-slate-400" />
+              <Calendar className="w-4 h-4 text-amber-400" />
+              <span>Book a Consultation</span>
             </button>
           </div>
         </div>
 
-        {/* Interactive AI Technology Showcase (Interactive Color Grade Comparison) */}
-        <div className="max-w-5xl mx-auto mt-6">
-          <div className="glass-panel rounded-3xl p-3 sm:p-5 shadow-2xl relative overflow-hidden">
-            
-            {/* Showcase Header Bar */}
-            <div className="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-white/10 px-2">
-              <div className="flex items-center gap-2.5">
-                <div className="flex gap-1.5">
-                  <div className="w-3 h-3 rounded-full bg-rose-500/80" />
-                  <div className="w-3 h-3 rounded-full bg-amber-500/80" />
-                  <div className="w-3 h-3 rounded-full bg-emerald-500/80" />
-                </div>
-                <span className="text-xs font-mono text-slate-400 tracking-wider">
-                  JUMPCLICKS_NEURAL_PIPELINE // LIVE COLOR CALIBRATION
-                </span>
-              </div>
-              <div className="flex items-center gap-2 text-xs font-medium text-slate-300 bg-white/5 px-3 py-1 rounded-full border border-white/10">
-                <Sliders className="w-3.5 h-3.5 text-indigo-400" />
-                <span>Drag slider to compare: Raw Sensor vs. AI Neural Grade</span>
-              </div>
-            </div>
-
-            {/* Split Screen Slider Container */}
-            <div 
-              className="relative w-full aspect-[16/9] sm:aspect-[21/9] rounded-2xl overflow-hidden mt-3 cursor-ew-resize select-none border border-white/10 group shadow-2xl"
-              onMouseMove={handleSliderMove}
-              onTouchMove={handleTouchMove}
-            >
-              {/* After Image (AI Neural Color Master) */}
-              <div className="absolute inset-0 w-full h-full">
-                <img 
-                  src="/gallery/web/wedding/wedding_1.webp" 
-                  alt="Jumpclicks AI Color Grade" 
-                  className="w-full h-full object-cover filter contrast-[1.08] saturate-[1.15]"
-                />
-                <div className="absolute top-4 right-4 bg-indigo-950/80 backdrop-blur-md text-indigo-200 border border-indigo-500/30 text-xs font-semibold px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-lg">
-                  <Sparkles className="w-3.5 h-3.5 text-pink-400" />
-                  <span>Jumpclicks Neural Grade</span>
-                </div>
-              </div>
-
-              {/* Before Image (Flat Standard Raw) with dynamic clip path */}
-              <div 
-                className="absolute inset-0 overflow-hidden"
-                style={{ width: `${sliderPosition}%` }}
+        {/* Curated Visual Showcase Banner */}
+        <div className="max-w-5xl mx-auto mt-4">
+          <div className="relative rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-slate-950 aspect-[16/9] sm:aspect-[21/9]">
+            {heroImages.map((img, idx) => (
+              <div
+                key={idx}
+                className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+                  activeSlide === idx ? 'opacity-100 z-10' : 'opacity-0 z-0'
+                }`}
               >
-                <div className="relative w-full h-full" style={{ width: '100%', minWidth: '100%' }}>
-                  <img 
-                    src="/gallery/web/wedding/wedding_1.webp" 
-                    alt="Standard Raw Sensor" 
-                    className="absolute inset-0 w-full h-full object-cover filter grayscale-[25%] contrast-[0.88] brightness-[0.92] sepia-[10%]"
-                    style={{ 
-                      width: '100vw',
-                      maxWidth: 'none',
-                      left: 0
-                    }}
-                  />
-                  <div className="absolute top-4 left-4 bg-slate-900/80 backdrop-blur-md text-slate-300 border border-white/10 text-xs font-medium px-3 py-1.5 rounded-full shadow-lg">
-                    Traditional Camera Raw
+                <img
+                  src={img.src}
+                  alt={img.title}
+                  className="w-full h-full object-cover"
+                />
+                
+                {/* Subtle vignette gradient */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
+                
+                {/* Bottom photo info */}
+                <div className="absolute bottom-5 left-6 right-6 flex items-center justify-between text-white">
+                  <div>
+                    <span className="text-[11px] font-semibold uppercase tracking-widest px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md text-amber-300 border border-white/10 inline-block mb-1.5">
+                      {img.category}
+                    </span>
+                    <h3 className="text-base sm:text-xl font-bold">
+                      {img.title}
+                    </h3>
+                  </div>
+
+                  {/* Indicator dots */}
+                  <div className="flex gap-2">
+                    {heroImages.map((_, dotIdx) => (
+                      <button
+                        key={dotIdx}
+                        onClick={() => setActiveSlide(dotIdx)}
+                        className={`h-2 rounded-full transition-all cursor-pointer ${
+                          activeSlide === dotIdx ? 'w-6 bg-white' : 'w-2 bg-white/40'
+                        }`}
+                        aria-label={`Go to slide ${dotIdx + 1}`}
+                      />
+                    ))}
                   </div>
                 </div>
               </div>
-
-              {/* Divider Handle */}
-              <div 
-                className="absolute top-0 bottom-0 w-1 bg-white shadow-[0_0_15px_rgba(255,255,255,0.8)] z-20 pointer-events-none"
-                style={{ left: `${sliderPosition}%` }}
-              >
-                <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-9 h-9 rounded-full bg-white text-slate-900 flex items-center justify-center shadow-xl border-2 border-indigo-600">
-                  <Sliders className="w-4 h-4 text-indigo-700" />
-                </div>
-              </div>
-
-              {/* Bottom live telemetry tag */}
-              <div className="absolute bottom-4 left-4 z-20 hidden sm:flex items-center gap-3 bg-black/70 backdrop-blur-md px-3.5 py-1.5 rounded-xl border border-white/10 text-[11px] font-mono text-slate-300">
-                <span className="text-emerald-400 font-bold">● SONY FX6 MASTER</span>
-                <span className="text-slate-500">|</span>
-                <span>DCI-P3 GAMUT</span>
-                <span className="text-slate-500">|</span>
-                <span>NEURAL RETOUCH: ACTIVE</span>
-              </div>
-            </div>
-
-            {/* Micro-Features Strip */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-4">
-              <div className="bg-white/5 rounded-xl p-3 border border-white/5 flex items-center gap-3">
-                <div className="p-2 rounded-lg bg-indigo-500/10 text-indigo-400">
-                  <Clock className="w-4 h-4" />
-                </div>
-                <div>
-                  <p className="text-xs text-slate-400 font-medium">Delivery Speed</p>
-                  <p className="text-sm font-bold text-white">48h Express AI Cut</p>
-                </div>
-              </div>
-
-              <div className="bg-white/5 rounded-xl p-3 border border-white/5 flex items-center gap-3">
-                <div className="p-2 rounded-lg bg-pink-500/10 text-pink-400">
-                  <Sparkles className="w-4 h-4" />
-                </div>
-                <div>
-                  <p className="text-xs text-slate-400 font-medium">Smart Culling</p>
-                  <p className="text-sm font-bold text-white">Zero Blink & Blur</p>
-                </div>
-              </div>
-
-              <div className="bg-white/5 rounded-xl p-3 border border-white/5 flex items-center gap-3">
-                <div className="p-2 rounded-lg bg-cyan-500/10 text-cyan-400">
-                  <Camera className="w-4 h-4" />
-                </div>
-                <div>
-                  <p className="text-xs text-slate-400 font-medium">Cinema Optics</p>
-                  <p className="text-sm font-bold text-white">8K Sony Cinema Line</p>
-                </div>
-              </div>
-
-              <div className="bg-white/5 rounded-xl p-3 border border-white/5 flex items-center gap-3">
-                <div className="p-2 rounded-lg bg-emerald-500/10 text-emerald-400">
-                  <ShieldCheck className="w-4 h-4" />
-                </div>
-                <div>
-                  <p className="text-xs text-slate-400 font-medium">Guest Delivery</p>
-                  <p className="text-sm font-bold text-white">AI Face-Recognition</p>
-                </div>
-              </div>
-            </div>
-
+            ))}
           </div>
         </div>
 
-        {/* Key Metrics Counter Strip */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto mt-14 pt-10 border-t border-white/10">
+        {/* Studio Stats Strip */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto mt-12 pt-8 border-t border-white/10">
           <div className="text-center">
             <div className="font-heading text-3xl sm:text-4xl font-extrabold text-white">
-              1,200<span className="text-indigo-400">+</span>
+              1,200<span className="text-amber-400">+</span>
             </div>
-            <p className="text-xs sm:text-sm text-slate-400 mt-1 uppercase tracking-wider font-semibold">
-              Productions Delivered
+            <p className="text-xs sm:text-sm text-slate-400 mt-1 uppercase tracking-wider font-medium">
+              Shoots Delivered
             </p>
           </div>
 
           <div className="text-center">
             <div className="font-heading text-3xl sm:text-4xl font-extrabold text-white">
-              48<span className="text-pink-400">hrs</span>
+              2020
             </div>
-            <p className="text-xs sm:text-sm text-slate-400 mt-1 uppercase tracking-wider font-semibold">
-              Express AI Teaser
+            <p className="text-xs sm:text-sm text-slate-400 mt-1 uppercase tracking-wider font-medium">
+              Established Year
             </p>
           </div>
 
           <div className="text-center">
             <div className="font-heading text-3xl sm:text-4xl font-extrabold text-white">
-              25<span className="text-cyan-400">+</span>
+              25<span className="text-amber-400">+</span>
             </div>
-            <p className="text-xs sm:text-sm text-slate-400 mt-1 uppercase tracking-wider font-semibold">
-              Pan-India Destinations
+            <p className="text-xs sm:text-sm text-slate-400 mt-1 uppercase tracking-wider font-medium">
+              Destinations Covered
             </p>
           </div>
 
           <div className="text-center">
             <div className="font-heading text-3xl sm:text-4xl font-extrabold text-white">
-              99.8<span className="text-emerald-400">%</span>
+              5<span className="text-amber-400">★</span>
             </div>
-            <p className="text-xs sm:text-sm text-slate-400 mt-1 uppercase tracking-wider font-semibold">
-              5-Star Client Satisfaction
+            <p className="text-xs sm:text-sm text-slate-400 mt-1 uppercase tracking-wider font-medium">
+              Top Rated by Clients
             </p>
           </div>
         </div>

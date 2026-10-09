@@ -1,98 +1,98 @@
 export const servicesData = [
   {
     id: 'weddings',
-    title: 'Grand Cinematic Weddings',
-    tagline: '8K Cinema Rigs • Drone Aerials • Same-Night Teasers',
-    description: 'We capture the royal scale, intimate tears, and vibrant energy of Indian weddings using multi-angle cinema cameras and real-time audio telemetry.',
+    title: 'Wedding & Reception Photography',
+    tagline: 'Candid Moments • Cinematic Films • Drone Coverage',
+    description: 'Complete coverage of your wedding celebrations. From haldi and sangeet to the pheras and reception, we capture the joy, tears, and rituals with timeless elegance.',
     icon: 'Camera',
-    badge: 'Flagship Vertical',
+    badge: 'Signature Service',
     features: [
-      'Multi-cam 4K/8K Sony Cinema Line coverage',
-      'FAA-certified 4K HDR Drone cinematography',
-      'AI-accelerated same-night Instagram reel edit',
-      'Neural audio noise isolation for wedding vows',
-      'Private AI Face-Recognition gallery for all guests'
+      'Full-day multi-camera candid & traditional coverage',
+      'Cinematic 4K wedding highlight teaser & full film',
+      'Drone aerial cinematography for grand venues',
+      'Premium heirloom hardbound photo album',
+      'High-resolution edited digital gallery'
     ],
     sampleCategory: 'wedding',
     popular: true,
   },
   {
     id: 'prewedding',
-    title: 'AI Pre-Wedding & Destination Narratives',
-    tagline: 'Concept Storyboards • Drone Mapping • Cinematic Color',
-    description: 'Bespoke romantic narratives designed with AI moodboarding and executed across India’s most scenic royal palaces, beaches, and mountain landscapes.',
-    icon: 'Film',
-    badge: 'Popular',
+    title: 'Pre-Wedding & Couple Shoots',
+    tagline: 'Romantic Locations • Creative Concepts • Teaser Film',
+    description: 'Tell your unique love story before the big day. We guide you through natural, unposed sessions in scenic natural spots, historic palaces, or private studios.',
+    icon: 'Heart',
+    badge: 'Most Popular',
     features: [
-      'Virtual location scouting & golden-hour solar simulation',
-      'Custom cinematic music scoring & color grade',
-      'Styling & costume moodboard generator',
-      'Ultra-slow motion 120fps romantic sequences',
-      'Cinematic 3-5 minute trailer + 60s vertical cut'
+      'Assistance with scenic location selection & styling',
+      'Multi-outfit changes and flexible schedule',
+      'Romantic 1-2 minute cinematic video teaser',
+      'High-resolution edited portraits for save-the-date invites',
+      'Golden hour outdoor lighting sessions'
     ],
     sampleCategory: 'prewedding',
   },
   {
     id: 'bridal',
-    title: 'Editorial Bridal & Groom Fine Art',
-    tagline: 'Studio Strobe Mastery • Neural Skin-Texture Retouching',
-    description: 'Magazine-cover quality portraits that preserve authentic natural skin texture while eliminating blemishes using micro-frequency separation & neural grading.',
+    title: 'Bridal & Groom Portraits',
+    tagline: 'Detailed Elegance • Jewelry & Attire • Studio & Venue',
+    description: 'Dedicated solo portrait sessions capturing the intricate details of your bridal lehenga, sherwani, jewelry, makeup, and royal poise.',
     icon: 'Sparkles',
-    badge: 'Editorial Grade',
+    badge: 'Fine Art',
     features: [
-      'High-CRI Broncolor studio strobes & softboxes',
-      'Texture-preserving neural retouching (no plastic skin)',
-      'Jewelry & couture detail micro-enhancement',
-      'Fine-art canvas prints & archival photo books',
-      'Individual & couple solo portrait session'
+      'Creative lighting tailored to bring out makeup & attire details',
+      'Flattering, comfortable posing guidance',
+      'Close-up focus on jewelry, mehendi, and veil details',
+      'High-end magazine-style retouching',
+      'Ready-to-frame premium canvas portraits'
     ],
     sampleCategory: 'bridal',
   },
   {
-    id: 'commercial',
-    title: 'Commercial, Fashion & Brand Campaigns',
-    tagline: 'E-Commerce Catalogs • Brand Storytelling • High Conversion',
-    description: 'High-impact visual campaigns for modern consumer brands, fashion designers, corporate leaders, and tech startups seeking dominant visual authority.',
-    icon: 'Layers',
-    badge: 'High Impact',
-    features: [
-      'Studio & location commercial product shoots',
-      'Model & lookbook fashion photography',
-      'Multi-ratio exports (16:9, 9:16, 1:1, 4:5)',
-      'Fast 72-hour turnaround for digital ad rollouts',
-      'Commercial copyright & full licensing included'
-    ],
-    sampleCategory: 'engagement',
-  },
-  {
     id: 'maternity',
-    title: 'Maternity & Newborn Chronicles',
-    tagline: 'Sanitized Studios • Tender Emotive Posing • Organic Warmth',
-    description: 'Celebrating the miracle of life in a safe, temperature-controlled, sanitized environment with tender, timeless natural lighting.',
+    title: 'Maternity & Motherhood',
+    tagline: 'Warm & Gentle • Studio or Outdoor • Comfortable Pace',
+    description: 'Celebrate the miraculous journey of motherhood. We provide a calm, peaceful environment designed to make expectant mothers feel radiant and comfortable.',
     icon: 'Heart',
-    badge: 'Tender Care',
+    badge: 'Precious Moments',
     features: [
-      'Fully sanitized, baby-friendly temperature studio',
-      'Curated maternity gowns & baby prop collection',
-      'Patient, unhurried sessions tailored to baby comfort',
-      'Gentle skin retouching & glowing warm hues',
-      'Complimentary mini family heirloom album'
+      'Comfortable, unhurried session with regular breaks',
+      'Indoor studio setup or serene outdoor sunset location',
+      'Partner & family inclusion in photos',
+      'Gentle skin and tone enhancement',
+      'Digital gallery with high-resolution downloads'
     ],
     sampleCategory: 'maternity',
   },
   {
-    id: 'events',
-    title: 'Milestone Events & Tech Summits',
-    tagline: 'Live QR Face-Tagging • Instant Media Room • Corporate Summits',
-    description: 'From 1st birthdays to high-profile corporate conventions. Guests scan a QR code and instantly receive their personal photos via AI facial recognition.',
-    icon: 'Zap',
-    badge: 'Tech-Enabled',
+    id: 'baby',
+    title: 'Baby & Newborn Photography',
+    tagline: 'Safe & Cozy • Gentle Posing • Milestone Smiles',
+    description: 'From 15-day-old newborn innocence to joyful 1st birthday milestones. We capture the sweet giggles, tiny hands, and loving family bonds.',
+    icon: 'Sparkles',
+    badge: 'Heirloom',
     features: [
-      'Live attendee facial recognition delivery portal',
-      'Instant media-room press photos within 60 minutes',
-      'Dynamic multi-flash wireless sync for dance floors',
-      'High-energy candid storytelling without intrusive gear',
-      'Complete high-res cloud archive with instant download'
+      'Sanitized, cozy, and baby-safe studio atmosphere',
+      'Creative props, baskets, and cute themes provided',
+      'Patience-first approach adapting to baby sleeping cycles',
+      'Mom, dad, and sibling portraits included',
+      'High-resolution keepsake collection'
+    ],
+    sampleCategory: 'baby',
+  },
+  {
+    id: 'events',
+    title: 'Events, Birthdays & Celebrations',
+    tagline: 'Lively Candids • Family Groups • Full Event Coverage',
+    description: 'Birthdays, anniversaries, corporate gatherings, and festive family events captured with energy and warmth so you can enjoy being present.',
+    icon: 'Camera',
+    badge: 'Celebrations',
+    features: [
+      'Comprehensive candid coverage of guests & decor',
+      'Stage and family group photography',
+      'Fast turnaround delivery so you can share right away',
+      'Organized high-res online gallery for guests',
+      'Full printing rights included'
     ],
     sampleCategory: 'birthday',
   }
@@ -101,100 +101,61 @@ export const servicesData = [
 export const clientReviews = [
   {
     id: 1,
-    name: 'Aarav & Priya Sharma',
-    event: 'Grand Wedding, Udaipur',
-    quote: 'Traditional photographers we met in Delhi and Jaipur told us to wait 3 months for our album. Jumpclicks delivered our 48-hour AI preview reel while we were still on our flight to our honeymoon! The color grading is pure cinema.',
+    name: 'Priya & Rahul Sharma',
+    event: 'Wedding, Nagpur',
+    quote: 'The team at Jumpclicks made our wedding so special. They were patient, captured every single ritual and emotional moment without being intrusive, and the photos turned out breathtaking!',
     rating: 5,
-    city: 'Udaipur / Delhi',
+    city: 'Nagpur',
     tag: 'Wedding'
   },
   {
     id: 2,
-    name: 'Rohan Mehra',
-    event: 'Brand Campaign Director, Vesta Lifestyle',
-    quote: 'Jumpclicks operates like a Silicon Valley creative agency, not a typical photography vendor. Clear delivery pipelines, modern gear, and AI-accelerated culling meant our product catalog launched two weeks ahead of schedule.',
+    name: 'Anjali & Vivek Deshmukh',
+    event: 'Pre-Wedding Shoot',
+    quote: 'We were quite camera-shy, but the photographers made us feel completely relaxed and natural. The locations they suggested and the sunset photos exceeded all our expectations.',
     rating: 5,
-    city: 'Mumbai',
-    tag: 'Commercial'
-  },
-  {
-    id: 3,
-    name: 'Neha & Kshitij Deshmukh',
-    event: 'Pre-Wedding & Sangeet',
-    quote: 'The AI location moodboards they created for our shoot in Goa gave us exact lighting predictions for sunset. The drone shots look like a Bollywood feature film. Best decision we made!',
-    rating: 5,
-    city: 'Goa / Pune',
+    city: 'Pune',
     tag: 'Pre-Wedding'
   },
   {
-    id: 4,
+    id: 3,
     name: 'Dr. Shruti Patil',
-    event: 'Maternity & Newborn Shoot',
-    quote: 'As a doctor, hygiene and patient pacing were critical for my baby shoot. The Jumpclicks team was exceptionally gentle, respectful, and the final framed portraits in our living room bring tears of joy.',
+    event: 'Maternity & Baby Shoot',
+    quote: 'Such a polite and gentle team. They took care of our comfort throughout the maternity shoot and were so loving and patient during our baby’s milestone photos. Highly recommended!',
     rating: 5,
     city: 'Nagpur',
-    tag: 'Maternity'
-  }
-];
-
-export const comparisonData = [
-  {
-    feature: 'First Preview Delivery',
-    traditional: '4 to 8 Weeks (unfiltered pendrive)',
-    jumpclicks: '48 to 72 Hours via Private Mobile Cloud',
-    icon: 'Clock'
+    tag: 'Maternity & Baby'
   },
   {
-    feature: 'Photo Selection & Culling',
-    traditional: 'Client sorts through 5,000+ duplicate raw files manually',
-    jumpclicks: 'AI Neural Filter removes blinks, blur & ranks top expressions',
-    icon: 'Sparkles'
-  },
-  {
-    feature: 'Guest Photo Distribution',
-    traditional: 'Relatives call you months later asking for their pictures',
-    jumpclicks: 'AI Face-Recognition: Guests scan QR and get only their photos',
-    icon: 'Users'
-  },
-  {
-    feature: 'Camera & Optics Pipeline',
-    traditional: 'Standard aging consumer DSLR setups & kit lenses',
-    jumpclicks: '8K Sony Cinema Line, Prime Master Optics & 4K HDR Drones',
-    icon: 'Camera'
-  },
-  {
-    feature: 'Color Science & Retouching',
-    traditional: 'Generic heavy yellow tint / plastic skin presets',
-    jumpclicks: 'Proprietary Neural DCI-P3 grade preserving true skin textures',
-    icon: 'Palette'
-  },
-  {
-    feature: 'Booking & Operations',
-    traditional: 'Informal paper notes, cash slips, delayed replies',
-    jumpclicks: 'Startup SLA guarantee, digital contracts, transparent milestones',
-    icon: 'ShieldCheck'
+    id: 4,
+    name: 'Sameer Kulkarni',
+    event: '1st Birthday Celebration',
+    quote: 'Jumpclicks covered my daughter’s first birthday party. Every candid smile of the kids and grandparents was captured beautifully. The album quality is premium and sturdy.',
+    rating: 5,
+    city: 'Mumbai',
+    tag: 'Birthday Event'
   }
 ];
 
 export const faqs = [
   {
-    q: 'How does Jumpclicks use AI without making photos look fake?',
-    a: 'We never generate fake artificial images of your real events. Instead, we use AI in the backend engineering: smart culling (filtering out blinks and out-of-focus shots across 8,000+ frames in minutes), neural noise suppression for dark indoor wedding mandaps, color harmony calibration, and guest face-recognition for instantaneous photo sharing.'
+    q: 'How far in advance should we book our wedding or event?',
+    a: 'We recommend booking 2 to 4 months in advance, especially during the peak wedding season (October to March) to ensure date availability for your preferred photography crew.'
   },
   {
-    q: 'How fast do we receive our deliverables?',
-    a: 'You receive an Express AI Teaser Reel and Highlights within 48 to 72 hours of the event. The full color-graded master gallery and cinematic films are delivered within 2 to 3 weeks—more than 4x faster than traditional Indian photography studios.'
+    q: 'How and when will we receive our photographs?',
+    a: 'You will receive a curated sneak-peek highlights gallery within 4 to 7 days of the event. The complete collection of fully color-graded, high-resolution photographs and videos is delivered within 2 to 4 weeks via a private online gallery link and a USB drive.'
   },
   {
-    q: 'Do you travel across India for destination weddings and shoots?',
-    a: 'Yes! Founded in 2020, Jumpclicks has covered shoots across 25+ cities in India, including Udaipur, Jaipur, Goa, Mumbai, Delhi NCR, Pune, Bengaluru, Nagpur, Hyderabad, and Kerala.'
+    q: 'Do you travel across India for destination shoots?',
+    a: 'Yes, absolutely! Since our inception in 2020, we have traveled across multiple cities and scenic destinations in India for weddings, pre-weddings, and private events. Travel and accommodation details are transparently discussed beforehand.'
   },
   {
-    q: 'How does the AI Guest Facial-Recognition gallery work?',
-    a: 'We place discreet, elegant QR stands at your venue. Guests simply scan the QR with their smartphone camera, take a quick selfie, and our secure cloud portal instantly delivers all photos where they appear directly to their phone, with zero manual searching.'
+    q: 'Do you provide raw files as well as edited photos?',
+    a: 'We provide high-resolution, professionally color-graded and retouched photos ready for printing and social sharing. If requested, all raw master files can also be provided on an external hard drive.'
   },
   {
-    q: 'What is your booking process and advance?',
-    a: 'We operate with formal startup service level agreements (SLAs). Once you confirm your date and package, a 30% advance secures your crew and equipment slot, with structured milestone payments.'
+    q: 'Can we customize our photography package?',
+    a: 'Yes! Every wedding and celebration is unique. Whether you need single-day candid coverage, multi-day coverage, drone cinematography, or special heirloom albums, we customize packages to fit your exact vision and schedule.'
   }
 ];

@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
 
 function PlayIcon({ className = "w-5 h-5" }) {
@@ -12,11 +12,11 @@ function PlayIcon({ className = "w-5 h-5" }) {
 export default function WeddingFilmsCarousel() {
   const carouselRef = useRef(null);
   const [selectedFilm, setSelectedFilm] = useState(null);
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(true);
+  const isResettingRef = useRef(false);
 
-  // 6 Curated Wedding Film Posters (Desktop shows 4 side-by-side)
-  const films = [
+  // 6 Curated Wedding Film Posters (Desktop displays 4 side-by-side)
+  // Integrated with actual JumpClicks YouTube wedding films provided by the user
+  const baseFilms = [
     {
       id: 1,
       title: 'JOURNEY OF LOVE',
@@ -26,7 +26,7 @@ export default function WeddingFilmsCarousel() {
       duration: '4:15',
       badge: 'Candid Cinema',
       poster: '/gallery/web/wedding/wedding_20.webp',
-      youtubeId: '', // To be provided by user
+      youtubeId: 'gM8xTFNO_Wg',
       styleVariant: 'monochrome', // Moody high contrast B&W feel
     },
     {
@@ -38,8 +38,8 @@ export default function WeddingFilmsCarousel() {
       duration: '3:45',
       badge: 'Wedding Teaser',
       poster: '/gallery/web/wedding/wedding_21.webp',
+      youtubeId: '0UJ8HspyFiE',
       styleVariant: 'crimsonArch', // Red architectural title
-      youtubeId: '',
     },
     {
       id: 3,
@@ -50,8 +50,8 @@ export default function WeddingFilmsCarousel() {
       duration: '3:20',
       badge: 'Couple Story',
       poster: '/gallery/web/prewedding/prewedding_36.webp',
+      youtubeId: 'gM8xTFNO_Wg',
       styleVariant: 'script', // Handwritten script look
-      youtubeId: '',
     },
     {
       id: 4,
@@ -62,8 +62,8 @@ export default function WeddingFilmsCarousel() {
       duration: '4:50',
       badge: 'Pre-Wedding Cinema',
       poster: '/gallery/web/prewedding/prewedding_27.webp',
-      styleVariant: 'polaroid', // Vintage chalkboard / framed story
-      youtubeId: '',
+      youtubeId: '0UJ8HspyFiE',
+      styleVariant: 'polaroid', // Vintage chalkboard story
     },
     {
       id: 5,
@@ -74,8 +74,8 @@ export default function WeddingFilmsCarousel() {
       duration: '5:10',
       badge: 'Grand Wedding Film',
       poster: '/gallery/web/wedding/wedding_3.webp',
+      youtubeId: 'gM8xTFNO_Wg',
       styleVariant: 'editorial',
-      youtubeId: '',
     },
     {
       id: 6,
@@ -86,36 +86,58 @@ export default function WeddingFilmsCarousel() {
       duration: '3:30',
       badge: 'Ceremony Cinema',
       poster: '/gallery/web/wedding/wedding_27.webp',
+      youtubeId: '0UJ8HspyFiE',
       styleVariant: 'editorial',
-      youtubeId: '',
     },
   ];
 
-  // Check scroll boundary to update arrow state
-  const checkScroll = () => {
-    if (carouselRef.current) {
-      const { scrollLeft, scrollWidth, clientWidth } = carouselRef.current;
-      setCanScrollLeft(scrollLeft > 10);
-      setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
-    }
-  };
+  // Tripled dataset for seamless infinite loop
+  const displayFilms = [...baseFilms, ...baseFilms, ...baseFilms];
 
+  // Initialize carousel scroll position to the middle segment on mount
   useEffect(() => {
-    checkScroll();
-    window.addEventListener('resize', checkScroll);
-    return () => window.removeEventListener('resize', checkScroll);
+    if (carouselRef.current) {
+      const container = carouselRef.current;
+      const oneThird = container.scrollWidth / 3;
+      container.scrollLeft = oneThird;
+    }
   }, []);
 
-  // Smooth scroll handler
+  // Infinite loop boundary handler: silently jumps between segments when boundaries are reached
+  const handleScroll = useCallback(() => {
+    if (!carouselRef.current || isResettingRef.current) return;
+    const container = carouselRef.current;
+    const oneThird = container.scrollWidth / 3;
+
+    // If scrolled past 2/3, jump back to 1/3
+    if (container.scrollLeft >= oneThird * 2) {
+      isResettingRef.current = true;
+      container.scrollLeft -= oneThird;
+      setTimeout(() => {
+        isResettingRef.current = false;
+      }, 50);
+    }
+    // If scrolled before 1/3, jump ahead to 2/3
+    else if (container.scrollLeft <= 10) {
+      isResettingRef.current = true;
+      container.scrollLeft += oneThird;
+      setTimeout(() => {
+        isResettingRef.current = false;
+      }, 50);
+    }
+  }, []);
+
+  // Smooth scroll handler for circular arrows
   const scroll = (direction) => {
     if (carouselRef.current) {
-      const { clientWidth } = carouselRef.current;
-      const scrollDistance = clientWidth * 0.75;
-      carouselRef.current.scrollBy({
-        left: direction === 'left' ? -scrollDistance : scrollDistance,
+      const container = carouselRef.current;
+      const cardWidth = container.clientWidth / (window.innerWidth >= 1024 ? 4 : window.innerWidth >= 640 ? 2 : 1.25);
+      const scrollAmount = cardWidth * 1.5;
+
+      container.scrollBy({
+        left: direction === 'left' ? -scrollAmount : scrollAmount,
         behavior: 'smooth',
       });
-      setTimeout(checkScroll, 350);
     }
   };
 
@@ -156,43 +178,37 @@ export default function WeddingFilmsCarousel() {
         </p>
       </div>
 
-      {/* 2. Carousel Container with Edge-Overlapping Navigation Arrows */}
+      {/* 2. Infinite Carousel Container with Edge-Overlapping Navigation Arrows */}
       <div className="relative max-w-[1450px] mx-auto px-4 sm:px-6 lg:px-10">
         
-        {/* Left Arrow Button */}
+        {/* Left Circular Arrow Button (Always Active in Infinite Loop) */}
         <button
           onClick={() => scroll('left')}
-          disabled={!canScrollLeft}
-          className={`absolute left-2 sm:left-4 lg:left-3 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white text-slate-900 hover:bg-[#df2531] hover:text-white shadow-xl flex items-center justify-center transition-all duration-300 cursor-pointer hover:scale-105 active:scale-95 ${
-            !canScrollLeft ? 'opacity-30 cursor-not-allowed' : 'opacity-90 hover:opacity-100'
-          }`}
-          aria-label="Previous wedding films"
+          className="absolute left-2 sm:left-4 lg:left-3 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white text-slate-900 hover:bg-[#df2531] hover:text-white shadow-2xl flex items-center justify-center transition-all duration-300 cursor-pointer hover:scale-105 active:scale-95 opacity-90 hover:opacity-100"
+          aria-label="Previous wedding films (infinite loop)"
         >
           <ChevronLeft className="w-5 h-5 stroke-[2.5]" />
         </button>
 
-        {/* Right Arrow Button */}
+        {/* Right Circular Arrow Button (Always Active in Infinite Loop) */}
         <button
           onClick={() => scroll('right')}
-          disabled={!canScrollRight}
-          className={`absolute right-2 sm:right-4 lg:right-3 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white text-slate-900 hover:bg-[#df2531] hover:text-white shadow-xl flex items-center justify-center transition-all duration-300 cursor-pointer hover:scale-105 active:scale-95 ${
-            !canScrollRight ? 'opacity-30 cursor-not-allowed' : 'opacity-90 hover:opacity-100'
-          }`}
-          aria-label="Next wedding films"
+          className="absolute right-2 sm:right-4 lg:right-3 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white text-slate-900 hover:bg-[#df2531] hover:text-white shadow-2xl flex items-center justify-center transition-all duration-300 cursor-pointer hover:scale-105 active:scale-95 opacity-90 hover:opacity-100"
+          aria-label="Next wedding films (infinite loop)"
         >
           <ChevronRight className="w-5 h-5 stroke-[2.5]" />
         </button>
 
-        {/* Horizontal Scrolling Track (4 cards visible on desktop) */}
+        {/* Horizontal Infinite Scrolling Track (4 cards visible on desktop) */}
         <div
           ref={carouselRef}
-          onScroll={checkScroll}
-          className="flex gap-4 sm:gap-5 lg:gap-6 overflow-x-auto scrollbar-hide snap-x snap-mandatory scroll-smooth py-3 px-1"
+          onScroll={handleScroll}
+          className="flex gap-4 sm:gap-5 lg:gap-6 overflow-x-auto scrollbar-hide snap-x snap-mandatory py-3 px-1"
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
-          {films.map((film) => (
+          {displayFilms.map((film, index) => (
             <div
-              key={film.id}
+              key={`${film.id}-${index}`}
               onClick={() => setSelectedFilm(film)}
               className="snap-start flex-shrink-0 w-[82%] sm:w-[47%] md:w-[31%] lg:w-[calc(25%-18px)] group relative aspect-[9/14.5] rounded-xl overflow-hidden cursor-pointer bg-[#0e0e12] border border-white/10 hover:border-[#df2531]/70 transition-all duration-500 shadow-xl hover:shadow-2xl hover:shadow-[#df2531]/20 hover:-translate-y-1.5"
             >
@@ -388,10 +404,6 @@ export default function WeddingFilmsCarousel() {
                   <p className="text-slate-300 text-sm mt-1 max-w-md">
                     JumpClicks Cinematic Wedding Film for {selectedFilm.couple} ({selectedFilm.location}).
                   </p>
-                  
-                  <div className="mt-6 px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-xs text-slate-400 font-mono">
-                    YouTube URL not yet linked. Send your YouTube link to connect this video.
-                  </div>
                 </div>
               )}
             </div>

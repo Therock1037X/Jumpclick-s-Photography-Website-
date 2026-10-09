@@ -1,44 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { ArrowRight, Camera, Award, MapPin, Heart, Calendar } from 'lucide-react';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { ArrowRight, Calendar, MessageCircle } from 'lucide-react';
 
-export default function Hero({ onNavigate }) {
-  const heroImages = [
-    {
-      src: '/gallery/web/wedding/wedding_1.webp',
-      title: 'Grand Wedding Celebration',
-      category: 'Weddings',
-    },
-    {
-      src: '/gallery/web/prewedding/prewedding_1.webp',
-      title: 'Romantic Pre-Wedding Chronicle',
-      category: 'Pre-Wedding',
-    },
-    {
-      src: '/gallery/web/bridal/bridal_1.webp',
-      title: 'Royal Bridal Portrait',
-      category: 'Bridal Editorial',
-    },
-    {
-      src: '/gallery/web/engagement/engagement_1.webp',
-      title: 'Intimate Ring Ceremony',
-      category: 'Engagements',
-    },
-  ];
-
-  const [activeSlide, setActiveSlide] = useState(0);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setActiveSlide((prev) => (prev + 1) % heroImages.length);
-    }, 4500);
-    return () => clearInterval(timer);
-  }, [heroImages.length]);
-
+export default function Hero() {
   return (
-    <section id="home" className="relative min-h-[92vh] pt-28 pb-16 flex flex-col justify-center overflow-hidden bg-[#000000]">
-      {/* Deep Crimson Ambient Lighting */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-[#df2531]/12 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute top-1/3 right-10 w-[400px] h-[400px] bg-[#8e131b]/10 rounded-full blur-[130px] pointer-events-none" />
+    <section id="home" className="relative min-h-[92vh] pt-24 pb-16 flex flex-col justify-center overflow-hidden bg-[#000000]">
+      {/* Deep Crimson Ambient Glow */}
+      <div className="absolute top-1/4 left-1/3 -translate-x-1/2 w-[650px] h-[350px] bg-[#df2531]/12 rounded-full blur-[140px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         
@@ -46,11 +14,11 @@ export default function Hero({ onNavigate }) {
         <div className="flex justify-center mb-6">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#df2531]/10 border border-[#df2531]/30 backdrop-blur-md text-xs font-semibold text-[#df2531]">
             <span className="w-2 h-2 rounded-full bg-[#df2531] animate-pulse" />
-            <span>Founded in 2020 • Professional Photography Studio</span>
+            <span>Founded in 2020 • Jumpclicks Photography Studio</span>
           </div>
         </div>
 
-        {/* Hero Headline & Intro */}
+        {/* Hero Headings */}
         <div className="text-center max-w-4xl mx-auto mb-10">
           <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.1] mb-5">
             Capturing Life's Most <br className="hidden sm:inline" />
@@ -59,75 +27,37 @@ export default function Hero({ onNavigate }) {
             </span>
           </h1>
           <p className="text-base sm:text-xl text-slate-300 font-normal leading-relaxed max-w-2xl mx-auto">
-            Welcome to <strong className="text-white">Jumpclicks Photography</strong>. We tell genuine, emotional stories through natural candid moments, artistic lighting, and cinema-grade visual craft.
+            Welcome to <strong className="text-white">Jumpclicks Photography</strong>. We tell genuine, emotional stories through natural candid moments, artistic lighting, and cinematic visual craft.
           </p>
 
-          {/* Action CTAs with #df2531 Crimson Styling */}
+          {/* Action CTAs */}
           <div className="flex flex-wrap items-center justify-center gap-4 mt-8">
-            <a
-              href="/gallery"
+            <Link
+              to="/gallery"
               className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-2xl bg-[#df2531] hover:bg-[#b81b25] text-white font-bold text-sm shadow-xl shadow-[#df2531]/30 transition-all cursor-pointer group"
             >
               <span>Explore Gallery (180+ Photos)</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </a>
+            </Link>
 
-            <a
-              href="/contact"
+            <Link
+              to="/contact"
               className="inline-flex items-center gap-2 px-6 py-3.5 rounded-2xl bg-white/5 hover:bg-white/10 text-white font-semibold text-sm border border-white/15 hover:border-[#df2531]/40 backdrop-blur-md transition-all cursor-pointer"
             >
               <Calendar className="w-4 h-4 text-[#df2531]" />
               <span>Book a Consultation</span>
-            </a>
+            </Link>
           </div>
         </div>
 
-        {/* Curated Visual Showcase Banner */}
+        {/* Centerpiece Hero Image: Silhouette Wedding Masterpiece (Pure Photography, Zero Text) */}
         <div className="max-w-5xl mx-auto mt-4">
-          <div className="relative rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-[#000000] aspect-[16/9] sm:aspect-[21/9]">
-            {heroImages.map((img, idx) => (
-              <div
-                key={idx}
-                className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-                  activeSlide === idx ? 'opacity-100 z-10' : 'opacity-0 z-0'
-                }`}
-              >
-                <img
-                  src={img.src}
-                  alt={img.title}
-                  className="w-full h-full object-cover"
-                />
-                
-                {/* Subtle vignette gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/25 to-transparent" />
-                
-                {/* Bottom photo info */}
-                <div className="absolute bottom-5 left-6 right-6 flex items-center justify-between text-white">
-                  <div>
-                    <span className="text-[11px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full bg-[#df2531] text-white shadow-md inline-block mb-1.5">
-                      {img.category}
-                    </span>
-                    <h3 className="text-base sm:text-xl font-bold">
-                      {img.title}
-                    </h3>
-                  </div>
-
-                  {/* Indicator dots */}
-                  <div className="flex gap-2">
-                    {heroImages.map((_, dotIdx) => (
-                      <button
-                        key={dotIdx}
-                        onClick={() => setActiveSlide(dotIdx)}
-                        className={`h-2 rounded-full transition-all cursor-pointer ${
-                          activeSlide === dotIdx ? 'w-6 bg-[#df2531]' : 'w-2 bg-white/40'
-                        }`}
-                        aria-label={`Go to slide ${dotIdx + 1}`}
-                      />
-                    ))}
-                  </div>
-                </div>
-              </div>
-            ))}
+          <div className="relative rounded-3xl overflow-hidden border border-white/15 shadow-2xl bg-[#000000]">
+            <img
+              src="/images/hero-silhouette.webp"
+              alt="Jumpclicks Photography Featured Moment"
+              className="w-full h-auto object-contain block mx-auto"
+            />
           </div>
         </div>
 

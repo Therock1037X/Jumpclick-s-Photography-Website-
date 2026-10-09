@@ -11,10 +11,10 @@ export default function HomePage() {
 
   return (
     <div className="pt-8 bg-[#000000] text-white">
-      {/* Hero Section */}
-      <Hero onNavigate={() => {}} />
+      {/* Hero Section with Centerpiece Silhouette Photo */}
+      <Hero />
 
-      {/* Featured Gallery Preview - Using Original Natural Ratios */}
+      {/* Featured Gallery Preview - Pure Photography without Text Overlays */}
       <section className="py-20 bg-[#000000] border-t border-white/5 relative overflow-hidden">
         <div className="absolute top-1/3 left-0 w-[500px] h-[300px] bg-[#df2531]/10 rounded-full blur-[140px] pointer-events-none" />
 
@@ -29,7 +29,7 @@ export default function HomePage() {
                 Recent Moments Captured
               </h2>
               <p className="text-slate-400 text-sm mt-1">
-                A glimpse of our work across Indian weddings, pre-weddings, and family milestones in their uncropped original ratios.
+                A glimpse of our work across Indian weddings, pre-weddings, and celebrations in their uncropped natural ratios.
               </p>
             </div>
 
@@ -42,30 +42,20 @@ export default function HomePage() {
             </Link>
           </div>
 
-          {/* Natural Uncropped Aspect Ratio Masonry Grid */}
+          {/* Natural Uncropped Masonry Grid with Zero Text Underneath */}
           <div className="columns-1 sm:columns-2 lg:columns-3 gap-5 space-y-5">
             {featuredPhotos.map((item) => (
               <Link
                 key={item.id}
                 to="/gallery"
-                className="break-inside-avoid block group relative rounded-2xl overflow-hidden bg-[#0d0d10] border border-white/10 hover:border-[#df2531]/50 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1"
+                className="break-inside-avoid block group relative rounded-2xl overflow-hidden bg-[#0d0d10] border border-white/10 hover:border-[#df2531]/60 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1"
               >
                 <img
                   src={item.thumb}
-                  alt={item.title}
+                  alt="Jumpclicks Photography"
                   className="w-full h-auto object-contain block group-hover:scale-[1.03] transition-transform duration-500"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent flex items-end p-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div>
-                    <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-[#df2531] text-white shadow-md inline-block mb-1">
-                      {item.categoryName}
-                    </span>
-                    <p className="text-sm font-bold text-white">
-                      {item.title}
-                    </p>
-                  </div>
-                </div>
               </Link>
             ))}
           </div>
@@ -166,7 +156,7 @@ export default function HomePage() {
               <div className="rounded-2xl overflow-hidden border border-white/10 shadow-xl bg-[#0d0d10]">
                 <img
                   src="/gallery/web/wedding/wedding_2.webp"
-                  alt="Jumpclicks Photography Team"
+                  alt="Jumpclicks Photography"
                   className="w-full h-auto object-contain block"
                 />
               </div>

@@ -80,12 +80,12 @@ export default function IntimateWeddingShowcase() {
             </div>
           </div>
 
-          {/* Right Area: Exact Staggered 3-Card Collage (8 cols) */}
+          {/* Right Area: Exact Staggered 3-Card Collage (Side-by-side on all screen sizes, exact like laptop) */}
           <div className="lg:col-span-8 xl:col-span-8">
-            <div className="flex flex-col sm:flex-row items-start justify-between gap-6 sm:gap-4 lg:gap-6">
+            <div className="flex flex-row items-start justify-between gap-2 sm:gap-4 lg:gap-6">
               
               {/* Card 1: Karthik & Swetha (Starts HIGHEST, WIDER & TALLER, breaks out above the wave) */}
-              <div className="w-full sm:w-[38%] flex flex-col group z-20 transition-transform duration-500">
+              <div className="w-[39%] sm:w-[38%] flex flex-col group z-20 transition-transform duration-500">
                 <Link
                   to="/gallery?category=wedding"
                   className="block overflow-hidden bg-[#141418] rounded-none border border-white/10 group-hover:border-[#df2531]/60 shadow-[0_20px_45px_rgba(0,0,0,0.7)] group-hover:shadow-[0_25px_50px_rgba(223,37,49,0.2)] transition-all duration-500 transform group-hover:-translate-y-1.5"
@@ -100,21 +100,21 @@ export default function IntimateWeddingShowcase() {
                   </div>
                 </Link>
 
-                <div className="pt-3.5 text-center sm:text-left">
+                <div className="pt-2 sm:pt-3.5 text-center sm:text-left">
                   <h3 
-                    className="text-white text-base sm:text-[17px] font-normal tracking-[0.14em] uppercase"
+                    className="text-white text-[11px] sm:text-base md:text-[17px] font-normal tracking-[0.08em] sm:tracking-[0.14em] uppercase"
                     style={{ fontFamily: "'Cormorant Garamond', 'Playfair Display', Georgia, serif" }}
                   >
                     Karthik & Swetha
                   </h3>
-                  <p className="text-xs italic text-slate-400 mt-0.5 font-light tracking-wider">
+                  <p className="text-[9px] sm:text-xs italic text-slate-400 mt-0.5 font-light tracking-wide">
                     Destination : Thottam
                   </p>
                 </div>
               </div>
 
               {/* Card 2: KRISHNA & CONNOR (Starts MUCH LOWER, narrower, sits deep in lower wave) */}
-              <div className="w-full sm:w-[28%] flex flex-col group z-10 sm:mt-28 md:mt-36 lg:mt-44 transition-transform duration-500">
+              <div className="w-[28.5%] sm:w-[28%] flex flex-col group z-10 mt-6 sm:mt-28 md:mt-36 lg:mt-44 transition-transform duration-500">
                 <Link
                   to="/gallery?category=wedding"
                   className="block overflow-hidden bg-[#141418] rounded-none border border-white/10 group-hover:border-[#df2531]/60 shadow-[0_20px_45px_rgba(0,0,0,0.7)] group-hover:shadow-[0_25px_50px_rgba(223,37,49,0.2)] transition-all duration-500 transform group-hover:-translate-y-1.5"
@@ -129,21 +129,21 @@ export default function IntimateWeddingShowcase() {
                   </div>
                 </Link>
 
-                <div className="pt-3.5 text-center sm:text-left">
+                <div className="pt-2 sm:pt-3.5 text-center sm:text-left">
                   <h3 
-                    className="text-white text-sm sm:text-[15px] font-normal tracking-[0.14em] uppercase"
+                    className="text-white text-[10px] sm:text-sm md:text-[15px] font-normal tracking-[0.08em] sm:tracking-[0.14em] uppercase"
                     style={{ fontFamily: "'Cormorant Garamond', 'Playfair Display', Georgia, serif" }}
                   >
                     Krishna & Connor
                   </h3>
-                  <p className="text-xs italic text-slate-400 mt-0.5 font-light tracking-wider">
+                  <p className="text-[9px] sm:text-xs italic text-slate-400 mt-0.5 font-light tracking-wide">
                     Destination : Kunnathoor Mana
                   </p>
                 </div>
               </div>
 
               {/* Card 3: SAI & AISHWARYA (Starts at INTERMEDIATE height, between Card 1 & 2) */}
-              <div className="w-full sm:w-[28%] flex flex-col group z-10 sm:mt-10 md:mt-14 lg:mt-20 transition-transform duration-500">
+              <div className="w-[28.5%] sm:w-[28%] flex flex-col group z-10 mt-2 sm:mt-10 md:mt-14 lg:mt-20 transition-transform duration-500">
                 <Link
                   to="/gallery?category=wedding"
                   className="block overflow-hidden bg-[#141418] rounded-none border border-white/10 group-hover:border-[#df2531]/60 shadow-[0_20px_45px_rgba(0,0,0,0.7)] group-hover:shadow-[0_25px_50px_rgba(223,37,49,0.2)] transition-all duration-500 transform group-hover:-translate-y-1.5"
@@ -158,14 +158,14 @@ export default function IntimateWeddingShowcase() {
                   </div>
                 </Link>
 
-                <div className="pt-3.5 text-center sm:text-left">
+                <div className="pt-2 sm:pt-3.5 text-center sm:text-left">
                   <h3 
-                    className="text-white text-sm sm:text-[15px] font-normal tracking-[0.14em] uppercase"
+                    className="text-white text-[10px] sm:text-sm md:text-[15px] font-normal tracking-[0.08em] sm:tracking-[0.14em] uppercase"
                     style={{ fontFamily: "'Cormorant Garamond', 'Playfair Display', Georgia, serif" }}
                   >
                     Sai & Aishwarya
                   </h3>
-                  <p className="text-xs italic text-slate-400 mt-0.5 font-light tracking-wider">
+                  <p className="text-[9px] sm:text-xs italic text-slate-400 mt-0.5 font-light tracking-wide">
                     Destination : Nandhi Hills
                   </p>
                 </div>
@@ -174,9 +174,9 @@ export default function IntimateWeddingShowcase() {
             </div>
 
             {/* Bottom Right Handwritten "with love" Signature (Exact Reference Element) */}
-            <div className="flex justify-end pt-12 sm:pt-16 pr-2 sm:pr-8">
+            <div className="flex justify-end pt-6 sm:pt-16 pr-2 sm:pr-8">
               <span 
-                className="text-4xl sm:text-5xl text-white/90 font-normal italic select-none transform -rotate-3 hover:rotate-0 transition-transform duration-300 drop-shadow-[0_2px_10px_rgba(255,255,255,0.15)]"
+                className="text-3xl sm:text-5xl text-white/90 font-normal italic select-none transform -rotate-3 hover:rotate-0 transition-transform duration-300 drop-shadow-[0_2px_10px_rgba(255,255,255,0.15)]"
                 style={{ fontFamily: "'Caveat', cursive, 'Brush Script MT', serif" }}
               >
                 with love

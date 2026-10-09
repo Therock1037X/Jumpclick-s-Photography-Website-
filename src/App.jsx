@@ -13,13 +13,13 @@ export default function App() {
   return (
     <BrowserRouter>
       <ScrollToTop />
-      <div className="min-h-screen bg-[#000000] text-slate-100 flex flex-col font-sans selection:bg-[#df2531] selection:text-white">
+      <div className="min-h-screen w-full max-w-[100vw] overflow-x-hidden bg-[#000000] text-slate-100 flex flex-col font-sans selection:bg-[#df2531] selection:text-white">
         
         {/* Top Fixed Header with Navigation Tabs */}
         <Navbar />
 
         {/* Dynamic Page Routed Views */}
-        <main className="flex-1">
+        <main className="flex-1 w-full max-w-[100vw] overflow-x-hidden">
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/about" element={<AboutPage />} />

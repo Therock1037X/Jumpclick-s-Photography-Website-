@@ -118,7 +118,15 @@ const displayPillars = [
 
 export default function HomePage() {
   // Viewport mode: 'mobile' | 'tablet' | 'desktop'
-  const [viewportMode, setViewportMode] = useState('desktop');
+  const [viewportMode, setViewportMode] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const w = window.innerWidth;
+      if (w >= 1024) return 'desktop';
+      if (w >= 768) return 'tablet';
+      return 'mobile';
+    }
+    return 'desktop';
+  });
   const [reducedMotion, setReducedMotion] = useState(false);
 
   // --- Services Carousel State & Drag Refs ---
@@ -425,7 +433,7 @@ export default function HomePage() {
                 OUR EXPERTISE
               </span>
               <h2 
-                className="text-3xl sm:text-4xl md:text-5xl font-normal text-white uppercase tracking-[0.15em] leading-tight"
+                className="text-2xl sm:text-4xl md:text-5xl font-normal text-white uppercase tracking-[0.1em] sm:tracking-[0.15em] leading-tight"
                 style={{ fontFamily: "'Cormorant Garamond', 'Playfair Display', Georgia, serif" }}
               >
                 Photography & Cinema Services
@@ -606,7 +614,7 @@ export default function HomePage() {
                 OUR COMMITMENT
               </span>
               <h2 
-                className="text-3xl sm:text-4xl md:text-5xl font-normal text-white uppercase tracking-[0.15em] leading-tight"
+                className="text-2xl sm:text-4xl md:text-5xl font-normal text-white uppercase tracking-[0.1em] sm:tracking-[0.15em] leading-tight"
                 style={{ fontFamily: "'Cormorant Garamond', 'Playfair Display', Georgia, serif" }}
               >
                 Why Choose JumpClicks
@@ -727,7 +735,7 @@ export default function HomePage() {
       <section className="py-12 sm:py-14 md:py-16 bg-gradient-to-r from-[#2a060a] via-[#0d0d10] to-[#1c0508] border-none select-none cursor-default">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4 select-none cursor-default">
           <h2 
-            className="text-3xl sm:text-5xl font-normal text-white select-none cursor-default"
+            className="text-2xl sm:text-4xl md:text-5xl font-normal text-white select-none cursor-default"
             style={{ fontFamily: "'Cormorant Garamond', 'Playfair Display', Georgia, serif" }}
           >
             Let’s Create Timeless Memories Together

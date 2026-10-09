@@ -48,7 +48,7 @@ export default function InstagramFeed({
           <div className="w-[1px] h-5 sm:h-6 bg-white/20 mb-3 sm:mb-4" aria-hidden="true" />
 
           <h2 
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.5rem] font-light text-white uppercase tracking-[0.34em] sm:tracking-[0.38em] leading-tight"
+            className="text-xl sm:text-3xl md:text-4xl lg:text-[2.5rem] font-light text-white uppercase tracking-[0.2em] sm:tracking-[0.38em] leading-tight"
             style={{ fontFamily: "'Cormorant Garamond', 'Playfair Display', Georgia, serif" }}
           >
             Follow Us On Instagram

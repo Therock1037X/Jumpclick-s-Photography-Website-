@@ -270,7 +270,7 @@ export default function WeddingFilmsCarousel() {
       {/* 1. Header Section (Matches User Reference Typography) */}
       <div className="max-w-5xl mx-auto px-4 sm:px-6 text-center mb-8 sm:mb-10 select-none">
         <h2 
-          className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.75rem] font-normal text-white uppercase tracking-[0.2em] sm:tracking-[0.25em] md:tracking-[0.3em] leading-tight"
+          className="text-xl sm:text-3xl md:text-4xl lg:text-[2.75rem] font-normal text-white uppercase tracking-[0.14em] sm:tracking-[0.25em] md:tracking-[0.3em] leading-tight"
           style={{ fontFamily: "'Cormorant Garamond', 'Playfair Display', Georgia, serif" }}
         >
           REDEFINING WEDDING FILMS THROUGH STORY TELLING
@@ -287,21 +287,21 @@ export default function WeddingFilmsCarousel() {
       {/* 2. Infinite Carousel Container with Edge-Overlapping Navigation Arrows */}
       <div className="relative max-w-[1450px] mx-auto px-4 sm:px-6 lg:px-10 select-none">
         
-        {/* Left Circular Arrow Button (Always Active in Infinite Loop, No Red Hover) */}
+        {/* Left Circular Arrow Button (Hidden on touch mobile to prevent covering posters, visible sm+) */}
         <button
           onClick={() => scrollOneCard('left')}
           onMouseDown={(e) => e.preventDefault()}
-          className="absolute left-2 sm:left-4 lg:left-3 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white text-slate-900 hover:bg-slate-200 shadow-2xl flex items-center justify-center transition-all duration-300 cursor-pointer hover:scale-105 active:scale-95 opacity-90 hover:opacity-100 border border-black/10 select-none caret-transparent"
+          className="hidden sm:flex absolute left-2 sm:left-4 lg:left-3 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white text-slate-900 hover:bg-slate-200 shadow-2xl items-center justify-center transition-all duration-300 cursor-pointer hover:scale-105 active:scale-95 opacity-90 hover:opacity-100 border border-black/10 select-none caret-transparent"
           aria-label="Previous wedding film"
         >
           <ChevronLeft className="w-5 h-5 stroke-[2.5]" />
         </button>
 
-        {/* Right Circular Arrow Button (Always Active in Infinite Loop, No Red Hover) */}
+        {/* Right Circular Arrow Button (Hidden on touch mobile to prevent covering posters, visible sm+) */}
         <button
           onClick={() => scrollOneCard('right')}
           onMouseDown={(e) => e.preventDefault()}
-          className="absolute right-2 sm:right-4 lg:right-3 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white text-slate-900 hover:bg-slate-200 shadow-2xl flex items-center justify-center transition-all duration-300 cursor-pointer hover:scale-105 active:scale-95 opacity-90 hover:opacity-100 border border-black/10 select-none caret-transparent"
+          className="hidden sm:flex absolute right-2 sm:right-4 lg:right-3 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white text-slate-900 hover:bg-slate-200 shadow-2xl items-center justify-center transition-all duration-300 cursor-pointer hover:scale-105 active:scale-95 opacity-90 hover:opacity-100 border border-black/10 select-none caret-transparent"
           aria-label="Next wedding film"
         >
           <ChevronRight className="w-5 h-5 stroke-[2.5]" />
@@ -330,7 +330,7 @@ export default function WeddingFilmsCarousel() {
               onClick={() => {
                 if (!hasDraggedRef.current) setSelectedFilm(film);
               }}
-              className="film-card snap-start flex-shrink-0 w-[82%] sm:w-[47%] md:w-[31%] lg:w-[calc(25%-18px)] group relative aspect-[9/16] rounded-none overflow-hidden bg-[#0e0e12] border border-white/10 hover:border-white/25 transition-colors duration-500 shadow-2xl shadow-black select-none"
+              className="film-card snap-center sm:snap-start flex-shrink-0 w-[72%] sm:w-[47%] md:w-[31%] lg:w-[calc(25%-18px)] group relative aspect-[9/16] rounded-none overflow-hidden bg-[#0e0e12] border border-white/10 hover:border-white/25 transition-colors duration-500 shadow-2xl shadow-black select-none"
               style={{ aspectRatio: '9 / 16' }}
             >
               {/* Poster Image (object-cover without distortion, subtle enlargement on hover) */}

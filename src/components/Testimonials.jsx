@@ -95,7 +95,7 @@ export default function Testimonials() {
           <div className="w-[1px] h-5 sm:h-6 bg-white/20 mb-3 sm:mb-4" aria-hidden="true" />
 
           <h2 
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.65rem] font-light text-white uppercase tracking-[0.34em] sm:tracking-[0.38em] leading-tight"
+            className="text-xl sm:text-3xl md:text-4xl lg:text-[2.65rem] font-light text-white uppercase tracking-[0.2em] sm:tracking-[0.38em] leading-tight"
             style={{ fontFamily: "'Cormorant Garamond', 'Playfair Display', Georgia, serif" }}
           >
             What Our Clients Say
@@ -130,7 +130,7 @@ export default function Testimonials() {
 
           {/* Right Column: Dark Luxury Obsidian Testimonial Panel */}
           <div className="lg:col-span-6 xl:col-span-6 z-10 mt-6 lg:mt-0 lg:-ml-10 xl:-ml-14">
-            <div className="bg-[#0e0e13] border border-white/10 hover:border-white/20 transition-colors duration-500 rounded-none p-8 sm:p-12 lg:p-14 xl:p-16 lg:pl-16 xl:pl-20 shadow-[0_20px_50px_rgba(0,0,0,0.8)] relative flex flex-col justify-between min-h-[340px] sm:min-h-[370px]">
+            <div className="bg-[#0e0e13] border border-white/10 hover:border-white/20 transition-colors duration-500 rounded-none p-5 sm:p-12 lg:p-14 xl:p-16 lg:pl-16 xl:pl-20 shadow-[0_20px_50px_rgba(0,0,0,0.8)] relative flex flex-col justify-between min-h-[300px] sm:min-h-[370px]">
               
               {/* Testimonial Quote and Couple Attribution (Centered Typography in Dark Theme) */}
               <div className={`transition-all duration-500 ease-out text-center ${

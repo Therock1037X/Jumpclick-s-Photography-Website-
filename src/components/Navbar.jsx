@@ -36,45 +36,18 @@ export default function Navbar() {
       <div className="w-full max-w-[1700px] mx-auto px-6 sm:px-10 lg:px-14">
         <div className="flex items-center justify-between">
           
-          {/* Logo - KnotsbyAMP Style Circular Monogram Badge */}
+          {/* Official Jumpclicks Logo */}
           <Link 
             to="/"
             onClick={() => setMobileMenuOpen(false)}
-            className="flex items-center gap-3.5 group outline-none focus:outline-none"
-            aria-label="Jumpclicks Home"
+            className="flex items-center gap-3 group outline-none focus:outline-none py-1"
+            aria-label="Jumpclicks Photography Home"
           >
-            <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full border border-white/60 group-hover:border-white transition-all duration-300 flex items-center justify-center p-1 relative bg-black/20 backdrop-blur-[2px]">
-              <svg viewBox="0 0 100 100" className="w-full h-full">
-                <path
-                  id="circlePath"
-                  d="M 50, 50 m -35, 0 a 35,35 0 1,1 70,0 a 35,35 0 1,1 -70,0"
-                  fill="none"
-                />
-                <text className="text-[9.5px] fill-white tracking-[0.22em] uppercase font-light">
-                  <textPath href="#circlePath" startOffset="50%" textAnchor="middle">
-                    Jumpclicks
-                  </textPath>
-                </text>
-                <text
-                  x="50"
-                  y="55"
-                  textAnchor="middle"
-                  className="fill-white font-serif text-[20px] font-normal italic"
-                  style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}
-                >
-                  JC
-                </text>
-              </svg>
-            </div>
-
-            <div className="hidden sm:block">
-              <span 
-                className="text-xl sm:text-2xl text-white font-normal tracking-wide block leading-none drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]"
-                style={{ fontFamily: "'Cormorant Garamond', 'Playfair Display', Georgia, serif" }}
-              >
-                Jumpclicks
-              </span>
-            </div>
+            <img 
+              src="/images/jumpclicks-logo-white.webp" 
+              alt="Jumpclicks Photography" 
+              className="h-10 sm:h-12 md:h-13 w-auto object-contain transition-transform duration-300 group-hover:scale-105 drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]"
+            />
           </Link>
 
           {/* KnotsbyAMP Style Pure Title Case Text Navigation */}

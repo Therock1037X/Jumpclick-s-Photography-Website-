@@ -17,12 +17,15 @@ export default function WeddingFilmsCarousel() {
   const [reducedMotion, setReducedMotion] = useState(false);
   const isResettingRef = useRef(false);
 
-  // Mouse drag-to-scroll state & refs
-  const isMouseDownRef = useRef(false);
+  // Mouse & Touch drag-to-scroll state & refs
+  const isDraggingRef = useRef(false);
   const startXRef = useRef(0);
   const scrollLeftRef = useRef(0);
   const hasDraggedRef = useRef(false);
-  const [isMouseDragging, setIsMouseDragging] = useState(false);
+  const lastXRef = useRef(0);
+  const lastTimeRef = useRef(0);
+  const velocityRef = useRef(0);
+  const [isDragging, setIsDragging] = useState(false);
 
   // Tripled dataset to support butter-smooth infinite looping in both directions
   const displayFilms = [...weddingFilmsData, ...weddingFilmsData, ...weddingFilmsData];
@@ -49,7 +52,7 @@ export default function WeddingFilmsCarousel() {
 
   // Infinite loop boundary handler: silently jumps between segments when boundaries are reached
   const handleScroll = useCallback(() => {
-    if (!carouselRef.current || isResettingRef.current) return;
+    if (!carouselRef.current || isResettingRef.current || isDraggingRef.current) return;
     const container = carouselRef.current;
     const oneThird = container.scrollWidth / 3;
 
@@ -73,7 +76,7 @@ export default function WeddingFilmsCarousel() {
 
   // Smooth scroll handler: advances by exactly one card width + gap
   const scrollOneCard = useCallback((direction = 'right') => {
-    if (!carouselRef.current) return;
+    if (!carouselRef.current || isDraggingRef.current) return;
     const container = carouselRef.current;
     
     // Get exact width of a single card
@@ -90,14 +93,14 @@ export default function WeddingFilmsCarousel() {
 
   // 4-Second Automatic Carousel Movement (Autoplay)
   useEffect(() => {
-    if (isPaused || selectedFilm || reducedMotion) return;
+    if (isPaused || selectedFilm || reducedMotion || isDragging) return;
 
     const timer = setInterval(() => {
       scrollOneCard('right');
     }, 4000);
 
     return () => clearInterval(timer);
-  }, [isPaused, selectedFilm, reducedMotion, scrollOneCard]);
+  }, [isPaused, selectedFilm, reducedMotion, isDragging, scrollOneCard]);
 
   // Navigate between films inside modal
   const handlePrevFilm = useCallback(() => {
@@ -137,41 +140,131 @@ export default function WeddingFilmsCarousel() {
     };
   }, [selectedFilm, handlePrevFilm, handleNextFilm]);
 
-  // Mouse Drag Handlers
+  // Finish drag with smooth momentum snap to nearest card
+  const finishDrag = useCallback(() => {
+    if (!isDraggingRef.current) return;
+    isDraggingRef.current = false;
+    setIsDragging(false);
+
+    if (carouselRef.current) {
+      const container = carouselRef.current;
+      const card = container.querySelector('.film-card');
+      const cardWidth = card ? card.getBoundingClientRect().width : 300;
+      const gap = window.innerWidth >= 1024 ? 24 : window.innerWidth >= 640 ? 20 : 16;
+      const cardStep = cardWidth + gap;
+
+      const v = velocityRef.current;
+      let target = container.scrollLeft;
+
+      // If flicked with speed, push in flick direction
+      if (Math.abs(v) > 0.3) {
+        target -= v * 220;
+      }
+
+      // Snap neatly to nearest card boundary
+      const nearestIdx = Math.round(target / cardStep);
+      const snapScroll = nearestIdx * cardStep;
+
+      container.scrollTo({
+        left: snapScroll,
+        behavior: 'smooth',
+      });
+    }
+
+    setTimeout(() => {
+      setIsPaused(false);
+    }, 1200);
+  }, []);
+
+  // Global mousemove and mouseup listeners for seamless dragging outside container
+  useEffect(() => {
+    const handleGlobalMouseMove = (e) => {
+      if (!isDraggingRef.current || !carouselRef.current) return;
+      const x = e.clientX;
+      const dx = x - startXRef.current;
+      if (Math.abs(dx) > 4) {
+        hasDraggedRef.current = true;
+      }
+      const now = Date.now();
+      const dt = now - lastTimeRef.current;
+      if (dt > 10) {
+        velocityRef.current = (x - lastXRef.current) / dt;
+        lastXRef.current = x;
+        lastTimeRef.current = now;
+      }
+      carouselRef.current.scrollLeft = scrollLeftRef.current - dx;
+    };
+
+    const handleGlobalMouseUp = () => {
+      if (isDraggingRef.current) {
+        finishDrag();
+      }
+    };
+
+    window.addEventListener('mousemove', handleGlobalMouseMove);
+    window.addEventListener('mouseup', handleGlobalMouseUp);
+    return () => {
+      window.removeEventListener('mousemove', handleGlobalMouseMove);
+      window.removeEventListener('mouseup', handleGlobalMouseUp);
+    };
+  }, [finishDrag]);
+
+  // Mouse Drag Initiation
   const handleMouseDown = (e) => {
-    if (!carouselRef.current) return;
-    isMouseDownRef.current = true;
-    startXRef.current = e.pageX - carouselRef.current.offsetLeft;
+    if (!carouselRef.current || e.button !== 0) return;
+    isDraggingRef.current = true;
+    startXRef.current = e.clientX;
     scrollLeftRef.current = carouselRef.current.scrollLeft;
     hasDraggedRef.current = false;
-    setIsMouseDragging(true);
+    lastXRef.current = e.clientX;
+    lastTimeRef.current = Date.now();
+    velocityRef.current = 0;
+    setIsDragging(true);
     setIsPaused(true);
   };
 
-  const handleMouseMove = (e) => {
-    if (!isMouseDownRef.current || !carouselRef.current) return;
-    e.preventDefault();
-    const x = e.pageX - carouselRef.current.offsetLeft;
-    const walk = (x - startXRef.current);
-    if (Math.abs(walk) > 5) {
-      hasDraggedRef.current = true;
-    }
-    carouselRef.current.scrollLeft = scrollLeftRef.current - walk;
+  // Touch Drag Handlers
+  const handleTouchStart = (e) => {
+    if (!carouselRef.current) return;
+    isDraggingRef.current = true;
+    startXRef.current = e.touches[0].clientX;
+    scrollLeftRef.current = carouselRef.current.scrollLeft;
+    hasDraggedRef.current = false;
+    lastXRef.current = e.touches[0].clientX;
+    lastTimeRef.current = Date.now();
+    velocityRef.current = 0;
+    setIsDragging(true);
+    setIsPaused(true);
   };
 
-  const handleMouseUp = () => {
-    isMouseDownRef.current = false;
-    setIsMouseDragging(false);
-    setIsPaused(false);
+  const handleTouchMove = (e) => {
+    if (!isDraggingRef.current || !carouselRef.current) return;
+    const x = e.touches[0].clientX;
+    const dx = x - startXRef.current;
+    if (Math.abs(dx) > 4) {
+      hasDraggedRef.current = true;
+    }
+    const now = Date.now();
+    const dt = now - lastTimeRef.current;
+    if (dt > 10) {
+      velocityRef.current = (x - lastXRef.current) / dt;
+      lastXRef.current = x;
+      lastTimeRef.current = now;
+    }
+    carouselRef.current.scrollLeft = scrollLeftRef.current - dx;
+  };
+
+  const handleTouchEnd = () => {
+    finishDrag();
   };
 
   return (
     <section 
       className="relative w-full bg-[#000000] text-white py-20 sm:py-24 md:py-28 overflow-hidden select-none border-none"
       onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
-      onTouchStart={() => setIsPaused(true)}
-      onTouchEnd={() => setIsPaused(false)}
+      onMouseLeave={() => {
+        if (!isDraggingRef.current) setIsPaused(false);
+      }}
     >
       
       {/* 1. Header Section (Matches User Reference Typography) */}
@@ -214,18 +307,22 @@ export default function WeddingFilmsCarousel() {
           <ChevronRight className="w-5 h-5 stroke-[2.5]" />
         </button>
 
-        {/* Horizontal Infinite Scrolling Track with Mouse Drag & Snap */}
+        {/* Horizontal Infinite Scrolling Track with Butter-Smooth Drag & Inertial Snap */}
         <div
           ref={carouselRef}
           onScroll={handleScroll}
           onMouseDown={handleMouseDown}
-          onMouseMove={handleMouseMove}
-          onMouseUp={handleMouseUp}
-          onMouseLeave={handleMouseUp}
-          className={`flex gap-4 sm:gap-5 lg:gap-6 overflow-x-auto scrollbar-hide snap-x snap-mandatory py-3 px-1 select-none ${
-            isMouseDragging ? 'cursor-grabbing' : 'cursor-grab'
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+          className={`flex gap-4 sm:gap-5 lg:gap-6 overflow-x-auto scrollbar-hide py-3 px-1 select-none will-change-scroll ${
+            isDragging ? 'snap-none cursor-grabbing' : 'snap-x snap-mandatory cursor-grab'
           }`}
-          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          style={{ 
+            scrollbarWidth: 'none', 
+            msOverflowStyle: 'none',
+            scrollBehavior: isDragging ? 'auto' : 'smooth',
+          }}
         >
           {displayFilms.map((film, index) => (
             <div

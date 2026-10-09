@@ -24,8 +24,15 @@ export default function Footer() {
       <div className="w-full py-6 sm:py-7 border-none">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 flex flex-col md:flex-row items-center justify-between gap-4 text-xs sm:text-[13px]">
           
-          {/* Left: Navigation Tabs (Same as main tabs) + WhatsApp Chat */}
-          <div className="flex flex-wrap items-center justify-center md:justify-start gap-x-6 sm:gap-x-7 gap-y-2.5 text-slate-300 text-[11.5px] uppercase tracking-[0.16em] font-medium">
+          {/* Left: Official Logo + Navigation Tabs + WhatsApp Chat */}
+          <div className="flex flex-wrap items-center justify-center md:justify-start gap-x-6 sm:gap-x-7 gap-y-3 text-slate-300 text-[11.5px] uppercase tracking-[0.16em] font-medium">
+            <Link to="/" className="inline-block mr-1 sm:mr-2" aria-label="Jumpclicks Photography Home">
+              <img 
+                src="/images/jumpclicks-logo-white.webp" 
+                alt="Jumpclicks Photography" 
+                className="h-7 sm:h-8 w-auto object-contain opacity-90 hover:opacity-100 transition-opacity"
+              />
+            </Link>
             <Link to="/" className="hover:text-[#df2531] transition-colors">Home</Link>
             <Link to="/about" className="hover:text-[#df2531] transition-colors">About Us</Link>
             <Link to="/services" className="hover:text-[#df2531] transition-colors">Services</Link>

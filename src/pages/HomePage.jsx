@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Star, Calendar, MessageCircle } from 'lucide-react';
 import Hero from '../components/Hero';
+import IntimateWeddingShowcase from '../components/IntimateWeddingShowcase';
 import { servicesData, clientReviews } from '../data/contentData';
 import { galleryItems } from '../data/galleryData';
 
@@ -14,32 +15,8 @@ export default function HomePage() {
       {/* 100vh Full-Bleed KnotsbyAMP Style Hero */}
       <Hero />
 
-      {/* Editorial Welcome Intro */}
-      <section className="py-24 bg-[#000000] text-center px-4 relative overflow-hidden">
-        <div className="max-w-3xl mx-auto space-y-4">
-          <span className="text-[11px] tracking-[0.3em] uppercase text-[#df2531] font-semibold block">
-            THE ART OF STORYTELLING
-          </span>
-          <h2 
-            className="text-3xl sm:text-5xl font-normal text-white leading-tight"
-            style={{ fontFamily: "'Cormorant Garamond', 'Playfair Display', Georgia, serif" }}
-          >
-            Preserving Your Most Meaningful Celebrations
-          </h2>
-          <p className="text-slate-300 text-sm sm:text-base leading-relaxed pt-2">
-            Every celebration is a confluence of unspoken emotions, laughter, and timeless family bonds. Founded in 2020, Jumpclicks documents life's rarest moments with unobtrusive candids, natural light, and cinematic poise.
-          </p>
-          <div className="pt-4 flex items-center justify-center gap-6 text-xs uppercase tracking-widest text-slate-400">
-            <span>Weddings</span>
-            <span>•</span>
-            <span>Pre-Weddings</span>
-            <span>•</span>
-            <span>Portraits</span>
-            <span>•</span>
-            <span>Milestones</span>
-          </div>
-        </div>
-      </section>
+      {/* Editorial Intimate Wedding Showcase (Matches User Reference) */}
+      <IntimateWeddingShowcase />
 
       {/* Featured Gallery Preview - Pure Photography, Zero Text Below Images */}
       <section className="py-16 bg-[#000000] border-t border-white/5">

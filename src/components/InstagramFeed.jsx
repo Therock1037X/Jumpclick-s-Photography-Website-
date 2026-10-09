@@ -107,7 +107,7 @@ export default function InstagramFeed({
               {/* Desktop Hover Overlay with Instagram Icon */}
               <div className="absolute inset-0 bg-black/60 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col items-center justify-center gap-2 text-white">
                 <div className="w-11 h-11 rounded-2xl bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20 transform scale-75 group-hover:scale-100 transition-transform duration-300 shadow-2xl">
-                  <Instagram className="w-5 h-5 text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]" />
+                  <InstagramIcon className="w-5 h-5 text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]" />
                 </div>
                 <span className="text-[10px] uppercase tracking-[0.25em] font-medium text-white/90">
                   JumpClicks
@@ -133,7 +133,7 @@ export default function InstagramFeed({
             {/* Instagram Gradient Logo */}
             <div className="w-6 h-6 rounded-lg bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 p-[1.5px] flex items-center justify-center shadow-sm">
               <div className="w-full h-full bg-[#000000] rounded-[6px] flex items-center justify-center">
-                <Instagram className="w-3.5 h-3.5 text-white group-hover:scale-110 transition-transform duration-300" />
+                <InstagramIcon className="w-3.5 h-3.5 text-white group-hover:scale-110 transition-transform duration-300" />
               </div>
             </div>
             

@@ -495,23 +495,32 @@ export default function HomePage() {
                     onClick={(e) => {
                       if (servicesMovedRef.current) e.preventDefault();
                     }}
-                    className="group relative aspect-[3/4] sm:aspect-[4/5] md:aspect-[3/4] rounded-none overflow-hidden bg-black border-0 border-transparent outline-none ring-0 shadow-none hover:border-0 hover:outline-none hover:ring-0 hover:shadow-none transition-all duration-500 flex flex-col justify-between p-6 sm:p-8 cursor-pointer select-none block h-full"
+                    className="group relative aspect-[3/4] sm:aspect-[4/5] md:aspect-[3/4] rounded-none overflow-hidden bg-black border-0 border-transparent outline-none ring-0 shadow-none hover:border-0 hover:outline-none hover:ring-0 hover:shadow-none transition-all duration-500 flex flex-col justify-between p-6 sm:p-8 cursor-pointer select-none block h-full [transform:translateZ(0)] [-webkit-mask-image:-webkit-radial-gradient(white,black)]"
                     style={{ isolation: 'isolate' }}
                   >
-                    {/* Background Image with subtle zoom on hover - 100% natural, vibrant, zero tint */}
-                    <img
-                      src={svc.image}
-                      alt={svc.title}
-                      draggable="false"
-                      className="absolute -inset-[1px] w-[calc(100%+2px)] h-[calc(100%+2px)] max-w-none object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out select-none pointer-events-none"
-                      loading="lazy"
-                    />
+                    {/* Background Image with subtle zoom on hover (contained at z-0) */}
+                    <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+                      <img
+                        src={svc.image}
+                        alt={svc.title}
+                        draggable="false"
+                        className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out select-none pointer-events-none"
+                        loading="lazy"
+                      />
+                    </div>
 
-                    {/* Clean localized bottom gradient strictly behind text for readability — zero tint over couple or photography */}
-                    <div className="absolute -inset-x-2 bottom-0 h-[50%] bg-gradient-to-t from-black via-black/85 via-black/40 to-transparent pointer-events-none z-0" />
+                    {/* Left & Right Edge Vignettes: Seamlessly seal sides with black so tint is never open on edges */}
+                    <div className="absolute inset-y-0 left-0 w-8 sm:w-12 bg-gradient-to-r from-black via-black/40 to-transparent pointer-events-none z-10" />
+                    <div className="absolute inset-y-0 right-0 w-8 sm:w-12 bg-gradient-to-l from-black via-black/40 to-transparent pointer-events-none z-10" />
+
+                    {/* Top Scrim: Soft dark fade behind category badge and number */}
+                    <div className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-black/75 via-black/30 to-transparent pointer-events-none z-10" />
+
+                    {/* Bottom Scrim: Smooth deep gradient strictly behind text for readability */}
+                    <div className="absolute inset-x-0 bottom-0 h-[58%] bg-gradient-to-t from-black via-black/85 via-black/40 to-transparent pointer-events-none z-10" />
 
                     {/* Card Top: Number & Category Badge (Border-free clean design) */}
-                    <div className="relative z-10 flex items-center justify-between select-none">
+                    <div className="relative z-20 flex items-center justify-between select-none">
                       <span className="text-[10px] font-mono tracking-[0.25em] uppercase text-white/90 bg-black/60 px-2.5 py-1 border-0 outline-none backdrop-blur-md">
                         {svc.badge}
                       </span>
@@ -521,7 +530,7 @@ export default function HomePage() {
                     </div>
 
                     {/* Card Bottom: Typography & CTA with enhanced contrast */}
-                    <div className="relative z-10 space-y-2 select-none">
+                    <div className="relative z-20 space-y-2 select-none">
                       <h3 
                         className="text-2xl sm:text-[1.75rem] font-normal text-white uppercase tracking-wider leading-snug drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)]"
                         style={{ fontFamily: "'Cormorant Garamond', 'Playfair Display', Georgia, serif" }}

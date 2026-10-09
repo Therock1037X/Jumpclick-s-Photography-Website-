@@ -711,15 +711,15 @@ export default function HomePage() {
       </section>
 
       {/* Final Booking CTA Banner — Positioned at the very end with signature crimson gradient */}
-      <section className="py-20 bg-gradient-to-r from-[#2a060a] via-[#0d0d10] to-[#1c0508] border-none">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
+      <section className="py-20 bg-gradient-to-r from-[#2a060a] via-[#0d0d10] to-[#1c0508] border-none select-none cursor-default">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4 select-none cursor-default">
           <h2 
-            className="text-3xl sm:text-5xl font-normal text-white"
+            className="text-3xl sm:text-5xl font-normal text-white select-none cursor-default"
             style={{ fontFamily: "'Cormorant Garamond', 'Playfair Display', Georgia, serif" }}
           >
             Let’s Create Timeless Memories Together
           </h2>
-          <p className="text-slate-300 text-sm max-w-xl mx-auto">
+          <p className="text-slate-300 text-sm max-w-xl mx-auto select-none cursor-default">
             Contact us today to check our availability for your date and discuss customized packages.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4 pt-3">

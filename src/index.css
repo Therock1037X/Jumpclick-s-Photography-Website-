@@ -32,9 +32,23 @@
     background-attachment: fixed;
   }
 
-  h1, h2, h3, .font-heading {
+  html, body {
+    cursor: default;
+  }
+
+  /* Default all headings and text elements to standard arrow pointer (remove I-beam text cursor) */
+  h1, h2, h3, h4, h5, h6, p, span, li, blockquote, label, div, section, header, footer {
+    cursor: default;
+  }
+
+  /* Headings: unselectable, standard arrow cursor, no text caret */
+  h1, h2, h3, h4, h5, h6, .font-heading {
     font-family: var(--font-heading);
     letter-spacing: -0.02em;
+    cursor: default;
+    user-select: none;
+    -webkit-user-select: none;
+    caret-color: transparent;
   }
 
   /* Prevent browser focus outline/white lines and text carets on click */
@@ -42,17 +56,26 @@
     outline: none !important;
   }
 
-  a, button {
+  a, button, [role="button"], .cursor-pointer {
     outline: none !important;
     -webkit-tap-highlight-color: transparent;
     user-select: none;
     -webkit-user-select: none;
     caret-color: transparent;
+    cursor: pointer;
   }
 
   a:focus, button:focus, a:focus-visible, button:focus-visible {
     outline: none !important;
     box-shadow: none !important;
+  }
+
+  /* Form inputs and textareas retain text cursor */
+  input:not([type="button"]):not([type="submit"]):not([type="checkbox"]):not([type="radio"]),
+  textarea {
+    cursor: text !important;
+    user-select: text !important;
+    caret-color: #df2531 !important;
   }
 }
 

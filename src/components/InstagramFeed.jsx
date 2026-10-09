@@ -56,26 +56,26 @@ export default function InstagramFeed({
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* 2. Exact 10 Boxes Grid (5 cols x 2 rows on desktop, 2 cols on mobile) */}
-        {/* Differentiating dividing lines match brand theme color (#df2531) instead of white */}
-        <div className="p-[2px] bg-[#df2531]/45 border border-[#df2531]/50 grid grid-cols-2 md:grid-cols-5 gap-[2px] shadow-2xl shadow-black">
+        {/* Seamless black lines between images matching the website background color, no outer border */}
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-1 sm:gap-1.5 md:gap-2 bg-[#000000] border-none">
           {feedImages.map((img) => (
             <a
               key={img.id}
               href={profileUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative overflow-hidden bg-[#0d0c10] aspect-[4/5] block cursor-pointer transition-all duration-300"
+              className="group relative overflow-hidden bg-[#0d0c10] aspect-[4/5] block cursor-pointer border-none"
               aria-label={`View post on Instagram (${img.likes} likes)`}
             >
-              {/* Image with subtle hover zoom */}
+              {/* Image with zero zoom effect */}
               <img
                 src={img.src}
                 alt={img.alt}
-                className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-108"
+                className="w-full h-full object-cover object-center"
                 loading="lazy"
               />
 
-              {/* Desktop Hover Overlay with Likes (heart icon + likes count, matching reference) */}
+              {/* Desktop Hover Overlay with Likes (heart icon + likes count) */}
               <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-white">
                 <div className="flex items-center gap-2 text-white font-semibold text-sm sm:text-base tracking-wide drop-shadow-md">
                   <Heart className="w-4 h-4 sm:w-5 sm:h-5 fill-white text-white" />

@@ -24,8 +24,11 @@ yarn-debug.log*
 yarn-error.log*
 logs/
 
-# Editor / OS
-.DS_Store
+# Raw camera archives (processed into public/gallery)
+image data/
+*.psd
 Thumbs.db
+.DS_Store
 .vscode/
 .idea/
+

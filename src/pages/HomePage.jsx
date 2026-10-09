@@ -19,7 +19,7 @@ export default function HomePage() {
       <IntimateWeddingShowcase />
 
       {/* Featured Gallery Preview - Pure Photography, Zero Text Below Images */}
-      <section className="py-16 bg-[#000000] border-t border-white/5">
+      <section className="py-16 bg-[#000000] border-none">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row items-baseline justify-between mb-10 gap-3">
             <div>
@@ -74,7 +74,7 @@ export default function HomePage() {
       </section>
 
       {/* Services Overview */}
-      <section className="py-24 bg-[#060608] border-t border-white/5">
+      <section className="py-24 bg-[#000000] border-none">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <span className="text-[11px] tracking-[0.25em] uppercase text-[#df2531] font-semibold block mb-2">
@@ -113,7 +113,7 @@ export default function HomePage() {
                 </div>
                 <Link
                   to="/services"
-                  className="inline-flex items-center gap-1.5 text-xs uppercase tracking-wider font-semibold text-[#df2531] hover:text-white transition-colors pt-4 border-t border-white/5"
+                  className="inline-flex items-center gap-1.5 text-xs uppercase tracking-wider font-semibold text-[#df2531] hover:text-white transition-colors pt-4 border-none"
                 >
                   <span>Explore Packages</span>
                   <ArrowRight className="w-3.5 h-3.5" />
@@ -135,7 +135,7 @@ export default function HomePage() {
       </section>
 
       {/* Client Reviews */}
-      <section className="py-24 bg-[#000000] border-t border-white/5">
+      <section className="py-24 bg-[#000000] border-none">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <h2 
@@ -166,7 +166,7 @@ export default function HomePage() {
                 >
                   "{rev.quote}"
                 </p>
-                <div className="pt-4 border-t border-white/5 flex items-center justify-between text-xs">
+                <div className="pt-4 border-none flex items-center justify-between text-xs">
                   <span className="font-bold text-white uppercase tracking-wider">{rev.name}</span>
                   <span className="text-slate-400">{rev.event} • {rev.city}</span>
                 </div>
@@ -177,7 +177,7 @@ export default function HomePage() {
       </section>
 
       {/* Booking CTA Banner */}
-      <section className="py-20 bg-gradient-to-r from-[#2a060a] via-[#0d0d10] to-[#1c0508] border-t border-[#df2531]/30">
+      <section className="py-20 bg-gradient-to-r from-[#2a060a] via-[#0d0d10] to-[#1c0508] border-none">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
           <h2 
             className="text-3xl sm:text-5xl font-normal text-white"

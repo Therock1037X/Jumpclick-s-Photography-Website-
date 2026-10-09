@@ -34,13 +34,14 @@ export default function IntimateWeddingShowcase() {
           preserveAspectRatio="none"
         >
           <defs>
-            <linearGradient id="curvyGraphicGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#121017" stopOpacity="0.95" />
-              <stop offset="60%" stopColor="#0e0d13" stopOpacity="0.98" />
-              <stop offset="100%" stopColor="#08070b" stopOpacity="1" />
+            <linearGradient id="curvyGraphicGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor="#000000" stopOpacity="0" />
+              <stop offset="18%" stopColor="#14111a" stopOpacity="0.85" />
+              <stop offset="75%" stopColor="#0d0c12" stopOpacity="0.9" />
+              <stop offset="100%" stopColor="#000000" stopOpacity="0" />
             </linearGradient>
           </defs>
-          {/* Organic flowing S-curve contour matching the reference image's wavy backdrop */}
+          {/* Organic flowing S-curve contour with NO stroke or divider lines */}
           <path 
             d="M 1000,0 
                L 360,0 
@@ -50,23 +51,9 @@ export default function IntimateWeddingShowcase() {
                C 90,730, 150,800, 250,800 
                L 1000,800 Z" 
             fill="url(#curvyGraphicGrad)" 
-            stroke="rgba(255,255,255,0.06)" 
-            strokeWidth="1.2"
+            stroke="none"
           />
         </svg>
-
-        {/* Delicate hairline path tracing the organic curve with subtle location marker pin */}
-        <div className="absolute left-[3%] top-[48%] -translate-y-1/2 w-48 h-40 hidden lg:block opacity-40">
-          <svg viewBox="0 0 160 140" className="w-full h-full overflow-visible">
-            <path
-              d="M 0 130 C 50 130, 90 90, 120 20"
-              fill="none"
-              stroke="#a1a1aa"
-              strokeWidth="0.8"
-            />
-            <circle cx="120" cy="20" r="2.5" fill="#e4e4e7" />
-          </svg>
-        </div>
       </div>
 
       {/* Main Content Grid */}

@@ -17,6 +17,13 @@ export default function WeddingFilmsCarousel() {
   const [reducedMotion, setReducedMotion] = useState(false);
   const isResettingRef = useRef(false);
 
+  // Mouse drag-to-scroll state & refs
+  const isMouseDownRef = useRef(false);
+  const startXRef = useRef(0);
+  const scrollLeftRef = useRef(0);
+  const hasDraggedRef = useRef(false);
+  const [isMouseDragging, setIsMouseDragging] = useState(false);
+
   // Tripled dataset to support butter-smooth infinite looping in both directions
   const displayFilms = [...weddingFilmsData, ...weddingFilmsData, ...weddingFilmsData];
 
@@ -130,6 +137,34 @@ export default function WeddingFilmsCarousel() {
     };
   }, [selectedFilm, handlePrevFilm, handleNextFilm]);
 
+  // Mouse Drag Handlers
+  const handleMouseDown = (e) => {
+    if (!carouselRef.current) return;
+    isMouseDownRef.current = true;
+    startXRef.current = e.pageX - carouselRef.current.offsetLeft;
+    scrollLeftRef.current = carouselRef.current.scrollLeft;
+    hasDraggedRef.current = false;
+    setIsMouseDragging(true);
+    setIsPaused(true);
+  };
+
+  const handleMouseMove = (e) => {
+    if (!isMouseDownRef.current || !carouselRef.current) return;
+    e.preventDefault();
+    const x = e.pageX - carouselRef.current.offsetLeft;
+    const walk = (x - startXRef.current);
+    if (Math.abs(walk) > 5) {
+      hasDraggedRef.current = true;
+    }
+    carouselRef.current.scrollLeft = scrollLeftRef.current - walk;
+  };
+
+  const handleMouseUp = () => {
+    isMouseDownRef.current = false;
+    setIsMouseDragging(false);
+    setIsPaused(false);
+  };
+
   return (
     <section 
       className="relative w-full bg-[#000000] text-white py-20 sm:py-24 md:py-28 overflow-hidden select-none border-none"
@@ -140,7 +175,7 @@ export default function WeddingFilmsCarousel() {
     >
       
       {/* 1. Header Section (Matches User Reference Typography) */}
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 text-center mb-12 sm:mb-16">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 text-center mb-12 sm:mb-16 select-none">
         <h2 
           className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.75rem] font-normal text-white uppercase tracking-[0.2em] sm:tracking-[0.25em] md:tracking-[0.3em] leading-tight"
           style={{ fontFamily: "'Cormorant Garamond', 'Playfair Display', Georgia, serif" }}
@@ -157,12 +192,13 @@ export default function WeddingFilmsCarousel() {
       </div>
 
       {/* 2. Infinite Carousel Container with Edge-Overlapping Navigation Arrows */}
-      <div className="relative max-w-[1450px] mx-auto px-4 sm:px-6 lg:px-10">
+      <div className="relative max-w-[1450px] mx-auto px-4 sm:px-6 lg:px-10 select-none">
         
         {/* Left Circular Arrow Button (Always Active in Infinite Loop, No Red Hover) */}
         <button
           onClick={() => scrollOneCard('left')}
-          className="absolute left-2 sm:left-4 lg:left-3 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white text-slate-900 hover:bg-slate-200 shadow-2xl flex items-center justify-center transition-all duration-300 cursor-pointer hover:scale-105 active:scale-95 opacity-90 hover:opacity-100 border border-black/10"
+          onMouseDown={(e) => e.preventDefault()}
+          className="absolute left-2 sm:left-4 lg:left-3 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white text-slate-900 hover:bg-slate-200 shadow-2xl flex items-center justify-center transition-all duration-300 cursor-pointer hover:scale-105 active:scale-95 opacity-90 hover:opacity-100 border border-black/10 select-none caret-transparent"
           aria-label="Previous wedding film"
         >
           <ChevronLeft className="w-5 h-5 stroke-[2.5]" />
@@ -171,31 +207,41 @@ export default function WeddingFilmsCarousel() {
         {/* Right Circular Arrow Button (Always Active in Infinite Loop, No Red Hover) */}
         <button
           onClick={() => scrollOneCard('right')}
-          className="absolute right-2 sm:right-4 lg:right-3 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white text-slate-900 hover:bg-slate-200 shadow-2xl flex items-center justify-center transition-all duration-300 cursor-pointer hover:scale-105 active:scale-95 opacity-90 hover:opacity-100 border border-black/10"
+          onMouseDown={(e) => e.preventDefault()}
+          className="absolute right-2 sm:right-4 lg:right-3 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white text-slate-900 hover:bg-slate-200 shadow-2xl flex items-center justify-center transition-all duration-300 cursor-pointer hover:scale-105 active:scale-95 opacity-90 hover:opacity-100 border border-black/10 select-none caret-transparent"
           aria-label="Next wedding film"
         >
           <ChevronRight className="w-5 h-5 stroke-[2.5]" />
         </button>
 
-        {/* Horizontal Infinite Scrolling Track (Strict 9:16 Cards, 4 cards visible on desktop) */}
+        {/* Horizontal Infinite Scrolling Track with Mouse Drag & Snap */}
         <div
           ref={carouselRef}
           onScroll={handleScroll}
-          className="flex gap-4 sm:gap-5 lg:gap-6 overflow-x-auto scrollbar-hide snap-x snap-mandatory py-3 px-1"
+          onMouseDown={handleMouseDown}
+          onMouseMove={handleMouseMove}
+          onMouseUp={handleMouseUp}
+          onMouseLeave={handleMouseUp}
+          className={`flex gap-4 sm:gap-5 lg:gap-6 overflow-x-auto scrollbar-hide snap-x snap-mandatory py-3 px-1 select-none ${
+            isMouseDragging ? 'cursor-grabbing' : 'cursor-grab'
+          }`}
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
           {displayFilms.map((film, index) => (
             <div
               key={`${film.id}-${index}`}
-              onClick={() => setSelectedFilm(film)}
-              className="film-card snap-start flex-shrink-0 w-[82%] sm:w-[47%] md:w-[31%] lg:w-[calc(25%-18px)] group relative aspect-[9/16] rounded-none overflow-hidden cursor-pointer bg-[#0e0e12] border border-white/10 hover:border-white/25 transition-colors duration-500 shadow-2xl shadow-black"
+              onClick={() => {
+                if (!hasDraggedRef.current) setSelectedFilm(film);
+              }}
+              className="film-card snap-start flex-shrink-0 w-[82%] sm:w-[47%] md:w-[31%] lg:w-[calc(25%-18px)] group relative aspect-[9/16] rounded-none overflow-hidden bg-[#0e0e12] border border-white/10 hover:border-white/25 transition-colors duration-500 shadow-2xl shadow-black select-none"
               style={{ aspectRatio: '9 / 16' }}
             >
               {/* Poster Image (object-cover without distortion, subtle enlargement on hover) */}
               <img
                 src={film.poster}
                 alt={`${film.title} - ${film.couple}`}
-                className={`w-full h-full object-cover object-center transition-transform duration-500 ease-out group-hover:scale-[1.03] ${
+                draggable="false"
+                className={`w-full h-full object-cover object-center transition-transform duration-500 ease-out group-hover:scale-[1.03] select-none pointer-events-none ${
                   film.styleVariant === 'monochrome' ? 'grayscale contrast-125' : ''
                 }`}
                 style={{ objectFit: 'cover' }}

@@ -37,7 +37,7 @@
     letter-spacing: -0.02em;
   }
 
-  /* Prevent browser focus outline/white lines on click */
+  /* Prevent browser focus outline/white lines and text carets on click */
   *:focus {
     outline: none !important;
   }
@@ -45,12 +45,22 @@
   a, button {
     outline: none !important;
     -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    -webkit-user-select: none;
+    caret-color: transparent;
   }
 
   a:focus, button:focus, a:focus-visible, button:focus-visible {
     outline: none !important;
     box-shadow: none !important;
   }
+}
+
+/* Prevent text selection and blinking cursor carets in carousel controls and interactive blocks */
+.carousel-track, .carousel-controls, .carousel-dot {
+  user-select: none;
+  -webkit-user-select: none;
+  caret-color: transparent;
 }
 
 /* Custom Glassmorphism & Crimson Accents */

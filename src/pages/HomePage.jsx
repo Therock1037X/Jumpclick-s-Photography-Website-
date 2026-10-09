@@ -495,7 +495,7 @@ export default function HomePage() {
                     onClick={(e) => {
                       if (servicesMovedRef.current) e.preventDefault();
                     }}
-                    className="group relative aspect-[3/4] sm:aspect-[4/5] md:aspect-[3/4] rounded-none overflow-hidden bg-[#0c0c10] border border-white/10 hover:border-white/30 transition-all duration-500 shadow-2xl flex flex-col justify-between p-6 sm:p-8 cursor-pointer select-none block h-full"
+                    className="group relative aspect-[3/4] sm:aspect-[4/5] md:aspect-[3/4] rounded-none overflow-hidden bg-[#0c0c10] border-none transition-all duration-500 shadow-2xl flex flex-col justify-between p-6 sm:p-8 cursor-pointer select-none block h-full"
                   >
                     {/* Background Image with subtle zoom on hover */}
                     <img
@@ -506,35 +506,36 @@ export default function HomePage() {
                       loading="lazy"
                     />
 
-                    {/* Clean bottom gradient only behind text for legibility — zero dark overlay over the couple and photography */}
-                    <div className="absolute inset-x-0 bottom-0 h-[50%] bg-gradient-to-t from-black/95 via-black/55 to-transparent pointer-events-none z-0" />
+                    {/* Dark transparent tint & deep gradient scrim behind text for crystal-clear readability */}
+                    <div className="absolute inset-0 bg-black/25 pointer-events-none z-0" />
+                    <div className="absolute inset-x-0 bottom-0 h-[72%] sm:h-[75%] bg-gradient-to-t from-black via-black/90 via-black/55 to-transparent pointer-events-none z-0" />
 
-                    {/* Card Top: Number & Category Badge */}
+                    {/* Card Top: Number & Category Badge (Border-free clean design) */}
                     <div className="relative z-10 flex items-center justify-between select-none">
-                      <span className="text-[10px] font-mono tracking-[0.25em] uppercase text-white/80 bg-black/60 px-2.5 py-1 border border-white/15 backdrop-blur-md">
+                      <span className="text-[10px] font-mono tracking-[0.25em] uppercase text-white/90 bg-black/70 px-2.5 py-1 border-none backdrop-blur-md">
                         {svc.badge}
                       </span>
-                      <span className="text-[11px] font-mono tracking-widest text-white/50">
+                      <span className="text-[11px] font-mono tracking-widest text-white/60">
                         {svc.number}
                       </span>
                     </div>
 
-                    {/* Card Bottom: Typography & CTA */}
+                    {/* Card Bottom: Typography & CTA with enhanced contrast */}
                     <div className="relative z-10 space-y-2 select-none">
                       <h3 
-                        className="text-2xl sm:text-[1.75rem] font-normal text-white uppercase tracking-wider leading-snug"
+                        className="text-2xl sm:text-[1.75rem] font-normal text-white uppercase tracking-wider leading-snug drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)]"
                         style={{ fontFamily: "'Cormorant Garamond', 'Playfair Display', Georgia, serif" }}
                       >
                         {svc.title}
                       </h3>
-                      <p className="text-[11px] font-mono tracking-wider text-[#df2531] uppercase">
+                      <p className="text-[11px] font-mono tracking-wider text-[#ff5c6a] uppercase font-medium drop-shadow-[0_1px_6px_rgba(0,0,0,0.95)]">
                         {svc.subtitle}
                       </p>
-                      <p className="text-xs text-neutral-300 font-light leading-relaxed line-clamp-2">
+                      <p className="text-xs text-neutral-200 font-normal leading-relaxed line-clamp-2 drop-shadow-[0_1px_6px_rgba(0,0,0,0.95)]">
                         {svc.description}
                       </p>
                       <div className="pt-2">
-                        <span className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] font-semibold text-white/90 group-hover:text-[#df2531] transition-colors">
+                        <span className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] font-semibold text-white group-hover:text-[#ff5c6a] transition-colors drop-shadow-[0_1px_6px_rgba(0,0,0,0.95)]">
                           <span>Explore Services</span>
                           <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                         </span>

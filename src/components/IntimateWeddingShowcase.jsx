@@ -41,17 +41,17 @@ export default function IntimateWeddingShowcase() {
           <div className="lg:col-span-4 xl:col-span-4 flex flex-col justify-between pt-2 lg:pt-6">
             <div>
               <h2 
-                className="text-4xl sm:text-5xl lg:text-6xl font-normal text-white leading-[1.05] tracking-tight uppercase"
+                className="text-4xl sm:text-5xl lg:text-6xl font-normal text-white leading-[1.08] tracking-[0.16em] uppercase"
                 style={{ fontFamily: "'Cormorant Garamond', 'Playfair Display', Georgia, serif" }}
               >
                 INTIMATE<br />WEDDING
               </h2>
 
-              <span className="text-[11px] sm:text-xs tracking-[0.3em] uppercase text-[#df2531] font-semibold block mt-3 mb-6">
+              <span className="text-[11px] sm:text-xs tracking-[0.3em] uppercase text-[#df2531] font-semibold block mt-3 mb-6 font-mono">
                 Showcase
               </span>
 
-              <p className="text-slate-300 text-sm sm:text-[14.5px] leading-[1.85] font-light max-w-md">
+              <p className="text-slate-300 text-sm sm:text-[14.5px] leading-[1.85] font-normal max-w-md">
                 Intimate destination weddings offer an unparalleled chance to revel in the splendor of love amid an awe-inspiring panorama, enveloped by the cherished ones who matter the most. Our destination wedding photographers have mastered the art of seizing the essence of unbridled feelings and unfeigned instances that make these ceremonies so extraordinary. As a premier wedding photography company in India, we encapsulate the moments of an everlasting union that surpasses the constraints of time and space, as an ode to the odyssey of two hearts towards eternity.
               </p>
 
@@ -63,7 +63,7 @@ export default function IntimateWeddingShowcase() {
                 >
                   "I like to photograph anyone before they know what their best angles are."
                 </p>
-                <span className="text-[11px] uppercase tracking-wider text-slate-500 block mt-1.5 font-sans">
+                <span className="text-[11px] uppercase tracking-[0.2em] text-slate-500 block mt-1.5 font-mono">
                   — Ellen Von Unwerth
                 </span>
               </div>
@@ -73,7 +73,7 @@ export default function IntimateWeddingShowcase() {
             <div className="pt-10 sm:pt-14">
               <Link
                 to="/contact"
-                className="inline-block text-[13px] uppercase tracking-[0.22em] font-semibold text-white/95 border-b border-white/40 pb-1 hover:text-white hover:border-white transition-all duration-300"
+                className="inline-block text-[12px] uppercase tracking-[0.22em] font-semibold text-white/95 border-b border-white/40 pb-1 hover:text-white hover:border-white transition-all duration-300"
               >
                 Make It Real
               </Link>
@@ -102,12 +102,12 @@ export default function IntimateWeddingShowcase() {
 
                 <div className="pt-3.5 text-center sm:text-left">
                   <h3 
-                    className="text-white text-base sm:text-lg font-serif font-normal tracking-wide"
-                    style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}
+                    className="text-white text-base sm:text-[17px] font-normal tracking-[0.14em] uppercase"
+                    style={{ fontFamily: "'Cormorant Garamond', 'Playfair Display', Georgia, serif" }}
                   >
                     Karthik & Swetha
                   </h3>
-                  <p className="text-xs italic text-slate-400 mt-0.5 font-light">
+                  <p className="text-xs italic text-slate-400 mt-0.5 font-light tracking-wider">
                     Destination : Thottam
                   </p>
                 </div>
@@ -130,10 +130,13 @@ export default function IntimateWeddingShowcase() {
                 </Link>
 
                 <div className="pt-3.5 text-center sm:text-left">
-                  <h3 className="text-white text-xs sm:text-[13px] uppercase tracking-[0.14em] font-sans font-semibold">
-                    KRISHNA & CONNOR
+                  <h3 
+                    className="text-white text-sm sm:text-[15px] font-normal tracking-[0.14em] uppercase"
+                    style={{ fontFamily: "'Cormorant Garamond', 'Playfair Display', Georgia, serif" }}
+                  >
+                    Krishna & Connor
                   </h3>
-                  <p className="text-xs italic text-slate-400 mt-0.5 font-light">
+                  <p className="text-xs italic text-slate-400 mt-0.5 font-light tracking-wider">
                     Destination : Kunnathoor Mana
                   </p>
                 </div>
@@ -156,10 +159,13 @@ export default function IntimateWeddingShowcase() {
                 </Link>
 
                 <div className="pt-3.5 text-center sm:text-left">
-                  <h3 className="text-white text-xs sm:text-[13px] uppercase tracking-[0.14em] font-sans font-semibold">
-                    SAI & AISHWARYA
+                  <h3 
+                    className="text-white text-sm sm:text-[15px] font-normal tracking-[0.14em] uppercase"
+                    style={{ fontFamily: "'Cormorant Garamond', 'Playfair Display', Georgia, serif" }}
+                  >
+                    Sai & Aishwarya
                   </h3>
-                  <p className="text-xs italic text-slate-400 mt-0.5 font-light">
+                  <p className="text-xs italic text-slate-400 mt-0.5 font-light tracking-wider">
                     Destination : Nandhi Hills
                   </p>
                 </div>

@@ -7,9 +7,9 @@
     --brand-red-deep: #4a080d;
     --brand-black: #000000;
     --brand-white: #ffffff;
-    --font-heading: 'Outfit', -apple-system, sans-serif;
-    --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    --font-heading: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
     --font-serif: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+    --font-sans: 'Manrope', 'Plus Jakarta Sans', 'Lato', system-ui, -apple-system, sans-serif;
   }
 
   html {
@@ -41,14 +41,18 @@
     cursor: default;
   }
 
-  /* Headings: unselectable, standard arrow cursor, no text caret */
+  /* Headings: unselectable, standard arrow cursor, no text caret, elegant serif typography */
   h1, h2, h3, h4, h5, h6, .font-heading {
     font-family: var(--font-heading);
-    letter-spacing: -0.02em;
+    letter-spacing: 0.04em;
     cursor: default;
     user-select: none;
     -webkit-user-select: none;
     caret-color: transparent;
+  }
+
+  p, span, li, blockquote {
+    font-family: var(--font-sans);
   }
 
   /* Prevent browser focus outline/white lines and text carets on click */

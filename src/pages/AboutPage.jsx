@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Camera, Heart, Users, Award, ShieldCheck, Check, Calendar, ArrowRight, MessageCircle } from 'lucide-react';
-import { clientReviews } from '../data/contentData';
+import Testimonials from '../components/Testimonials';
 
 export default function AboutPage() {
   return (
@@ -145,39 +145,8 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Client Testimonials */}
-      <section className="py-20 bg-[#070709] border-t border-white/5">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <h3 className="text-2xl sm:text-3xl font-extrabold text-white">
-              What Our Clients Say
-            </h3>
-            <p className="text-xs text-slate-400 mt-1">
-              Kind words from families and couples whose memories we preserved.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {clientReviews.map((rev) => (
-              <div
-                key={rev.id}
-                className="p-6 rounded-3xl bg-[#0c0c0f] border border-white/10 flex flex-col justify-between"
-              >
-                <p className="text-slate-200 text-sm leading-relaxed italic mb-4">
-                  "{rev.quote}"
-                </p>
-                <div className="pt-3 border-t border-white/5 flex items-center justify-between text-xs">
-                  <div>
-                    <span className="font-bold text-white block">{rev.name}</span>
-                    <span className="text-[#df2531] font-semibold">{rev.event}</span>
-                  </div>
-                  <span className="text-slate-500">{rev.city}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Editorial Client Testimonials (Matches Reference Screenshot) */}
+      <Testimonials />
 
       {/* Ready to Book CTA */}
       <section className="py-16 bg-gradient-to-r from-[#210609] via-[#0d0d10] to-[#170508] border-t border-[#df2531]/30 text-center shadow-2xl">

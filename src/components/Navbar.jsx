@@ -90,10 +90,10 @@ export default function Navbar() {
                   key={link.path}
                   to={link.path}
                   end={link.path === '/'}
-                  className={`text-[14.5px] xl:text-[15px] font-normal transition-all duration-200 outline-none focus:outline-none drop-shadow-[0_2px_6px_rgba(0,0,0,0.85)] cursor-pointer ${
+                  className={`text-[12px] xl:text-[12.5px] uppercase tracking-[0.18em] font-medium transition-all duration-200 outline-none focus:outline-none drop-shadow-[0_2px_6px_rgba(0,0,0,0.85)] cursor-pointer ${
                     isActive
                       ? 'text-white font-semibold'
-                      : 'text-white/85 hover:text-white'
+                      : 'text-white/80 hover:text-white'
                   }`}
                 >
                   {link.label}
@@ -106,7 +106,7 @@ export default function Navbar() {
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 text-white/90 hover:text-white outline-none focus:outline-none"
+              className="p-2 text-white/90 hover:text-white outline-none focus:outline-none cursor-pointer"
               aria-label="Toggle Menu"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -130,7 +130,7 @@ export default function Navbar() {
                 to={link.path}
                 end={link.path === '/'}
                 onClick={() => setMobileMenuOpen(false)}
-                className={`block w-full text-left py-2 text-base font-normal tracking-wide transition-colors outline-none focus:outline-none ${
+                className={`block w-full text-left py-2 text-[13px] uppercase tracking-[0.18em] font-medium transition-colors outline-none focus:outline-none ${
                   isActive
                     ? 'text-white font-semibold'
                     : 'text-white/75 hover:text-white'

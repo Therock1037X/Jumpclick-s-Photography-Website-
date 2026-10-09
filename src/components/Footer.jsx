@@ -25,7 +25,7 @@ export default function Footer() {
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 flex flex-col md:flex-row items-center justify-between gap-4 text-xs sm:text-[13px]">
           
           {/* Left: Navigation Tabs (Same as main tabs) + WhatsApp Chat */}
-          <div className="flex flex-wrap items-center justify-center md:justify-start gap-x-6 sm:gap-x-7 gap-y-2.5 text-slate-300 font-normal">
+          <div className="flex flex-wrap items-center justify-center md:justify-start gap-x-6 sm:gap-x-7 gap-y-2.5 text-slate-300 text-[11.5px] uppercase tracking-[0.16em] font-medium">
             <Link to="/" className="hover:text-[#df2531] transition-colors">Home</Link>
             <Link to="/about" className="hover:text-[#df2531] transition-colors">About Us</Link>
             <Link to="/services" className="hover:text-[#df2531] transition-colors">Services</Link>
@@ -37,9 +37,9 @@ export default function Footer() {
               href="https://wa.me/919172322302?text=Hi%20Jumpclicks%20team,%20I'd%20like%20to%20chat%20about%20photography."
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-slate-300 hover:text-emerald-400 transition-colors ml-1 font-medium"
+              className="inline-flex items-center gap-1.5 text-slate-300 hover:text-emerald-400 transition-colors ml-1 font-medium capitalize"
             >
-              <WhatsAppIcon className="w-4 h-4" />
+              <WhatsAppIcon className="w-3.5 h-3.5" />
               <span>Chat</span>
             </a>
           </div>

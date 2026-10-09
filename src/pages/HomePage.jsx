@@ -5,6 +5,7 @@ import Hero from '../components/Hero';
 import IntimateWeddingShowcase from '../components/IntimateWeddingShowcase';
 import WeddingFilmsCarousel from '../components/WeddingFilmsCarousel';
 import InstagramFeed from '../components/InstagramFeed';
+import Testimonials from '../components/Testimonials';
 import { socialConfig } from '../data/contentData';
 
 // Image-Led Editorial Photography Services (All 6 Services)
@@ -579,6 +580,9 @@ export default function HomePage() {
         handle={socialConfig.instagramHandle} 
         profileUrl={socialConfig.instagramUrl} 
       />
+
+      {/* Editorial Client Testimonials — "WHAT OUR CLIENTS SAY" (Matches User Reference Screenshot) */}
+      <Testimonials />
 
       {/* 2. Client Stories / Why Choose JumpClicks — Refined Compact Carousel with Mouse & Touch Drag */}
       <section 

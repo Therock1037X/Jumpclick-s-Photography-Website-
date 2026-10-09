@@ -495,24 +495,24 @@ export default function HomePage() {
                     onClick={(e) => {
                       if (servicesMovedRef.current) e.preventDefault();
                     }}
-                    className="group relative aspect-[3/4] sm:aspect-[4/5] md:aspect-[3/4] rounded-none overflow-hidden bg-[#0c0c10] border-none transition-all duration-500 shadow-2xl flex flex-col justify-between p-6 sm:p-8 cursor-pointer select-none block h-full"
+                    className="group relative aspect-[3/4] sm:aspect-[4/5] md:aspect-[3/4] rounded-none overflow-hidden bg-black border-0 border-transparent outline-none ring-0 shadow-none hover:border-0 hover:outline-none hover:ring-0 hover:shadow-none transition-all duration-500 flex flex-col justify-between p-6 sm:p-8 cursor-pointer select-none block h-full"
+                    style={{ isolation: 'isolate' }}
                   >
-                    {/* Background Image with subtle zoom on hover */}
+                    {/* Background Image with subtle zoom on hover - 100% natural, vibrant, zero tint */}
                     <img
                       src={svc.image}
                       alt={svc.title}
                       draggable="false"
-                      className="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out select-none pointer-events-none"
+                      className="absolute -inset-[1px] w-[calc(100%+2px)] h-[calc(100%+2px)] max-w-none object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out select-none pointer-events-none"
                       loading="lazy"
                     />
 
-                    {/* Dark transparent tint & deep gradient scrim behind text for crystal-clear readability */}
-                    <div className="absolute inset-0 bg-black/25 pointer-events-none z-0" />
-                    <div className="absolute inset-x-0 bottom-0 h-[72%] sm:h-[75%] bg-gradient-to-t from-black via-black/90 via-black/55 to-transparent pointer-events-none z-0" />
+                    {/* Clean localized bottom gradient strictly behind text for readability — zero tint over couple or photography */}
+                    <div className="absolute -inset-x-2 bottom-0 h-[50%] bg-gradient-to-t from-black via-black/85 via-black/40 to-transparent pointer-events-none z-0" />
 
                     {/* Card Top: Number & Category Badge (Border-free clean design) */}
                     <div className="relative z-10 flex items-center justify-between select-none">
-                      <span className="text-[10px] font-mono tracking-[0.25em] uppercase text-white/90 bg-black/70 px-2.5 py-1 border-none backdrop-blur-md">
+                      <span className="text-[10px] font-mono tracking-[0.25em] uppercase text-white/90 bg-black/60 px-2.5 py-1 border-0 outline-none backdrop-blur-md">
                         {svc.badge}
                       </span>
                       <span className="text-[11px] font-mono tracking-widest text-white/60">

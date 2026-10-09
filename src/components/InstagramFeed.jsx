@@ -1,5 +1,5 @@
 import React from 'react';
-import { ExternalLink } from 'lucide-react';
+import { Heart } from 'lucide-react';
 
 function InstagramIcon({ className = "w-5 h-5" }) {
   return (
@@ -20,51 +20,21 @@ function InstagramIcon({ className = "w-5 h-5" }) {
 }
 
 export default function InstagramFeed({ 
-  handle = '@jumpclicksphotography', 
+  handle = '/jumpclicksphotography', 
   profileUrl = 'https://instagram.com/jumpclicksphotography' 
 }) {
-  // 8 Curated Real Client Photographs from Jumpclicks archive (4 cols x 2 rows on desktop)
+  // Exact 10 Photography Demo Boxes (5 cols x 2 rows on desktop)
   const feedImages = [
-    {
-      id: 1,
-      src: '/gallery/web/wedding/wedding_20.webp',
-      alt: 'Jumpclicks Candid Wedding Moment',
-    },
-    {
-      id: 2,
-      src: '/gallery/web/wedding/wedding_2.webp',
-      alt: 'Joyful Haldi Celebration Splash',
-    },
-    {
-      id: 3,
-      src: '/gallery/web/wedding/wedding_21.webp',
-      alt: 'Traditional Royal Varmala Ceremony',
-    },
-    {
-      id: 4,
-      src: '/gallery/web/wedding/wedding_3.webp',
-      alt: 'Couple Portrait & Radiant Smiles',
-    },
-    {
-      id: 5,
-      src: '/gallery/web/prewedding/prewedding_36.webp',
-      alt: 'Scenic Pre-Wedding Couple in Nature',
-    },
-    {
-      id: 6,
-      src: '/gallery/web/prewedding/prewedding_27.webp',
-      alt: 'Romantic Couple Shoot on Bridge',
-    },
-    {
-      id: 7,
-      src: '/gallery/web/wedding/wedding_27.webp',
-      alt: 'Royal Groom Celebration Portrait',
-    },
-    {
-      id: 8,
-      src: '/gallery/web/wedding/wedding_1.webp',
-      alt: 'Vibrant Haldi Smiles with Loved Ones',
-    },
+    { id: 1, src: '/gallery/web/wedding/wedding_20.webp', alt: 'Jumpclicks Wedding Gallery 1', likes: 53 },
+    { id: 2, src: '/gallery/web/wedding/wedding_2.webp', alt: 'Jumpclicks Wedding Gallery 2', likes: 87 },
+    { id: 3, src: '/gallery/web/wedding/wedding_21.webp', alt: 'Jumpclicks Wedding Gallery 3', likes: 142 },
+    { id: 4, src: '/gallery/web/wedding/wedding_3.webp', alt: 'Jumpclicks Wedding Gallery 4', likes: 96 },
+    { id: 5, src: '/gallery/web/wedding/wedding_10.webp', alt: 'Jumpclicks Wedding Gallery 5', likes: 124 },
+    { id: 6, src: '/gallery/web/prewedding/prewedding_36.webp', alt: 'Jumpclicks Prewedding Gallery 6', likes: 168 },
+    { id: 7, src: '/gallery/web/prewedding/prewedding_27.webp', alt: 'Jumpclicks Prewedding Gallery 7', likes: 215 },
+    { id: 8, src: '/gallery/web/wedding/wedding_27.webp', alt: 'Jumpclicks Wedding Gallery 8', likes: 119 },
+    { id: 9, src: '/gallery/web/wedding/wedding_1.webp', alt: 'Jumpclicks Wedding Gallery 9', likes: 175 },
+    { id: 10, src: '/gallery/web/wedding/wedding_14.webp', alt: 'Jumpclicks Wedding Gallery 10', likes: 132 },
   ];
 
   return (
@@ -85,16 +55,17 @@ export default function InstagramFeed({
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* 2. Clean, Edge-Aligned Grid (4 cols x 2 rows on desktop, 2 cols on mobile) */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-2.5 lg:gap-3 bg-[#000000]">
+        {/* 2. Exact 10 Boxes Grid (5 cols x 2 rows on desktop, 2 cols on mobile) */}
+        {/* Differentiating dividing lines match brand theme color (#df2531) instead of white */}
+        <div className="p-[2px] bg-[#df2531]/45 border border-[#df2531]/50 grid grid-cols-2 md:grid-cols-5 gap-[2px] shadow-2xl shadow-black">
           {feedImages.map((img) => (
             <a
               key={img.id}
               href={profileUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative overflow-hidden bg-[#0d0c10] aspect-[4/5] block cursor-pointer transition-all duration-500 shadow-lg shadow-black/40"
-              aria-label="View Jumpclicks photography on Instagram"
+              className="group relative overflow-hidden bg-[#0d0c10] aspect-[4/5] block cursor-pointer transition-all duration-300"
+              aria-label={`View post on Instagram (${img.likes} likes)`}
             >
               {/* Image with subtle hover zoom */}
               <img
@@ -104,18 +75,12 @@ export default function InstagramFeed({
                 loading="lazy"
               />
 
-              {/* Desktop Hover Overlay with Instagram Icon */}
-              <div className="absolute inset-0 bg-black/60 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col items-center justify-center gap-2 text-white">
-                <div className="w-11 h-11 rounded-2xl bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20 transform scale-75 group-hover:scale-100 transition-transform duration-300 shadow-2xl">
-                  <InstagramIcon className="w-5 h-5 text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]" />
+              {/* Desktop Hover Overlay with Likes (heart icon + likes count, matching reference) */}
+              <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-white">
+                <div className="flex items-center gap-2 text-white font-semibold text-sm sm:text-base tracking-wide drop-shadow-md">
+                  <Heart className="w-4 h-4 sm:w-5 sm:h-5 fill-white text-white" />
+                  <span>{img.likes} Likes</span>
                 </div>
-                <span className="text-[10px] uppercase tracking-[0.25em] font-medium text-white/90">
-                  JumpClicks
-                </span>
-                <span className="text-[9px] text-[#df2531] font-semibold tracking-wider flex items-center gap-1">
-                  <span>View Post</span>
-                  <ExternalLink className="w-2.5 h-2.5" />
-                </span>
               </div>
             </a>
           ))}
@@ -127,7 +92,7 @@ export default function InstagramFeed({
             href={profileUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2.5 px-6 py-2.5 rounded-full bg-white/[0.03] hover:bg-white/[0.08] border border-white/10 hover:border-[#df2531]/50 text-slate-300 hover:text-white transition-all duration-300 group shadow-md"
+            className="inline-flex items-center gap-2.5 px-6 py-2.5 rounded-full bg-white/[0.03] hover:bg-white/[0.08] border border-white/10 hover:border-[#df2531]/60 text-slate-300 hover:text-white transition-all duration-300 group shadow-md"
             aria-label={`Visit Jumpclicks Instagram profile ${handle}`}
           >
             {/* Instagram Gradient Logo */}

@@ -161,7 +161,7 @@ export const faqs = [
 ];
 
 export const socialConfig = {
-  instagramHandle: '@jumpclicksphotography',
+  instagramHandle: '/jumpclicksphotography',
   instagramUrl: 'https://instagram.com/jumpclicksphotography',
   whatsappNumber: '+91 91723 22302',
   whatsappUrl: 'https://wa.me/919172322302',

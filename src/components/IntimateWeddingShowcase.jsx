@@ -5,25 +5,17 @@ export default function IntimateWeddingShowcase() {
   return (
     <section className="relative w-full bg-[#000000] text-white py-20 sm:py-28 lg:py-36 overflow-hidden select-none border-none">
       
-      {/* 1. Circular Gradient in Top-Left Corner (Smooth Atmospheric Glow) */}
+      {/* 1. Gradient-Mixed Dotted World Map (Soft Ethereal Dissolve with Zero Box Edges) */}
       <div 
-        className="absolute -top-32 -left-32 w-[600px] h-[600px] rounded-full pointer-events-none blur-[90px]"
+        className="absolute top-0 right-0 w-full lg:w-3/4 h-[550px] pointer-events-none opacity-25 overflow-hidden flex items-start justify-end"
         style={{
-          background: 'radial-gradient(circle, rgba(223, 37, 49, 0.18) 0%, rgba(142, 19, 27, 0.10) 42%, rgba(74, 8, 13, 0.04) 65%, transparent 75%)'
-        }}
-      />
-
-      {/* 2. Dotted World Map Graphic with Smooth Radial Gradient Mask (No Hard Rectangular Edge) */}
-      <div 
-        className="absolute top-0 right-0 w-full lg:w-3/4 h-full pointer-events-none opacity-20 overflow-hidden flex items-start justify-end"
-        style={{
-          maskImage: 'radial-gradient(ellipse at 80% 30%, black 15%, transparent 75%)',
-          WebkitMaskImage: 'radial-gradient(ellipse at 80% 30%, black 15%, transparent 75%)',
+          maskImage: 'radial-gradient(ellipse 70% 60% at 75% 25%, black 20%, transparent 75%)',
+          WebkitMaskImage: 'radial-gradient(ellipse 70% 60% at 75% 25%, black 20%, transparent 75%)',
         }}
       >
         <svg 
           viewBox="0 0 1000 500" 
-          className="w-[1300px] h-auto object-cover max-w-none -mr-32 mt-2"
+          className="w-[1300px] h-auto object-cover max-w-none -mr-32 mt-0"
           fill="none" 
           stroke="currentColor"
         >
@@ -34,27 +26,55 @@ export default function IntimateWeddingShowcase() {
         </svg>
       </div>
 
-      {/* 3. Curvy Organic Background Panel (From Reference Image 2) */}
-      <div className="absolute bottom-0 right-0 w-full lg:w-[60%] h-[74%] lg:h-[80%] bg-[#0d0c11] border-t border-l border-white/[0.06] rounded-tl-[80px] sm:rounded-tl-[120px] lg:rounded-tl-[160px] pointer-events-none shadow-[inset_0_1px_35px_rgba(223,37,49,0.03)]" />
-
-      {/* Organic sweeping contour line on the left boundary */}
-      <div className="hidden lg:block absolute inset-0 pointer-events-none">
-        <svg viewBox="0 0 1600 900" className="w-full h-full object-cover" preserveAspectRatio="none">
-          <path
-            d="M 540 60 C 460 220, 500 420, 430 560 C 370 680, 240 760, 60 820"
-            fill="none"
-            stroke="rgba(255, 255, 255, 0.05)"
+      {/* 2. Fluid Organic Curvy Graphic Backdrop (Directly Replicating Reference Wavy Silhouette) */}
+      <div className="absolute inset-y-0 right-0 w-full lg:w-[68%] xl:w-[65%] h-full pointer-events-none z-0">
+        <svg 
+          viewBox="0 0 1000 800" 
+          className="w-full h-full object-fill" 
+          preserveAspectRatio="none"
+        >
+          <defs>
+            <linearGradient id="curvyGraphicGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#121017" stopOpacity="0.95" />
+              <stop offset="60%" stopColor="#0e0d13" stopOpacity="0.98" />
+              <stop offset="100%" stopColor="#08070b" stopOpacity="1" />
+            </linearGradient>
+          </defs>
+          {/* Organic flowing S-curve contour matching the reference image's wavy backdrop */}
+          <path 
+            d="M 1000,0 
+               L 360,0 
+               C 280,0, 220,70, 200,160 
+               C 180,250, 120,330, 60,410 
+               C 0,490, -10,580, 50,670 
+               C 90,730, 150,800, 250,800 
+               L 1000,800 Z" 
+            fill="url(#curvyGraphicGrad)" 
+            stroke="rgba(255,255,255,0.06)" 
             strokeWidth="1.2"
           />
         </svg>
+
+        {/* Delicate hairline path tracing the organic curve with subtle location marker pin */}
+        <div className="absolute left-[3%] top-[48%] -translate-y-1/2 w-48 h-40 hidden lg:block opacity-40">
+          <svg viewBox="0 0 160 140" className="w-full h-full overflow-visible">
+            <path
+              d="M 0 130 C 50 130, 90 90, 120 20"
+              fill="none"
+              stroke="#a1a1aa"
+              strokeWidth="0.8"
+            />
+            <circle cx="120" cy="20" r="2.5" fill="#e4e4e7" />
+          </svg>
+        </div>
       </div>
 
       {/* Main Content Grid */}
       <div className="relative z-10 max-w-[1650px] mx-auto px-6 sm:px-10 lg:px-14">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-start">
           
-          {/* Left Editorial Narrative Column (4.5 cols) */}
-          <div className="lg:col-span-4 xl:col-span-4 flex flex-col justify-between pt-2 lg:pt-4">
+          {/* Left Editorial Narrative Column (4 cols) */}
+          <div className="lg:col-span-4 xl:col-span-4 flex flex-col justify-between pt-2 lg:pt-6">
             <div>
               <h2 
                 className="text-4xl sm:text-5xl lg:text-6xl font-normal text-white leading-[1.05] tracking-tight uppercase"
@@ -85,48 +105,22 @@ export default function IntimateWeddingShowcase() {
               </div>
             </div>
 
-            {/* Action Link (Clean, NO Red Navigation Line) & Curvy Graphics from Image 3 */}
-            <div className="pt-10 sm:pt-14 relative">
+            {/* Clean Minimal Action Link (No harsh red lines or navigation tracks) */}
+            <div className="pt-10 sm:pt-14">
               <Link
                 to="/contact"
-                className="inline-block text-[13px] uppercase tracking-[0.2em] font-medium text-white/90 hover:text-white border-b border-white/20 hover:border-white pb-0.5 transition-all outline-none focus:outline-none"
+                className="inline-block text-[13px] uppercase tracking-[0.22em] font-semibold text-white/95 border-b border-white/40 pb-1 hover:text-white hover:border-white transition-all duration-300"
               >
                 Make It Real
               </Link>
-
-              {/* Exact Curvy Dashed Graphic with Red Dot & Map Pin from Reference Image 3 */}
-              <div className="relative mt-8 sm:mt-10 w-full max-w-[380px] h-20 pointer-events-none">
-                <svg viewBox="0 0 360 70" className="w-full h-full overflow-visible">
-                  {/* Sinuous dashed wave path from Reference Image 3 */}
-                  <path
-                    d="M 10 24 C 80 24, 130 55, 180 55 C 235 55, 290 28, 350 28"
-                    fill="none"
-                    stroke="#df2531"
-                    strokeWidth="1.5"
-                    strokeDasharray="7 5"
-                    strokeOpacity="0.85"
-                  />
-                  {/* Solid Red Dot on the curve dip */}
-                  <circle cx="180" cy="55" r="4" fill="#df2531" />
-                  
-                  {/* Floating Red Location Pin directly above the dot */}
-                  <g transform="translate(171, 20)">
-                    <path
-                      d="M9 0C4.029 0 0 4.029 0 9c0 5.25 9 14.5 9 14.5s9-9.25 9-14.5c0-4.971-4.029-9-9-9z"
-                      fill="#df2531"
-                    />
-                    <circle cx="9" cy="8.5" r="3" fill="#ffffff" />
-                  </g>
-                </svg>
-              </div>
             </div>
           </div>
 
-          {/* Right Area: Exact Reference Staggered 3-Card Collage (8 cols) */}
+          {/* Right Area: Exact Staggered 3-Card Collage (8 cols) */}
           <div className="lg:col-span-8 xl:col-span-8">
             <div className="flex flex-col sm:flex-row items-start justify-between gap-6 sm:gap-4 lg:gap-6">
               
-              {/* Card 1: Karthik & Swetha (Starts HIGHEST, WIDER & TALLER, overlaps background card) */}
+              {/* Card 1: Karthik & Swetha (Starts HIGHEST, WIDER & TALLER, breaks out above the wave) */}
               <div className="w-full sm:w-[38%] flex flex-col group z-20 transition-transform duration-500">
                 <Link
                   to="/gallery?category=wedding"
@@ -155,7 +149,7 @@ export default function IntimateWeddingShowcase() {
                 </div>
               </div>
 
-              {/* Card 2: KRISHNA & CONNOR (Starts MUCH LOWER, narrower, sits deep in lower card) */}
+              {/* Card 2: KRISHNA & CONNOR (Starts MUCH LOWER, narrower, sits deep in lower wave) */}
               <div className="w-full sm:w-[28%] flex flex-col group z-10 sm:mt-28 md:mt-36 lg:mt-44 transition-transform duration-500">
                 <Link
                   to="/gallery?category=wedding"
@@ -212,7 +206,7 @@ export default function IntimateWeddingShowcase() {
             {/* Bottom Right Handwritten "with love" Signature (Exact Reference Element) */}
             <div className="flex justify-end pt-12 sm:pt-16 pr-2 sm:pr-8">
               <span 
-                className="text-4xl sm:text-5xl text-white/90 font-normal italic select-none transform -rotate-3 hover:rotate-0 transition-transform duration-300 drop-shadow-[0_2px_10px_rgba(223,37,49,0.25)]"
+                className="text-4xl sm:text-5xl text-white/90 font-normal italic select-none transform -rotate-3 hover:rotate-0 transition-transform duration-300 drop-shadow-[0_2px_10px_rgba(255,255,255,0.15)]"
                 style={{ fontFamily: "'Caveat', cursive, 'Brush Script MT', serif" }}
               >
                 with love

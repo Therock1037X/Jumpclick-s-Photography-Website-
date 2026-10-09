@@ -41,10 +41,10 @@ export default function IntimateWeddingShowcase() {
           <div className="lg:col-span-4 xl:col-span-4 flex flex-col justify-between pt-2 lg:pt-6">
             <div>
               <h2 
-                className="text-4xl sm:text-5xl lg:text-6xl font-normal text-white leading-[1.08] tracking-[0.16em] uppercase"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] xl:text-6xl font-normal text-white leading-[1.08] tracking-[0.14em] sm:tracking-[0.16em] uppercase"
                 style={{ fontFamily: "'Cormorant Garamond', 'Playfair Display', Georgia, serif" }}
               >
-                INTIMATE<br />WEDDING
+                TALES OF<br />FOREVER
               </h2>
 
               <span className="text-[11px] sm:text-xs tracking-[0.3em] uppercase text-[#df2531] font-semibold block mt-3 mb-6 font-mono">

@@ -180,14 +180,14 @@ export default function WeddingFilmsCarousel() {
             <div
               key={`${film.id}-${index}`}
               onClick={() => setSelectedFilm(film)}
-              className="film-card snap-start flex-shrink-0 w-[82%] sm:w-[47%] md:w-[31%] lg:w-[calc(25%-18px)] group relative aspect-[9/16] rounded-xl overflow-hidden cursor-pointer bg-[#0e0e12] border border-white/10 hover:border-white/25 transition-all duration-500 shadow-xl hover:shadow-2xl shadow-black/80 hover:-translate-y-1.5"
+              className="film-card snap-start flex-shrink-0 w-[82%] sm:w-[47%] md:w-[31%] lg:w-[calc(25%-18px)] group relative aspect-[9/16] rounded-none overflow-hidden cursor-pointer bg-[#0e0e12] border border-white/10 hover:border-white/25 transition-colors duration-500 shadow-2xl shadow-black"
               style={{ aspectRatio: '9 / 16' }}
             >
-              {/* Poster Image (object-cover without distortion) */}
+              {/* Poster Image (object-cover without distortion, zero image zoom) */}
               <img
                 src={film.poster}
                 alt={`${film.title} - ${film.couple}`}
-                className={`w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.03] ${
+                className={`w-full h-full object-cover object-center ${
                   film.styleVariant === 'monochrome' ? 'grayscale contrast-125' : ''
                 }`}
                 style={{ objectFit: 'cover' }}
@@ -195,36 +195,29 @@ export default function WeddingFilmsCarousel() {
               />
 
               {/* Permanent Base Vignette for Text Contrast */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-black/25 pointer-events-none z-0" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/25 to-black/25 pointer-events-none z-0" />
 
-              {/* Requirement 3: Translucent Charcoal Overlay Sliding Vertically Across Poster on Hover (350-500ms) */}
+              {/* Requirement 3: Exact Center-Expanding Translucent Charcoal/Grey Hover Curtain (450-600ms) */}
               <div 
-                className="absolute inset-0 bg-neutral-900/40 backdrop-brightness-95 -translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out pointer-events-none z-10"
+                className="film-hover-curtain"
                 aria-hidden="true"
               />
 
               {/* Poster Artwork & Typography Overlay */}
-              <div className="absolute inset-0 p-5 flex flex-col justify-between text-white z-20">
+              <div className="absolute inset-0 p-5 flex flex-col justify-between text-white z-20 pointer-events-none">
                 
-                {/* Top Badge & Duration Tag */}
+                {/* Top Row: Category Label (Top-Left) & Duration (Top-Right) */}
                 <div className="flex items-center justify-between text-[10px] tracking-[0.22em] uppercase font-mono text-white/80">
-                  <span className="px-2 py-0.5 rounded bg-black/60 backdrop-blur-md border border-white/10">
+                  <span className="px-2.5 py-1 rounded-none bg-black/60 backdrop-blur-md border border-white/15 text-white/90">
                     {film.badge}
                   </span>
-                  <span className="font-semibold text-white/90">
+                  <span className="px-2 py-0.5 rounded-none font-semibold text-white/95 tracking-widest text-[11px] bg-black/40 backdrop-blur-sm border border-white/10">
                     {film.duration}
                   </span>
                 </div>
 
-                {/* Center: Clean Cinematic Play Button (Neutral Monochrome, Zero Red Hover) */}
-                <div className="my-auto flex items-center justify-center">
-                  <div className="w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-black/60 backdrop-blur-md border border-white/30 text-white flex items-center justify-center transition-all duration-300 shadow-2xl group-hover:scale-110 group-hover:bg-white group-hover:text-black group-hover:border-white">
-                    <PlayIcon className="w-5 h-5 fill-current ml-0.5 drop-shadow" />
-                  </div>
-                </div>
-
                 {/* Bottom Poster Title & Credits */}
-                <div className="space-y-1 text-center">
+                <div className="space-y-1 text-center mt-auto">
                   {film.styleVariant === 'monochrome' && (
                     <div className="space-y-0.5">
                       <span className="text-[10px] uppercase tracking-[0.3em] text-white/70 block">

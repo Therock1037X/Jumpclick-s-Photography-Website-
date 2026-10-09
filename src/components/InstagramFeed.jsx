@@ -38,15 +38,15 @@ export default function InstagramFeed({
   ];
 
   return (
-    <section className="relative w-full bg-[#000000] text-white pt-24 sm:pt-32 md:pt-40 pb-20 sm:pb-28 overflow-hidden select-none border-none">
+    <section className="relative w-full bg-[#000000] text-white pt-20 sm:pt-28 md:pt-32 pb-14 sm:pb-20 overflow-hidden select-none border-none">
       
       {/* 1. Large Subtle Background Typography (Behind Gallery, Tops Peeking Above Grid) */}
       <div 
-        className="absolute top-8 sm:top-12 md:top-14 lg:top-16 left-1/2 -translate-x-1/2 w-full text-center pointer-events-none select-none z-0 overflow-hidden px-4"
+        className="absolute top-2 sm:top-4 md:top-6 left-1/2 -translate-x-1/2 w-full text-center pointer-events-none select-none z-0 overflow-hidden px-4"
         aria-hidden="true"
       >
         <span 
-          className="font-serif text-5xl sm:text-7xl md:text-8xl lg:text-[9.5rem] xl:text-[11.5rem] text-white/[0.06] tracking-tight whitespace-nowrap leading-none block font-light select-none transition-all duration-300"
+          className="font-serif text-5xl sm:text-7xl md:text-8xl lg:text-[9.5rem] xl:text-[11.5rem] text-white/[0.09] tracking-tight whitespace-nowrap leading-none block font-light select-none transition-all duration-300"
           style={{ fontFamily: "'Cormorant Garamond', 'Playfair Display', Georgia, serif" }}
         >
           JumpClicks on Instagram
@@ -56,8 +56,8 @@ export default function InstagramFeed({
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* 2. Exact 10 Boxes Grid (5 cols x 2 rows on desktop, 2 cols on mobile) */}
-        {/* Seamless black lines between images matching the website background color, no outer border */}
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-1 sm:gap-1.5 md:gap-2 bg-[#000000] border-none">
+        {/* Hairline-narrow black dividing lines between images matching reference, zero outer border */}
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-[1.5px] sm:gap-[2px] bg-[#000000] border-none">
           {feedImages.map((img) => (
             <a
               key={img.id}
@@ -87,7 +87,7 @@ export default function InstagramFeed({
         </div>
 
         {/* 3. Instagram Icon and Handle Link Below Grid */}
-        <div className="mt-8 sm:mt-12 text-center relative z-10 flex items-center justify-center">
+        <div className="mt-6 sm:mt-8 text-center relative z-10 flex items-center justify-center">
           <a
             href={profileUrl}
             target="_blank"

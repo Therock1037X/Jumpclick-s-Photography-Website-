@@ -5,51 +5,28 @@ export default function IntimateWeddingShowcase() {
   return (
     <section className="relative w-full bg-[#000000] text-white py-20 sm:py-28 lg:py-36 overflow-hidden select-none border-none">
       
-      {/* 1. Gradient-Mixed Dotted World Map (Soft Ethereal Dissolve with Zero Box Edges) */}
-      <div 
-        className="absolute top-0 right-0 w-full lg:w-3/4 h-[550px] pointer-events-none opacity-25 overflow-hidden flex items-start justify-end"
-        style={{
-          maskImage: 'radial-gradient(ellipse 70% 60% at 75% 25%, black 20%, transparent 75%)',
-          WebkitMaskImage: 'radial-gradient(ellipse 70% 60% at 75% 25%, black 20%, transparent 75%)',
-        }}
-      >
-        <svg 
-          viewBox="0 0 1000 500" 
-          className="w-[1300px] h-auto object-cover max-w-none -mr-32 mt-0"
-          fill="none" 
-          stroke="currentColor"
-        >
-          <pattern id="darkDotMap" x="0" y="0" width="16" height="16" patternUnits="userSpaceOnUse">
-            <circle cx="2" cy="2" r="1.3" fill="#ffffff" />
-          </pattern>
-          <rect width="1000" height="500" fill="url(#darkDotMap)" />
-        </svg>
-      </div>
-
-      {/* 2. Fluid Organic Curvy Graphic Backdrop (Directly Replicating Reference Wavy Silhouette) */}
-      <div className="absolute inset-y-0 right-0 w-full lg:w-[68%] xl:w-[65%] h-full pointer-events-none z-0">
+      {/* Fluid Organic Curvy Graphic Backdrop (Soft Luxury Silhouette Behind Images - Zero Top Edges or Lines) */}
+      <div className="absolute inset-y-0 right-0 w-full lg:w-[68%] xl:w-[65%] h-full pointer-events-none z-0 overflow-hidden">
         <svg 
           viewBox="0 0 1000 800" 
           className="w-full h-full object-fill" 
           preserveAspectRatio="none"
         >
           <defs>
-            <linearGradient id="curvyGraphicGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stopColor="#000000" stopOpacity="0" />
-              <stop offset="18%" stopColor="#14111a" stopOpacity="0.85" />
-              <stop offset="75%" stopColor="#0d0c12" stopOpacity="0.9" />
-              <stop offset="100%" stopColor="#000000" stopOpacity="0" />
+            <linearGradient id="curvyGraphicGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#16121d" stopOpacity="0.75" />
+              <stop offset="50%" stopColor="#0e0d13" stopOpacity="0.85" />
+              <stop offset="100%" stopColor="#050508" stopOpacity="0.95" />
             </linearGradient>
           </defs>
-          {/* Organic flowing S-curve contour with NO stroke or divider lines */}
+          {/* Organic flowing S-curve contour starting well below y=0 to prevent any top seam line */}
           <path 
-            d="M 1000,0 
-               L 360,0 
-               C 280,0, 220,70, 200,160 
-               C 180,250, 120,330, 60,410 
-               C 0,490, -10,580, 50,670 
-               C 90,730, 150,800, 250,800 
-               L 1000,800 Z" 
+            d="M 1000,800 
+               L 1000,80 
+               C 750,80, 550,60, 420,130 
+               C 300,200, 220,300, 150,400 
+               C 70,510, 40,610, 90,700 
+               C 130,760, 200,800, 320,800 Z" 
             fill="url(#curvyGraphicGrad)" 
             stroke="none"
           />

@@ -179,6 +179,12 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Premium Instagram-Style Photography Feed (Inspired by User Reference) */}
+      <InstagramFeed 
+        handle={socialConfig.instagramHandle} 
+        profileUrl={socialConfig.instagramUrl} 
+      />
+
       {/* 2. Client Stories / Why Choose JumpClicks — Refined Compact Carousel */}
       <section className="py-20 sm:py-24 bg-[#050507] border-y border-white/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -284,13 +290,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Premium Instagram-Style Photography Feed (Inspired by User Reference) */}
-      <InstagramFeed 
-        handle={socialConfig.instagramHandle} 
-        profileUrl={socialConfig.instagramUrl} 
-      />
-
-      {/* Final Booking CTA Banner — Positioned at the very end with earlier signature crimson gradient */}
+      {/* Final Booking CTA Banner — Positioned at the very end with signature crimson gradient */}
       <section className="py-20 bg-gradient-to-r from-[#2a060a] via-[#0d0d10] to-[#1c0508] border-none">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
           <h2 

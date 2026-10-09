@@ -1,7 +1,8 @@
 import React from 'react';
-import { Camera, MessageCircle, Heart, ArrowUp } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Camera, MessageCircle, ArrowUp } from 'lucide-react';
 
-export default function Footer({ onNavigate }) {
+export default function Footer() {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -14,7 +15,7 @@ export default function Footer({ onNavigate }) {
           
           {/* Brand Info (5 cols) */}
           <div className="lg:col-span-5 space-y-4">
-            <div className="flex items-center gap-3">
+            <Link to="/" className="flex items-center gap-3">
               <div className="w-9 h-9 rounded-xl bg-white/10 p-0.5 border border-white/20">
                 <div className="w-full h-full bg-[#090A0F] rounded-[9px] flex items-center justify-center overflow-hidden">
                   <img
@@ -31,7 +32,7 @@ export default function Footer({ onNavigate }) {
               <span className="font-heading font-extrabold text-lg tracking-wide text-white">
                 JUMPCLICKS PHOTOGRAPHY
               </span>
-            </div>
+            </Link>
 
             <p className="text-slate-300 leading-relaxed max-w-sm">
               Founded in 2020, Jumpclicks Photography is a premier photography and cinematography studio capturing genuine, heartfelt moments across weddings, pre-weddings, portraits, and family milestones in India.
@@ -42,31 +43,28 @@ export default function Footer({ onNavigate }) {
             </div>
           </div>
 
-          {/* Quick Links (2 cols) */}
+          {/* Quick Links / Page Tabs (2 cols) */}
           <div className="lg:col-span-2 space-y-3">
             <h4 className="text-xs font-semibold text-white uppercase tracking-wider font-mono">
-              Navigation
+              Pages
             </h4>
             <ul className="space-y-2">
-              {['Home', 'About Us', 'Services', 'Gallery', 'Contact Us'].map((item) => {
-                const idMap = {
-                  'Home': 'home',
-                  'About Us': 'about',
-                  'Services': 'services',
-                  'Gallery': 'gallery',
-                  'Contact Us': 'contact',
-                };
-                return (
-                  <li key={item}>
-                    <button
-                      onClick={() => onNavigate(idMap[item])}
-                      className="hover:text-white transition-colors cursor-pointer text-slate-400"
-                    >
-                      {item}
-                    </button>
-                  </li>
-                );
-              })}
+              {[
+                { path: '/', label: 'Home' },
+                { path: '/about', label: 'About Us' },
+                { path: '/services', label: 'Services' },
+                { path: '/gallery', label: 'Gallery' },
+                { path: '/contact', label: 'Contact Us' },
+              ].map((link) => (
+                <li key={link.path}>
+                  <Link
+                    to={link.path}
+                    className="hover:text-white transition-colors cursor-pointer text-slate-400"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -76,12 +74,36 @@ export default function Footer({ onNavigate }) {
               Photography Verticals
             </h4>
             <ul className="space-y-2 text-slate-400">
-              <li>Wedding & Reception</li>
-              <li>Pre-Wedding & Couple Sessions</li>
-              <li>Bridal & Groom Portraits</li>
-              <li>Maternity & Newborn</li>
-              <li>Baby Milestones</li>
-              <li>Events & Birthdays</li>
+              <li>
+                <Link to="/services" className="hover:text-white transition-colors">
+                  Wedding & Reception
+                </Link>
+              </li>
+              <li>
+                <Link to="/services" className="hover:text-white transition-colors">
+                  Pre-Wedding & Couple Sessions
+                </Link>
+              </li>
+              <li>
+                <Link to="/services" className="hover:text-white transition-colors">
+                  Bridal & Groom Portraits
+                </Link>
+              </li>
+              <li>
+                <Link to="/services" className="hover:text-white transition-colors">
+                  Maternity & Newborn
+                </Link>
+              </li>
+              <li>
+                <Link to="/services" className="hover:text-white transition-colors">
+                  Baby Milestones
+                </Link>
+              </li>
+              <li>
+                <Link to="/services" className="hover:text-white transition-colors">
+                  Events & Birthdays
+                </Link>
+              </li>
             </ul>
           </div>
 

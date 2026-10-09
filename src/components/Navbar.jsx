@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { NavLink, Link } from 'react-router-dom';
 import { Camera, Menu, X, MessageCircle, ArrowUpRight } from 'lucide-react';
 
-export default function Navbar({ activeSection, onNavigate }) {
+export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -14,38 +15,29 @@ export default function Navbar({ activeSection, onNavigate }) {
   }, []);
 
   const navLinks = [
-    { id: 'home', label: 'Home' },
-    { id: 'about', label: 'About Us' },
-    { id: 'services', label: 'Services' },
-    { id: 'gallery', label: 'Gallery' },
-    { id: 'contact', label: 'Contact Us' },
+    { path: '/', label: 'Home' },
+    { path: '/about', label: 'About Us' },
+    { path: '/services', label: 'Services' },
+    { path: '/gallery', label: 'Gallery' },
+    { path: '/contact', label: 'Contact Us' },
   ];
-
-  const handleLinkClick = (id) => {
-    setMobileMenuOpen(false);
-    if (onNavigate) {
-      onNavigate(id);
-    } else {
-      const el = document.getElementById(id);
-      if (el) el.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
 
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
           ? 'bg-[#07090e]/90 backdrop-blur-md border-b border-white/10 shadow-2xl py-3'
-          : 'bg-transparent py-5'
+          : 'bg-[#07090e]/60 backdrop-blur-sm border-b border-white/5 py-4'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           
           {/* Logo & Brand Identity */}
-          <div 
-            onClick={() => handleLinkClick('home')}
-            className="flex items-center gap-3 cursor-pointer group"
+          <Link 
+            to="/"
+            onClick={() => setMobileMenuOpen(false)}
+            className="flex items-center gap-3 group"
           >
             <div className="relative w-10 h-10 rounded-xl overflow-hidden bg-white/10 p-0.5 border border-white/20 group-hover:border-amber-400/50 transition-colors">
               <div className="w-full h-full bg-[#090A0F] rounded-[9px] flex items-center justify-center overflow-hidden">
@@ -74,26 +66,26 @@ export default function Navbar({ activeSection, onNavigate }) {
                 PHOTOGRAPHY & CINEMA • EST. 2020
               </p>
             </div>
-          </div>
+          </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-1 bg-white/5 border border-white/10 rounded-full px-5 py-1.5 backdrop-blur-md">
-            {navLinks.map((link) => {
-              const isActive = activeSection === link.id;
-              return (
-                <button
-                  key={link.id}
-                  onClick={() => handleLinkClick(link.id)}
-                  className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 cursor-pointer ${
+          {/* Desktop Navigation Tabs */}
+          <nav className="hidden md:flex items-center gap-1.5 bg-white/5 border border-white/10 rounded-full px-3 py-1.5 backdrop-blur-md shadow-inner">
+            {navLinks.map((link) => (
+              <NavLink
+                key={link.path}
+                to={link.path}
+                end={link.path === '/'}
+                className={({ isActive }) =>
+                  `px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 cursor-pointer ${
                     isActive
-                      ? 'bg-white text-slate-950 font-semibold shadow-md'
-                      : 'text-slate-300 hover:text-white hover:bg-white/5'
-                  }`}
-                >
-                  {link.label}
-                </button>
-              );
-            })}
+                      ? 'bg-amber-400 text-slate-950 font-bold shadow-md shadow-amber-400/20'
+                      : 'text-slate-300 hover:text-white hover:bg-white/10'
+                  }`
+                }
+              >
+                {link.label}
+              </NavLink>
+            ))}
           </nav>
 
           {/* CTA Buttons */}
@@ -108,13 +100,13 @@ export default function Navbar({ activeSection, onNavigate }) {
               <span>WhatsApp</span>
             </a>
 
-            <button
-              onClick={() => handleLinkClick('contact')}
+            <Link
+              to="/contact"
               className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-semibold text-slate-950 bg-amber-400 hover:bg-amber-300 shadow-lg shadow-amber-400/20 transition-all duration-300 cursor-pointer group"
             >
               <span>Book a Shoot</span>
               <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-            </button>
+            </Link>
           </div>
 
           {/* Mobile menu button */}
@@ -130,21 +122,25 @@ export default function Navbar({ activeSection, onNavigate }) {
         </div>
       </div>
 
-      {/* Mobile Drawer */}
+      {/* Mobile Menu Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-[#0a0d16]/95 border-b border-white/10 backdrop-blur-xl px-4 pt-3 pb-6 space-y-2 mt-2 transition-all">
+        <div className="md:hidden bg-[#0a0d16]/98 border-b border-white/10 backdrop-blur-xl px-4 pt-3 pb-6 space-y-2 mt-2">
           {navLinks.map((link) => (
-            <button
-              key={link.id}
-              onClick={() => handleLinkClick(link.id)}
-              className={`block w-full text-left px-4 py-2.5 rounded-xl text-base font-medium transition-colors ${
-                activeSection === link.id
-                  ? 'bg-white/10 text-amber-300 font-semibold'
-                  : 'text-slate-300 hover:text-white hover:bg-white/5'
-              }`}
+            <NavLink
+              key={link.path}
+              to={link.path}
+              end={link.path === '/'}
+              onClick={() => setMobileMenuOpen(false)}
+              className={({ isActive }) =>
+                `block w-full text-left px-4 py-2.5 rounded-xl text-base font-medium transition-colors ${
+                  isActive
+                    ? 'bg-amber-400 text-slate-950 font-bold'
+                    : 'text-slate-300 hover:text-white hover:bg-white/5'
+                }`
+              }
             >
               {link.label}
-            </button>
+            </NavLink>
           ))}
           <div className="pt-3 border-t border-white/10 flex flex-col gap-2">
             <a
@@ -156,12 +152,13 @@ export default function Navbar({ activeSection, onNavigate }) {
               <MessageCircle className="w-4 h-4" />
               <span>Chat on WhatsApp</span>
             </a>
-            <button
-              onClick={() => handleLinkClick('contact')}
-              className="w-full py-2.5 rounded-xl text-sm font-semibold text-slate-950 bg-amber-400 shadow-md"
+            <Link
+              to="/contact"
+              onClick={() => setMobileMenuOpen(false)}
+              className="w-full py-2.5 rounded-xl text-sm font-semibold text-slate-950 bg-amber-400 text-center shadow-md block"
             >
               Book a Shoot
-            </button>
+            </Link>
           </div>
         </div>
       )}

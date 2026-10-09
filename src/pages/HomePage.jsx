@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ChevronLeft, ChevronRight, Calendar, MessageCircle, Camera, Film, Compass, ShieldCheck } from 'lucide-react';
 import Hero from '../components/Hero';
@@ -71,16 +71,118 @@ const whyChoosePillars = [
   },
 ];
 
+// Tripled pillars dataset to support continuous seamless infinite sliding
+const displayPillars = [
+  ...whyChoosePillars,
+  ...whyChoosePillars,
+  ...whyChoosePillars,
+];
+
 export default function HomePage() {
-  const [pillarIndex, setPillarIndex] = useState(0);
+  // Start at index 4 (first item of middle set) so we can navigate smoothly both ways
+  const [pillarIndex, setPillarIndex] = useState(4);
+  const [isTransitioning, setIsTransitioning] = useState(true);
+  const [isPillarsPaused, setIsPillarsPaused] = useState(false);
+  const [reducedMotion, setReducedMotion] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(true);
+
+  const touchStartXRef = useRef(0);
+  const touchEndXRef = useRef(0);
+
+  // Check reduced-motion preference & viewport width
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    setReducedMotion(motionQuery.matches);
+    const motionHandler = (e) => setReducedMotion(e.matches);
+    motionQuery.addEventListener('change', motionHandler);
+
+    const desktopQuery = window.matchMedia('(min-width: 768px)');
+    setIsDesktop(desktopQuery.matches);
+    const desktopHandler = (e) => setIsDesktop(e.matches);
+    desktopQuery.addEventListener('change', desktopHandler);
+
+    return () => {
+      motionQuery.removeEventListener('change', motionHandler);
+      desktopQuery.removeEventListener('change', desktopHandler);
+    };
+  }, []);
+
+  // 4.5-Second Automatic Carousel Movement (Autoplay)
+  useEffect(() => {
+    if (isPillarsPaused || reducedMotion) return;
+
+    const timer = setInterval(() => {
+      setPillarIndex((prev) => prev + 1);
+    }, 4500);
+
+    return () => clearInterval(timer);
+  }, [isPillarsPaused, reducedMotion]);
+
+  // Seamless Infinite Looping Boundary Reset
+  const handleTransitionEnd = (e) => {
+    if (e.target !== e.currentTarget) return;
+
+    if (pillarIndex >= 8) {
+      setIsTransitioning(false);
+      setPillarIndex(pillarIndex - 4);
+    } else if (pillarIndex < 4) {
+      setIsTransitioning(false);
+      setPillarIndex(pillarIndex + 4);
+    }
+  };
+
+  // Re-enable transition after boundary reset
+  useEffect(() => {
+    if (!isTransitioning) {
+      const frame = requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          setIsTransitioning(true);
+        });
+      });
+      return () => cancelAnimationFrame(frame);
+    }
+  }, [isTransitioning]);
 
   const prevPillar = () => {
-    setPillarIndex((prev) => (prev - 1 + whyChoosePillars.length) % whyChoosePillars.length);
+    setPillarIndex((prev) => prev - 1);
   };
 
   const nextPillar = () => {
-    setPillarIndex((prev) => (prev + 1) % whyChoosePillars.length);
+    setPillarIndex((prev) => prev + 1);
   };
+
+  const handleDotClick = (targetIndex) => {
+    const currentActiveDot = ((pillarIndex % whyChoosePillars.length) + whyChoosePillars.length) % whyChoosePillars.length;
+    const diff = targetIndex - currentActiveDot;
+    setPillarIndex((prev) => prev + diff);
+  };
+
+  // Touch Swipe Handlers for mobile & tablet
+  const handleTouchStart = (e) => {
+    setIsPillarsPaused(true);
+    touchStartXRef.current = e.touches[0].clientX;
+    touchEndXRef.current = e.touches[0].clientX;
+  };
+
+  const handleTouchMove = (e) => {
+    touchEndXRef.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    setIsPillarsPaused(false);
+    const diff = touchStartXRef.current - touchEndXRef.current;
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) {
+        nextPillar();
+      } else {
+        prevPillar();
+      }
+    }
+  };
+
+  const activeDot = ((pillarIndex % whyChoosePillars.length) + whyChoosePillars.length) % whyChoosePillars.length;
 
   return (
     <div className="bg-[#000000] text-white">
@@ -186,7 +288,14 @@ export default function HomePage() {
       />
 
       {/* 2. Client Stories / Why Choose JumpClicks — Refined Compact Carousel */}
-      <section className="py-20 sm:py-24 bg-[#050507] border-y border-white/5">
+      <section 
+        className="py-20 sm:py-24 bg-[#050507] border-y border-white/5 relative"
+        onMouseEnter={() => setIsPillarsPaused(true)}
+        onMouseLeave={() => setIsPillarsPaused(false)}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row items-center sm:items-end justify-between mb-12 sm:mb-14 gap-4 text-center sm:text-left">
             <div>
@@ -226,52 +335,60 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Compact 1-2 Card Display with Understated Typography */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {[
-              whyChoosePillars[pillarIndex % whyChoosePillars.length],
-              whyChoosePillars[(pillarIndex + 1) % whyChoosePillars.length],
-            ].map((pillar, idx) => {
-              const IconComp = pillar.icon;
-              return (
-                <div
-                  key={`${pillar.id}-${idx}`}
-                  className={`p-8 sm:p-10 bg-[#09090c] border border-white/10 hover:border-white/20 transition-all duration-300 flex-col justify-between rounded-none shadow-xl ${
-                    idx === 1 ? 'hidden md:flex' : 'flex'
-                  }`}
-                >
-                  <div>
-                    <div className="flex items-center justify-between mb-6">
-                      <span className="text-[10px] font-mono tracking-[0.25em] uppercase text-[#df2531]">
-                        {pillar.badge}
-                      </span>
-                      <div className="w-8 h-8 rounded-none bg-white/5 border border-white/10 flex items-center justify-center text-white/80">
-                        <IconComp className="w-4 h-4 stroke-[1.5]" />
+          {/* Smooth Continuous Moving Track (Autoplay & Interactive) */}
+          <div className="w-full overflow-hidden py-2">
+            <div
+              onTransitionEnd={handleTransitionEnd}
+              className="flex gap-6 items-stretch will-change-transform"
+              style={{
+                transform: isDesktop
+                  ? `translateX(calc(-${pillarIndex} * (50% + 0.75rem)))`
+                  : `translateX(calc(-${pillarIndex} * (100% + 1.5rem)))`,
+                transition: isTransitioning && !reducedMotion
+                  ? 'transform 700ms cubic-bezier(0.25, 1, 0.5, 1)'
+                  : 'none',
+              }}
+            >
+              {displayPillars.map((pillar, idx) => {
+                const IconComp = pillar.icon;
+                return (
+                  <div
+                    key={`${pillar.id}-${idx}`}
+                    className="w-full md:w-[calc((100%-1.5rem)/2)] flex-shrink-0 p-8 sm:p-10 bg-[#09090c] border border-white/10 hover:border-white/20 transition-colors duration-300 flex flex-col justify-between rounded-none shadow-xl select-none"
+                  >
+                    <div>
+                      <div className="flex items-center justify-between mb-6">
+                        <span className="text-[10px] font-mono tracking-[0.25em] uppercase text-[#df2531]">
+                          {pillar.badge}
+                        </span>
+                        <div className="w-8 h-8 rounded-none bg-white/5 border border-white/10 flex items-center justify-center text-white/80">
+                          <IconComp className="w-4 h-4 stroke-[1.5]" />
+                        </div>
                       </div>
+
+                      <h3 
+                        className="text-2xl sm:text-3xl font-normal text-white uppercase tracking-wider mb-2 leading-snug"
+                        style={{ fontFamily: "'Cormorant Garamond', 'Playfair Display', Georgia, serif" }}
+                      >
+                        {pillar.title}
+                      </h3>
+                      <p className="text-[11px] font-mono tracking-wider text-neutral-400 uppercase mb-5">
+                        {pillar.subtitle}
+                      </p>
+
+                      <p className="text-sm text-neutral-300 font-light leading-relaxed">
+                        "{pillar.description}"
+                      </p>
                     </div>
 
-                    <h3 
-                      className="text-2xl sm:text-3xl font-normal text-white uppercase tracking-wider mb-2 leading-snug"
-                      style={{ fontFamily: "'Cormorant Garamond', 'Playfair Display', Georgia, serif" }}
-                    >
-                      {pillar.title}
-                    </h3>
-                    <p className="text-[11px] font-mono tracking-wider text-neutral-400 uppercase mb-5">
-                      {pillar.subtitle}
-                    </p>
-
-                    <p className="text-sm text-neutral-300 font-light leading-relaxed">
-                      "{pillar.description}"
-                    </p>
+                    <div className="pt-6 mt-6 border-t border-white/5 flex items-center justify-between text-[10px] font-mono uppercase tracking-widest text-neutral-500">
+                      <span>JumpClicks Cinematography</span>
+                      <span className="text-[#df2531]/80">Verified Standard</span>
+                    </div>
                   </div>
-
-                  <div className="pt-6 mt-6 border-t border-white/5 flex items-center justify-between text-[10px] font-mono uppercase tracking-widest text-neutral-500">
-                    <span>JumpClicks Cinematography</span>
-                    <span className="text-[#df2531]/80">Verified Standard</span>
-                  </div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
 
           {/* Understated Carousel Pagination Indicators */}
@@ -279,9 +396,9 @@ export default function HomePage() {
             {whyChoosePillars.map((_, i) => (
               <button
                 key={i}
-                onClick={() => setPillarIndex(i)}
+                onClick={() => handleDotClick(i)}
                 className={`h-1.5 transition-all duration-300 rounded-none cursor-pointer ${
-                  pillarIndex === i ? 'w-8 bg-[#df2531]' : 'w-2 bg-white/20 hover:bg-white/40'
+                  activeDot === i ? 'w-8 bg-[#df2531]' : 'w-2 bg-white/20 hover:bg-white/40'
                 }`}
                 aria-label={`Jump to slide ${i + 1}`}
               />

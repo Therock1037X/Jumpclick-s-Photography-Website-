@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function Hero() {
   return (
-    <section className="relative w-full h-screen min-h-[600px] overflow-hidden flex items-end justify-center bg-black select-none">
+    <section className="relative w-full h-screen min-h-[600px] overflow-hidden flex items-end justify-center bg-black select-none border-none">
       
       {/* 100vh Full-Bleed Edge-to-Edge Hero Image (Natural Light & Composition) */}
       <div className="absolute inset-0 w-full h-full">
@@ -11,8 +11,10 @@ export default function Hero() {
           alt="Jumpclicks Photography"
           className="w-full h-full object-cover object-center"
         />
-        {/* Very soft, subtle gradient vignette only for text contrast, preserving natural lighting */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30 pointer-events-none" />
+        {/* Soft cinematic vignette preserving natural lighting */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/30 pointer-events-none" />
+        {/* Smooth bottom gradient blend to seamlessly melt into the next section with NO hard line */}
+        <div className="absolute bottom-0 inset-x-0 h-40 bg-gradient-to-t from-black via-black/80 to-transparent pointer-events-none z-10" />
       </div>
 
       {/* KnotsbyAMP Reference: Centerpiece Brand Title & Tagline in Lower Half */}

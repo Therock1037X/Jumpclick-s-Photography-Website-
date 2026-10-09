@@ -19,7 +19,7 @@ export default function HomePage() {
       <IntimateWeddingShowcase />
 
       {/* Featured Gallery Preview - Pure Photography, Zero Text Below Images */}
-      <section className="py-16 bg-[#000000] border-t border-white/5">
+      <section className="py-16 bg-[#000000] border-none">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row items-baseline justify-between mb-10 gap-3">
             <div>

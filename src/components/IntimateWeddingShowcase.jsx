@@ -1,13 +1,26 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { MapPin } from 'lucide-react';
 
 export default function IntimateWeddingShowcase() {
   return (
-    <section className="relative w-full bg-[#000000] text-white py-20 sm:py-28 lg:py-36 overflow-hidden select-none border-t border-white/5">
+    <section className="relative w-full bg-[#000000] text-white py-20 sm:py-28 lg:py-36 overflow-hidden select-none border-none">
       
-      {/* Subtle Dotted World Map Graphic in the Background (Dark Theme Muted Dots) */}
-      <div className="absolute top-0 right-0 w-full lg:w-3/4 h-full pointer-events-none opacity-[0.09] overflow-hidden flex items-start justify-end">
+      {/* 1. Circular Gradient in Top-Left Corner (Smooth Atmospheric Glow) */}
+      <div 
+        className="absolute -top-32 -left-32 w-[600px] h-[600px] rounded-full pointer-events-none blur-[90px]"
+        style={{
+          background: 'radial-gradient(circle, rgba(223, 37, 49, 0.18) 0%, rgba(142, 19, 27, 0.10) 42%, rgba(74, 8, 13, 0.04) 65%, transparent 75%)'
+        }}
+      />
+
+      {/* 2. Dotted World Map Graphic with Smooth Radial Gradient Mask (No Hard Rectangular Edge) */}
+      <div 
+        className="absolute top-0 right-0 w-full lg:w-3/4 h-full pointer-events-none opacity-20 overflow-hidden flex items-start justify-end"
+        style={{
+          maskImage: 'radial-gradient(ellipse at 80% 30%, black 15%, transparent 75%)',
+          WebkitMaskImage: 'radial-gradient(ellipse at 80% 30%, black 15%, transparent 75%)',
+        }}
+      >
         <svg 
           viewBox="0 0 1000 500" 
           className="w-[1300px] h-auto object-cover max-w-none -mr-32 mt-2"
@@ -21,8 +34,20 @@ export default function IntimateWeddingShowcase() {
         </svg>
       </div>
 
-      {/* Asymmetric Sleek Dark Luxury Card Backdrop (Matches reference placement, in Jumpclicks velvet theme) */}
-      <div className="absolute bottom-0 right-0 w-full lg:w-[60%] h-[72%] lg:h-[78%] bg-[#0e0d12] border-t border-l border-white/[0.07] rounded-tl-[70px] sm:rounded-tl-[100px] lg:rounded-tl-[140px] pointer-events-none shadow-[inset_0_1px_30px_rgba(223,37,49,0.04)]" />
+      {/* 3. Curvy Organic Background Panel (From Reference Image 2) */}
+      <div className="absolute bottom-0 right-0 w-full lg:w-[60%] h-[74%] lg:h-[80%] bg-[#0d0c11] border-t border-l border-white/[0.06] rounded-tl-[80px] sm:rounded-tl-[120px] lg:rounded-tl-[160px] pointer-events-none shadow-[inset_0_1px_35px_rgba(223,37,49,0.03)]" />
+
+      {/* Organic sweeping contour line on the left boundary */}
+      <div className="hidden lg:block absolute inset-0 pointer-events-none">
+        <svg viewBox="0 0 1600 900" className="w-full h-full object-cover" preserveAspectRatio="none">
+          <path
+            d="M 540 60 C 460 220, 500 420, 430 560 C 370 680, 240 760, 60 820"
+            fill="none"
+            stroke="rgba(255, 255, 255, 0.05)"
+            strokeWidth="1.2"
+          />
+        </svg>
+      </div>
 
       {/* Main Content Grid */}
       <div className="relative z-10 max-w-[1650px] mx-auto px-6 sm:px-10 lg:px-14">
@@ -60,31 +85,39 @@ export default function IntimateWeddingShowcase() {
               </div>
             </div>
 
-            {/* Action Link & Curved Map Pin Path */}
+            {/* Action Link (Clean, NO Red Navigation Line) & Curvy Graphics from Image 3 */}
             <div className="pt-10 sm:pt-14 relative">
               <Link
                 to="/contact"
-                className="inline-block text-[13px] uppercase tracking-[0.2em] font-semibold text-white border-b-2 border-[#df2531] pb-1 hover:text-[#df2531] transition-colors"
+                className="inline-block text-[13px] uppercase tracking-[0.2em] font-medium text-white/90 hover:text-white border-b border-white/20 hover:border-white pb-0.5 transition-all outline-none focus:outline-none"
               >
                 Make It Real
               </Link>
 
-              {/* Sinuous Curved Line to Destination with Map Pin */}
-              <div className="hidden lg:block absolute left-32 top-8 w-64 h-24 pointer-events-none">
-                <svg viewBox="0 0 240 80" className="w-full h-full overflow-visible">
+              {/* Exact Curvy Dashed Graphic with Red Dot & Map Pin from Reference Image 3 */}
+              <div className="relative mt-8 sm:mt-10 w-full max-w-[380px] h-20 pointer-events-none">
+                <svg viewBox="0 0 360 70" className="w-full h-full overflow-visible">
+                  {/* Sinuous dashed wave path from Reference Image 3 */}
                   <path
-                    d="M 0 10 C 60 10, 80 50, 140 50 S 200 20, 240 20"
+                    d="M 10 24 C 80 24, 130 55, 180 55 C 235 55, 290 28, 350 28"
                     fill="none"
                     stroke="#df2531"
-                    strokeWidth="1.2"
-                    strokeDasharray="4 4"
-                    strokeOpacity="0.45"
+                    strokeWidth="1.5"
+                    strokeDasharray="7 5"
+                    strokeOpacity="0.85"
                   />
-                  <circle cx="140" cy="50" r="3" fill="#df2531" />
+                  {/* Solid Red Dot on the curve dip */}
+                  <circle cx="180" cy="55" r="4" fill="#df2531" />
+                  
+                  {/* Floating Red Location Pin directly above the dot */}
+                  <g transform="translate(171, 20)">
+                    <path
+                      d="M9 0C4.029 0 0 4.029 0 9c0 5.25 9 14.5 9 14.5s9-9.25 9-14.5c0-4.971-4.029-9-9-9z"
+                      fill="#df2531"
+                    />
+                    <circle cx="9" cy="8.5" r="3" fill="#ffffff" />
+                  </g>
                 </svg>
-                <div className="absolute left-[132px] top-[26px]">
-                  <MapPin className="w-4 h-4 text-[#df2531] fill-[#df2531]" />
-                </div>
               </div>
             </div>
           </div>

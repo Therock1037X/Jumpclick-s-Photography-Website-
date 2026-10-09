@@ -6,12 +6,8 @@ import IntimateWeddingShowcase from '../components/IntimateWeddingShowcase';
 import WeddingFilmsCarousel from '../components/WeddingFilmsCarousel';
 import InstagramFeed from '../components/InstagramFeed';
 import { servicesData, clientReviews, socialConfig } from '../data/contentData';
-import { galleryItems } from '../data/galleryData';
 
 export default function HomePage() {
-  // Grab top 8 featured photographs for homepage preview
-  const featuredPhotos = galleryItems.filter(item => item.featured).slice(0, 8);
-
   return (
     <div className="bg-[#000000] text-white">
       {/* 100vh Full-Bleed KnotsbyAMP Style Hero */}
@@ -22,61 +18,6 @@ export default function HomePage() {
 
       {/* Cinematic Wedding Films Carousel (Matches User Reference) */}
       <WeddingFilmsCarousel />
-
-      {/* Featured Gallery Preview - Pure Photography, Zero Text Below Images */}
-      <section className="py-16 bg-[#000000] border-none">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col sm:flex-row items-baseline justify-between mb-10 gap-3">
-            <div>
-              <h3 
-                className="text-2xl sm:text-4xl font-normal text-white"
-                style={{ fontFamily: "'Cormorant Garamond', 'Playfair Display', Georgia, serif" }}
-              >
-                Selected Works
-              </h3>
-              <p className="text-xs text-slate-400 mt-1">
-                Authentic, uncropped moments captured across India.
-              </p>
-            </div>
-
-            <Link
-              to="/gallery"
-              className="inline-flex items-center gap-2 text-xs uppercase tracking-wider font-semibold text-[#df2531] hover:text-white transition-colors"
-            >
-              <span>View Full Gallery (180+ Photos)</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </Link>
-          </div>
-
-          {/* Natural Uncropped Masonry Grid - Pure Images Only */}
-          <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-5 space-y-5">
-            {featuredPhotos.map((item) => (
-              <Link
-                key={item.id}
-                to="/gallery"
-                className="break-inside-avoid block group relative rounded-2xl overflow-hidden bg-[#0d0d10] border border-white/10 hover:border-[#df2531]/60 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1"
-              >
-                <img
-                  src={item.thumb}
-                  alt="Jumpclicks Photography"
-                  className="w-full h-auto object-contain block group-hover:scale-[1.03] transition-transform duration-500"
-                  loading="lazy"
-                />
-              </Link>
-            ))}
-          </div>
-
-          <div className="text-center mt-14">
-            <Link
-              to="/gallery"
-              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-[#df2531] hover:bg-[#b81b25] text-white font-bold text-xs tracking-wider uppercase shadow-xl shadow-[#df2531]/30 transition-all cursor-pointer"
-            >
-              <span>Explore All 180+ Photographs</span>
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
-        </div>
-      </section>
 
       {/* Services Overview */}
       <section className="py-24 bg-[#000000] border-none">

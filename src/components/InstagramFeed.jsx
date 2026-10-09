@@ -38,22 +38,31 @@ export default function InstagramFeed({
   ];
 
   return (
-    <section className="relative w-full bg-[#000000] text-white pt-20 sm:pt-28 md:pt-32 pb-14 sm:pb-20 overflow-hidden select-none border-none">
+    <section className="relative w-full bg-[#000000] text-white pt-20 sm:pt-24 md:pt-28 pb-14 sm:pb-20 overflow-hidden select-none border-none">
       
-      {/* 1. Large Subtle Background Typography (Behind Gallery, Tops Peeking Above Grid) */}
-      <div 
-        className="absolute top-2 sm:top-4 md:top-6 left-1/2 -translate-x-1/2 w-full text-center pointer-events-none select-none z-0 overflow-hidden px-4"
-        aria-hidden="true"
-      >
-        <span 
-          className="font-serif text-5xl sm:text-7xl md:text-8xl lg:text-[9.5rem] xl:text-[11.5rem] text-white/[0.09] tracking-tight whitespace-nowrap leading-none block font-light select-none transition-all duration-300"
-          style={{ fontFamily: "'Cormorant Garamond', 'Playfair Display', Georgia, serif" }}
-        >
-          JumpClicks on Instagram
-        </span>
-      </div>
-
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Editorial Section Header (Matching Reference Screenshot: FOLLOW US ON INSTAGRAM / @jumpclicksphotography) */}
+        <div className="text-center max-w-4xl mx-auto mb-10 sm:mb-12 md:mb-14 flex flex-col items-center select-none">
+          {/* Subtle 1px vertical tick at top center */}
+          <div className="w-[1px] h-5 sm:h-6 bg-white/20 mb-4 sm:mb-5" aria-hidden="true" />
+
+          <h2 
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.5rem] font-light text-white uppercase tracking-[0.34em] sm:tracking-[0.38em] leading-tight"
+            style={{ fontFamily: "'Cormorant Garamond', 'Playfair Display', Georgia, serif" }}
+          >
+            Follow Us On Instagram
+          </h2>
+          <a
+            href={profileUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-2 sm:mt-2.5 text-sm sm:text-base md:text-[17px] text-neutral-400 hover:text-white italic tracking-wider transition-colors inline-block cursor-pointer"
+            style={{ fontFamily: "'Cormorant Garamond', 'Playfair Display', Georgia, serif" }}
+          >
+            @ {handle.replace(/^\//, '')}
+          </a>
+        </div>
         
         {/* 2. Exact 10 Boxes Grid (5 cols x 2 rows on desktop, 2 cols on mobile) */}
         {/* Hairline-narrow black dividing lines between images matching reference, zero outer border */}

@@ -414,12 +414,12 @@ export default function HomePage() {
 
       {/* 1. Photography & Cinema Services — Image-Led Editorial Design (All 6 Services with Drag & Autoplay) */}
       <section 
-        className="py-20 sm:py-24 bg-[#000000] border-none select-none relative"
+        className="py-12 sm:py-14 md:py-16 bg-[#000000] border-none select-none relative"
         onMouseEnter={() => setIsServicesPaused(true)}
         onMouseLeave={() => setIsServicesPaused(false)}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 select-none">
-          <div className="flex flex-col sm:flex-row items-center sm:items-end justify-between mb-12 sm:mb-14 gap-4 text-center sm:text-left select-none">
+          <div className="flex flex-col sm:flex-row items-center sm:items-end justify-between mb-8 sm:mb-10 gap-4 text-center sm:text-left select-none">
             <div>
               <span className="text-[11px] tracking-[0.25em] uppercase text-[#df2531] font-semibold block mb-2 font-mono">
                 OUR EXPERTISE
@@ -557,7 +557,7 @@ export default function HomePage() {
           </div>
 
           {/* Pagination Indicators for All 6 Services */}
-          <div className="flex items-center justify-center gap-2 mt-8 select-none">
+          <div className="flex items-center justify-center gap-2 mt-6 select-none">
             {editorialServices.map((_, i) => (
               <button
                 key={i}
@@ -572,7 +572,7 @@ export default function HomePage() {
           </div>
 
           {/* Working View All Services Link */}
-          <div className="text-center mt-10 sm:mt-12 select-none">
+          <div className="text-center mt-6 sm:mt-8 select-none">
             <Link
               to="/services"
               className="inline-flex items-center gap-2 px-8 py-3.5 rounded-none bg-white/5 hover:bg-white/15 border border-white/15 hover:border-white/30 text-white font-semibold text-xs tracking-[0.2em] uppercase transition-all duration-300"
@@ -595,12 +595,12 @@ export default function HomePage() {
 
       {/* 2. Client Stories / Why Choose JumpClicks — Refined Compact Carousel with Mouse & Touch Drag */}
       <section 
-        className="py-20 sm:py-24 bg-[#050507] border-y border-white/5 relative select-none"
+        className="py-12 sm:py-14 md:py-16 bg-[#050507] border-y border-white/5 relative select-none"
         onMouseEnter={() => setIsPillarsPaused(true)}
         onMouseLeave={() => setIsPillarsPaused(false)}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 select-none">
-          <div className="flex flex-col sm:flex-row items-center sm:items-end justify-between mb-12 sm:mb-14 gap-4 text-center sm:text-left select-none">
+          <div className="flex flex-col sm:flex-row items-center sm:items-end justify-between mb-8 sm:mb-10 gap-4 text-center sm:text-left select-none">
             <div>
               <span className="text-[11px] tracking-[0.25em] uppercase text-[#df2531] font-semibold block mb-2 font-mono">
                 OUR COMMITMENT
@@ -707,7 +707,7 @@ export default function HomePage() {
           </div>
 
           {/* Understated Carousel Pagination Indicators */}
-          <div className="flex items-center justify-center gap-2 mt-8 select-none">
+          <div className="flex items-center justify-center gap-2 mt-6 select-none">
             {whyChoosePillars.map((_, i) => (
               <button
                 key={i}
@@ -724,7 +724,7 @@ export default function HomePage() {
       </section>
 
       {/* Final Booking CTA Banner — Positioned at the very end with signature crimson gradient */}
-      <section className="py-20 bg-gradient-to-r from-[#2a060a] via-[#0d0d10] to-[#1c0508] border-none select-none cursor-default">
+      <section className="py-12 sm:py-14 md:py-16 bg-gradient-to-r from-[#2a060a] via-[#0d0d10] to-[#1c0508] border-none select-none cursor-default">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4 select-none cursor-default">
           <h2 
             className="text-3xl sm:text-5xl font-normal text-white select-none cursor-default"
@@ -744,7 +744,7 @@ export default function HomePage() {
               <span>Book a Shoot</span>
             </Link>
             <a
-              href="https://wa.me/919172322302?text=Hi%20Jumpclicks%20team,%20I'd%20like%20to%20check%20availability%20for%20a%20shoot."
+              href="https://wa.me/918856002272?text=Hi%20Jumpclicks%20team,%20I'd%20like%20to%20check%20availability%20for%20a%20shoot."
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs uppercase tracking-wider shadow-lg shadow-emerald-500/20 transition-all cursor-pointer"

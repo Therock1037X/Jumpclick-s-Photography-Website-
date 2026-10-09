@@ -30,7 +30,7 @@ export default function Lightbox({ item, items, onClose, onSelect }) {
 
   const handleInquireStyle = () => {
     const text = `Hi Jumpclicks Photography! I loved this photograph (${item.categoryName}) on your website and would like to achieve a similar shoot style.`;
-    window.open(`https://wa.me/919172322302?text=${encodeURIComponent(text)}`, '_blank');
+    window.open(`https://wa.me/918856002272?text=${encodeURIComponent(text)}`, '_blank');
   };
 
   return (

@@ -23,7 +23,7 @@ const iconMap = {
 export default function Services({ onNavigate }) {
   const handleInquire = (serviceTitle) => {
     const text = `Hi Jumpclicks Photography, I would like to inquire about package details and availability for ${serviceTitle}.`;
-    window.open(`https://wa.me/919172322302?text=${encodeURIComponent(text)}`, '_blank');
+    window.open(`https://wa.me/918856002272?text=${encodeURIComponent(text)}`, '_blank');
   };
 
   return (
@@ -120,7 +120,7 @@ export default function Services({ onNavigate }) {
 
             <div className="flex flex-wrap items-center gap-3">
               <a
-                href="https://wa.me/919172322302?text=Hi%20Jumpclicks,%20I%20would%20like%20to%20discuss%20a%20customized%20package%20for%20my%20event."
+                href="https://wa.me/918856002272?text=Hi%20Jumpclicks,%20I%20would%20like%20to%20discuss%20a%20customized%20package%20for%20my%20event."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-sm shadow-lg shadow-emerald-500/20 cursor-pointer transition-all"

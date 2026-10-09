@@ -260,7 +260,7 @@ export default function WeddingFilmsCarousel() {
 
   return (
     <section 
-      className="relative w-full bg-[#000000] text-white py-20 sm:py-24 md:py-28 overflow-hidden select-none border-none"
+      className="relative w-full bg-[#000000] text-white py-12 sm:py-14 md:py-16 overflow-hidden select-none border-none"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => {
         if (!isDraggingRef.current) setIsPaused(false);
@@ -268,7 +268,7 @@ export default function WeddingFilmsCarousel() {
     >
       
       {/* 1. Header Section (Matches User Reference Typography) */}
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 text-center mb-12 sm:mb-16 select-none">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 text-center mb-8 sm:mb-10 select-none">
         <h2 
           className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.75rem] font-normal text-white uppercase tracking-[0.2em] sm:tracking-[0.25em] md:tracking-[0.3em] leading-tight"
           style={{ fontFamily: "'Cormorant Garamond', 'Playfair Display', Georgia, serif" }}

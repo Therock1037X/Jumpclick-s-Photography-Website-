@@ -34,7 +34,7 @@ export default function ContactUs() {
 
   const handleWhatsAppDirect = () => {
     const text = `Hi Jumpclicks Photography! I'm interested in booking a ${formData.service} shoot around ${formData.date || 'upcoming dates'} in ${formData.location || 'India'}. My name is ${formData.name || 'there'}. Can we discuss availability?`;
-    window.open(`https://wa.me/919172322302?text=${encodeURIComponent(text)}`, '_blank');
+    window.open(`https://wa.me/918856002272?text=${encodeURIComponent(text)}`, '_blank');
   };
 
   return (
@@ -264,7 +264,7 @@ export default function ContactUs() {
                 <div className="flex items-start gap-3 text-slate-300">
                   <Phone className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
                   <div>
-                    <div className="font-semibold text-white">+91 91723 22302</div>
+                    <div className="font-semibold text-white">+91 88560 02272</div>
                     <div className="text-[11px] text-slate-400">Available 10:00 AM – 9:00 PM IST</div>
                   </div>
                 </div>

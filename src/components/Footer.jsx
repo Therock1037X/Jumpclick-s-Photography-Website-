@@ -41,7 +41,7 @@ export default function Footer() {
 
             {/* WhatsApp Chat Link */}
             <a
-              href="https://wa.me/919172322302?text=Hi%20Jumpclicks%20team,%20I'd%20like%20to%20chat%20about%20photography."
+              href="https://wa.me/918856002272?text=Hi%20Jumpclicks%20team,%20I'd%20like%20to%20chat%20about%20photography."
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 text-slate-300 hover:text-emerald-400 transition-colors ml-1 font-medium capitalize"

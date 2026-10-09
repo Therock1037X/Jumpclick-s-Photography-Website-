@@ -153,7 +153,7 @@ export default function GalleryPage() {
                 <ArrowRight className="w-3.5 h-3.5" />
               </Link>
               <a
-                href="https://wa.me/919172322302"
+                href="https://wa.me/918856002272"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs"

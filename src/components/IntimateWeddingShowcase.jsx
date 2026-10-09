@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 export default function IntimateWeddingShowcase() {
   return (
-    <section className="relative w-full bg-[#000000] text-white py-20 sm:py-28 lg:py-36 overflow-hidden select-none border-none">
+    <section className="relative w-full bg-[#000000] text-white py-12 sm:py-14 md:py-16 overflow-hidden select-none border-none">
       
       {/* Fluid Organic Curvy Graphic Backdrop (Soft Luxury Silhouette Behind Images - Zero Top Edges or Lines) */}
       <div className="absolute inset-y-0 right-0 w-full lg:w-[68%] xl:w-[65%] h-full pointer-events-none z-0 overflow-hidden">

@@ -163,6 +163,7 @@ export const faqs = [
 export const socialConfig = {
   instagramHandle: '/jumpclicksphotography',
   instagramUrl: 'https://instagram.com/jumpclicksphotography',
-  whatsappNumber: '+91 91723 22302',
-  whatsappUrl: 'https://wa.me/919172322302',
+  phoneNumber: '+91 88560 02272',
+  whatsappNumber: '+91 88560 02272',
+  whatsappUrl: 'https://wa.me/918856002272',
 };

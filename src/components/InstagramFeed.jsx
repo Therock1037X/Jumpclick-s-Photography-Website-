@@ -38,14 +38,14 @@ export default function InstagramFeed({
   ];
 
   return (
-    <section className="relative w-full bg-[#000000] text-white pt-20 sm:pt-24 md:pt-28 pb-14 sm:pb-20 overflow-hidden select-none border-none">
+    <section className="relative w-full bg-[#000000] text-white py-12 sm:py-14 md:py-16 overflow-hidden select-none border-none">
       
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Editorial Section Header (Matching Reference Screenshot: FOLLOW US ON INSTAGRAM / @jumpclicksphotography) */}
-        <div className="text-center max-w-4xl mx-auto mb-10 sm:mb-12 md:mb-14 flex flex-col items-center select-none">
+        <div className="text-center max-w-4xl mx-auto mb-8 sm:mb-10 flex flex-col items-center select-none">
           {/* Subtle 1px vertical tick at top center */}
-          <div className="w-[1px] h-5 sm:h-6 bg-white/20 mb-4 sm:mb-5" aria-hidden="true" />
+          <div className="w-[1px] h-5 sm:h-6 bg-white/20 mb-3 sm:mb-4" aria-hidden="true" />
 
           <h2 
             className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.5rem] font-light text-white uppercase tracking-[0.34em] sm:tracking-[0.38em] leading-tight"
@@ -96,7 +96,7 @@ export default function InstagramFeed({
         </div>
 
         {/* 3. Instagram Icon and Handle Link Below Grid (Borderless, clean, matching reference) */}
-        <div className="mt-6 sm:mt-8 text-center relative z-10 flex items-center justify-center">
+        <div className="mt-5 sm:mt-6 text-center relative z-10 flex items-center justify-center">
           <a
             href={profileUrl}
             target="_blank"

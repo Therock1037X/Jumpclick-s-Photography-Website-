@@ -81,7 +81,7 @@ export default function Testimonials() {
 
   return (
     <section 
-      className="relative w-full bg-[#000000] text-white py-20 sm:py-24 md:py-28 overflow-hidden select-none border-none"
+      className="relative w-full bg-[#000000] text-white py-12 sm:py-14 md:py-16 overflow-hidden select-none border-none"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
       onTouchStart={handleTouchStart}
@@ -90,9 +90,9 @@ export default function Testimonials() {
       <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-12 relative z-20">
         
         {/* Editorial Section Header with Top Vertical Tick in Dark Theme */}
-        <div className="text-center max-w-4xl mx-auto mb-14 sm:mb-16 md:mb-20 flex flex-col items-center">
+        <div className="text-center max-w-4xl mx-auto mb-8 sm:mb-10 flex flex-col items-center">
           {/* Subtle 1px vertical tick at top center */}
-          <div className="w-[1px] h-5 sm:h-6 bg-white/20 mb-4 sm:mb-5" aria-hidden="true" />
+          <div className="w-[1px] h-5 sm:h-6 bg-white/20 mb-3 sm:mb-4" aria-hidden="true" />
 
           <h2 
             className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.65rem] font-light text-white uppercase tracking-[0.34em] sm:tracking-[0.38em] leading-tight"

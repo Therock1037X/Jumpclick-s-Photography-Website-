@@ -2,7 +2,12 @@
 
 @layer base {
   :root {
-    --font-heading: 'Syne', 'Outfit', -apple-system, sans-serif;
+    --brand-red: #df2531;
+    --brand-red-dark: #8e131b;
+    --brand-red-deep: #4a080d;
+    --brand-black: #000000;
+    --brand-white: #ffffff;
+    --font-heading: 'Outfit', -apple-system, sans-serif;
     --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   }
 
@@ -10,19 +15,19 @@
     scroll-behavior: smooth;
     font-family: var(--font-sans);
     color-scheme: dark;
-    background-color: #07090e;
-    color: #f1f5f9;
+    background-color: #000000;
+    color: #ffffff;
   }
 
   body {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
-    background-color: #07090e;
+    background-color: #000000;
     background-image: 
-      radial-gradient(circle at 15% 15%, rgba(99, 102, 241, 0.08) 0%, transparent 40%),
-      radial-gradient(circle at 85% 65%, rgba(236, 72, 153, 0.06) 0%, transparent 45%),
-      radial-gradient(circle at 50% 90%, rgba(6, 182, 212, 0.05) 0%, transparent 50%);
+      radial-gradient(circle at 10% 15%, rgba(223, 37, 49, 0.12) 0%, transparent 45%),
+      radial-gradient(circle at 90% 60%, rgba(142, 19, 27, 0.08) 0%, transparent 50%),
+      radial-gradient(circle at 50% 95%, rgba(74, 8, 13, 0.10) 0%, transparent 55%);
     background-attachment: fixed;
   }
 
@@ -32,9 +37,9 @@
   }
 }
 
-/* Custom Glassmorphism & High-End Effects */
+/* Custom Glassmorphism & Crimson Accents */
 .glass-panel {
-  background: rgba(15, 23, 42, 0.65);
+  background: rgba(12, 12, 14, 0.75);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -45,57 +50,20 @@
 }
 
 .glass-panel-hover:hover {
-  background: rgba(30, 41, 59, 0.75);
-  border-color: rgba(99, 102, 241, 0.35);
+  background: rgba(22, 15, 17, 0.85);
+  border-color: rgba(223, 37, 49, 0.45);
   transform: translateY(-3px);
-  box-shadow: 0 20px 35px -10px rgba(99, 102, 241, 0.15);
+  box-shadow: 0 20px 35px -10px rgba(223, 37, 49, 0.2);
 }
 
-.neon-border {
-  position: relative;
-}
-
-.neon-border::before {
-  content: '';
-  position: absolute;
-  inset: -1px;
-  border-radius: inherit;
-  padding: 1px;
-  background: linear-gradient(135deg, rgba(99, 102, 241, 0.6), rgba(236, 72, 153, 0.4), rgba(6, 182, 212, 0.5));
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
-}
-
-.text-gradient {
-  background: linear-gradient(135deg, #ffffff 10%, #cbd5e1 50%, #94a3b8 90%);
+.text-gradient-red {
+  background: linear-gradient(135deg, #ffffff 10%, #ff6b75 60%, #df2531 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-.text-gradient-accent {
-  background: linear-gradient(135deg, #a5b4fc 0%, #c084fc 50%, #f472b6 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.text-gradient-cyan {
-  background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* Ambient glow orb */
-.ambient-glow {
-  position: absolute;
-  width: 500px;
-  height: 500px;
-  border-radius: 50%;
-  filter: blur(120px);
-  opacity: 0.15;
-  pointer-events: none;
-  z-index: 0;
+.bg-crimson-gradient {
+  background: linear-gradient(135deg, #df2531 0%, #a1141e 50%, #4a080d 100%);
 }
 
 /* Custom scrollbar */
@@ -103,20 +71,22 @@
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #07090e;
+  background: #000000;
 }
 ::-webkit-scrollbar-thumb {
-  background: #1e293b;
+  background: #261215;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #334155;
+  background: #df2531;
 }
 
-/* Grid background pattern */
-.bg-grid-pattern {
-  background-size: 40px 40px;
-  background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+/* True Masonry Support */
+.masonry-grid {
+  column-gap: 1.25rem;
+}
+
+.masonry-item {
+  break-inside: avoid;
+  margin-bottom: 1.25rem;
 }

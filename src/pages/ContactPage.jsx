@@ -38,12 +38,14 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="pt-24 pb-20">
+    <div className="pt-24 pb-20 bg-[#000000] text-white">
       
       {/* Page Header */}
-      <section className="py-16 bg-[#07090e] border-b border-white/5">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 text-amber-300 text-xs font-semibold uppercase tracking-wider mb-4 border border-white/10">
+      <section className="py-16 bg-[#000000] border-b border-white/5 relative overflow-hidden">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[250px] bg-[#df2531]/10 rounded-full blur-[130px] pointer-events-none" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#df2531]/10 text-[#df2531] text-xs font-semibold uppercase tracking-wider mb-4 border border-[#df2531]/30">
             <Calendar className="w-3.5 h-3.5" />
             <span>LET'S CONNECT</span>
           </div>
@@ -57,13 +59,13 @@ export default function ContactPage() {
       </section>
 
       {/* Main Content: Form + Details */}
-      <section className="py-16 bg-[#090b13]">
+      <section className="py-16 bg-[#000000]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start mb-20">
             
             {/* Booking Inquiry Form (7 cols) */}
-            <div className="lg:col-span-7 rounded-3xl p-6 sm:p-8 border border-white/10 bg-white/[0.02] shadow-2xl relative">
+            <div className="lg:col-span-7 rounded-3xl p-6 sm:p-8 border border-white/10 bg-[#0c0c0f] shadow-2xl relative">
               <div className="flex items-center justify-between mb-6 pb-4 border-b border-white/10">
                 <div>
                   <h3 className="text-xl font-bold text-white">Booking Inquiry</h3>
@@ -106,7 +108,7 @@ export default function ContactPage() {
                         placeholder="e.g. Priya Sharma"
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-amber-400 transition-colors"
+                        className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-[#df2531] transition-colors"
                       />
                     </div>
 
@@ -120,7 +122,7 @@ export default function ContactPage() {
                         placeholder="+91 98765 43210"
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-amber-400 transition-colors"
+                        className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-[#df2531] transition-colors"
                       />
                     </div>
                   </div>
@@ -136,7 +138,7 @@ export default function ContactPage() {
                         placeholder="priya@example.com"
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-amber-400 transition-colors"
+                        className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-[#df2531] transition-colors"
                       />
                     </div>
 
@@ -147,7 +149,7 @@ export default function ContactPage() {
                       <select
                         value={formData.service}
                         onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                        className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white text-sm focus:outline-none focus:border-amber-400 transition-colors"
+                        className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white text-sm focus:outline-none focus:border-[#df2531] transition-colors"
                       >
                         <option value="Wedding & Reception">Wedding & Reception</option>
                         <option value="Pre-Wedding Shoot">Pre-Wedding Shoot</option>
@@ -168,7 +170,7 @@ export default function ContactPage() {
                         type="date"
                         value={formData.date}
                         onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-                        className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white text-sm focus:outline-none focus:border-amber-400 transition-colors"
+                        className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white text-sm focus:outline-none focus:border-[#df2531] transition-colors"
                       />
                     </div>
 
@@ -182,19 +184,19 @@ export default function ContactPage() {
                         placeholder="e.g. Nagpur, Mumbai, Pune..."
                         value={formData.location}
                         onChange={(e) => setFormData({ ...formData, location: e.target.value })}
-                        className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-amber-400 transition-colors"
+                        className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-[#df2531] transition-colors"
                       />
                     </div>
                   </div>
 
                   <div>
                     <label className="block text-xs font-medium text-slate-300 mb-1.5">
-                      Target Budget Preference
+                      Budget Preference
                     </label>
                     <select
                       value={formData.budget}
                       onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white text-sm focus:outline-none focus:border-amber-400 transition-colors"
+                      className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white text-sm focus:outline-none focus:border-[#df2531] transition-colors"
                     >
                       <option value="Under ₹35,000">Under ₹35,000</option>
                       <option value="₹35,000 - ₹75,000">₹35,000 - ₹75,000</option>
@@ -206,21 +208,21 @@ export default function ContactPage() {
 
                   <div>
                     <label className="block text-xs font-medium text-slate-300 mb-1.5">
-                      Tell us about your plans
+                      Your Requirements & Details
                     </label>
                     <textarea
                       rows={3}
-                      placeholder="Details about ceremonies, number of days, venues, or special moments you want covered..."
+                      placeholder="Tell us about the ceremonies, number of days, venue, or any specific preferences..."
                       value={formData.notes}
                       onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-amber-400 transition-colors resize-none"
+                      className="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-[#df2531] transition-colors resize-none"
                     />
                   </div>
 
                   <div className="pt-2">
                     <button
                       type="submit"
-                      className="w-full py-3.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold text-sm shadow-xl shadow-amber-400/20 flex items-center justify-center gap-2 cursor-pointer transition-all"
+                      className="w-full py-3.5 rounded-xl bg-[#df2531] hover:bg-[#b81b25] text-white font-bold text-sm shadow-xl shadow-[#df2531]/30 flex items-center justify-center gap-2 cursor-pointer transition-all"
                     >
                       <Send className="w-4 h-4" />
                       <span>Send Booking Inquiry</span>
@@ -259,14 +261,14 @@ export default function ContactPage() {
               </div>
 
               {/* Studio Telemetry */}
-              <div className="rounded-3xl p-6 sm:p-7 border border-white/10 bg-white/[0.02] space-y-4">
+              <div className="rounded-3xl p-6 sm:p-7 border border-white/10 bg-[#0c0c0f] space-y-4">
                 <h4 className="text-xs font-bold text-white uppercase tracking-wider font-mono">
                   Studio Details
                 </h4>
 
                 <div className="space-y-3.5 text-xs">
                   <div className="flex items-start gap-3 text-slate-300">
-                    <Phone className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
+                    <Phone className="w-4 h-4 text-[#df2531] shrink-0 mt-0.5" />
                     <div>
                       <div className="font-semibold text-white">+91 91723 22302</div>
                       <div className="text-[11px] text-slate-400">Available 10:00 AM – 9:00 PM IST</div>
@@ -274,7 +276,7 @@ export default function ContactPage() {
                   </div>
 
                   <div className="flex items-start gap-3 text-slate-300">
-                    <Mail className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
+                    <Mail className="w-4 h-4 text-[#df2531] shrink-0 mt-0.5" />
                     <div>
                       <div className="font-semibold text-white">contact@jumpclicks.com</div>
                       <div className="text-[11px] text-slate-400">General & Booking Inquiries</div>
@@ -282,7 +284,7 @@ export default function ContactPage() {
                   </div>
 
                   <div className="flex items-start gap-3 text-slate-300">
-                    <MapPin className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
+                    <MapPin className="w-4 h-4 text-[#df2531] shrink-0 mt-0.5" />
                     <div>
                       <div className="font-semibold text-white">Pan-India Coverage</div>
                       <div className="text-[11px] text-slate-400">Based in Maharashtra • Travel Available Nationwide</div>
@@ -290,7 +292,7 @@ export default function ContactPage() {
                   </div>
 
                   <div className="flex items-start gap-3 text-slate-300">
-                    <Clock className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
+                    <Clock className="w-4 h-4 text-[#df2531] shrink-0 mt-0.5" />
                     <div>
                       <div className="font-semibold text-white">Operational Days</div>
                       <div className="text-[11px] text-slate-400">Monday to Sunday</div>
@@ -306,7 +308,7 @@ export default function ContactPage() {
           {/* FAQs Accordion */}
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-10">
-              <span className="text-xs font-medium text-amber-400 uppercase tracking-widest">
+              <span className="text-xs font-medium text-[#df2531] uppercase tracking-widest font-semibold">
                 FREQUENTLY ASKED QUESTIONS
               </span>
               <h3 className="text-2xl sm:text-3xl font-bold text-white mt-1">
@@ -320,7 +322,7 @@ export default function ContactPage() {
                 return (
                   <div
                     key={idx}
-                    className="rounded-2xl border border-white/10 bg-white/[0.02] overflow-hidden transition-colors"
+                    className="rounded-2xl border border-white/10 bg-[#0c0c0f] overflow-hidden transition-colors"
                   >
                     <button
                       onClick={() => setOpenFaq(isOpen ? -1 : idx)}
@@ -330,7 +332,7 @@ export default function ContactPage() {
                         {faq.q}
                       </span>
                       <ChevronDown
-                        className={`w-5 h-5 text-amber-400 shrink-0 transition-transform duration-300 ${
+                        className={`w-5 h-5 text-[#df2531] shrink-0 transition-transform duration-300 ${
                           isOpen ? 'rotate-180' : ''
                         }`}
                       />

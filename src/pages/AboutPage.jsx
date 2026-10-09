@@ -5,12 +5,14 @@ import { clientReviews } from '../data/contentData';
 
 export default function AboutPage() {
   return (
-    <div className="pt-24 pb-20">
+    <div className="pt-24 pb-20 bg-[#000000] text-white">
       
       {/* Page Header */}
-      <section className="py-16 bg-[#07090e] border-b border-white/5">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 text-amber-300 text-xs font-semibold uppercase tracking-wider mb-4 border border-white/10">
+      <section className="py-16 bg-[#000000] border-b border-white/5 relative overflow-hidden">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[250px] bg-[#df2531]/10 rounded-full blur-[130px] pointer-events-none" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#df2531]/10 text-[#df2531] text-xs font-semibold uppercase tracking-wider mb-4 border border-[#df2531]/30">
             <Camera className="w-3.5 h-3.5" />
             <span>ESTABLISHED IN 2020</span>
           </div>
@@ -24,12 +26,12 @@ export default function AboutPage() {
       </section>
 
       {/* Main Story & Values */}
-      <section className="py-20 bg-[#090b13]">
+      <section className="py-20 bg-[#000000]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-20">
             
             <div className="lg:col-span-7 space-y-6">
-              <span className="text-xs font-mono text-amber-400 uppercase tracking-widest">
+              <span className="text-xs font-mono text-[#df2531] uppercase tracking-widest font-semibold">
                 OUR GENESIS // 2020
               </span>
               <h2 className="text-3xl sm:text-4xl font-extrabold text-white leading-tight">
@@ -45,7 +47,7 @@ export default function AboutPage() {
               <div className="pt-2">
                 <Link
                   to="/contact"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold text-sm shadow-lg shadow-amber-400/20 transition-all"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#df2531] hover:bg-[#b81b25] text-white font-bold text-sm shadow-lg shadow-[#df2531]/25 transition-all"
                 >
                   <span>Book a Shoot With Our Team</span>
                   <ArrowRight className="w-4 h-4" />
@@ -54,11 +56,12 @@ export default function AboutPage() {
             </div>
 
             <div className="lg:col-span-5">
-              <div className="rounded-3xl overflow-hidden border border-white/10 shadow-2xl aspect-[4/5] bg-slate-900">
+              <div className="rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-[#0c0c0f]">
+                {/* Natural Aspect Ratio Image */}
                 <img
                   src="/gallery/web/wedding/wedding_4.webp"
                   alt="Jumpclicks Photography Moment"
-                  className="w-full h-full object-cover"
+                  className="w-full h-auto object-contain block"
                 />
               </div>
             </div>
@@ -77,8 +80,8 @@ export default function AboutPage() {
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-amber-400/30 transition-colors">
-                <div className="w-10 h-10 rounded-xl bg-amber-400/10 text-amber-300 flex items-center justify-center mb-4">
+              <div className="p-6 rounded-2xl bg-[#0c0c0f] border border-white/10 hover:border-[#df2531]/40 transition-colors">
+                <div className="w-10 h-10 rounded-xl bg-[#df2531]/10 text-[#df2531] flex items-center justify-center mb-4">
                   <Heart className="w-5 h-5" />
                 </div>
                 <h4 className="text-base font-bold text-white mb-2">Unposed Candids</h4>
@@ -87,8 +90,8 @@ export default function AboutPage() {
                 </p>
               </div>
 
-              <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-amber-400/30 transition-colors">
-                <div className="w-10 h-10 rounded-xl bg-amber-400/10 text-amber-300 flex items-center justify-center mb-4">
+              <div className="p-6 rounded-2xl bg-[#0c0c0f] border border-white/10 hover:border-[#df2531]/40 transition-colors">
+                <div className="w-10 h-10 rounded-xl bg-[#df2531]/10 text-[#df2531] flex items-center justify-center mb-4">
                   <Camera className="w-5 h-5" />
                 </div>
                 <h4 className="text-base font-bold text-white mb-2">Cinema-Grade Gear</h4>
@@ -97,8 +100,8 @@ export default function AboutPage() {
                 </p>
               </div>
 
-              <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-amber-400/30 transition-colors">
-                <div className="w-10 h-10 rounded-xl bg-amber-400/10 text-amber-300 flex items-center justify-center mb-4">
+              <div className="p-6 rounded-2xl bg-[#0c0c0f] border border-white/10 hover:border-[#df2531]/40 transition-colors">
+                <div className="w-10 h-10 rounded-xl bg-[#df2531]/10 text-[#df2531] flex items-center justify-center mb-4">
                   <Users className="w-5 h-5" />
                 </div>
                 <h4 className="text-base font-bold text-white mb-2">Patient & Respectful</h4>
@@ -107,8 +110,8 @@ export default function AboutPage() {
                 </p>
               </div>
 
-              <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-amber-400/30 transition-colors">
-                <div className="w-10 h-10 rounded-xl bg-amber-400/10 text-amber-300 flex items-center justify-center mb-4">
+              <div className="p-6 rounded-2xl bg-[#0c0c0f] border border-white/10 hover:border-[#df2531]/40 transition-colors">
+                <div className="w-10 h-10 rounded-xl bg-[#df2531]/10 text-[#df2531] flex items-center justify-center mb-4">
                   <Award className="w-5 h-5" />
                 </div>
                 <h4 className="text-base font-bold text-white mb-2">Quality & Timeliness</h4>
@@ -120,7 +123,7 @@ export default function AboutPage() {
           </div>
 
           {/* Studio Stats Summary */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 max-w-4xl mx-auto mt-20 p-8 rounded-3xl bg-white/[0.02] border border-white/10 text-center">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 max-w-4xl mx-auto mt-20 p-8 rounded-3xl bg-[#0c0c0f] border border-white/10 text-center">
             <div>
               <div className="text-3xl sm:text-4xl font-extrabold text-white">1,200+</div>
               <p className="text-xs text-slate-400 mt-1 uppercase font-semibold">Events Covered</p>
@@ -143,7 +146,7 @@ export default function AboutPage() {
       </section>
 
       {/* Client Testimonials */}
-      <section className="py-20 bg-[#07090e] border-t border-white/5">
+      <section className="py-20 bg-[#070709] border-t border-white/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <h3 className="text-2xl sm:text-3xl font-extrabold text-white">
@@ -158,7 +161,7 @@ export default function AboutPage() {
             {clientReviews.map((rev) => (
               <div
                 key={rev.id}
-                className="p-6 rounded-3xl bg-white/[0.02] border border-white/10 flex flex-col justify-between"
+                className="p-6 rounded-3xl bg-[#0c0c0f] border border-white/10 flex flex-col justify-between"
               >
                 <p className="text-slate-200 text-sm leading-relaxed italic mb-4">
                   "{rev.quote}"
@@ -166,7 +169,7 @@ export default function AboutPage() {
                 <div className="pt-3 border-t border-white/5 flex items-center justify-between text-xs">
                   <div>
                     <span className="font-bold text-white block">{rev.name}</span>
-                    <span className="text-amber-400">{rev.event}</span>
+                    <span className="text-[#df2531] font-semibold">{rev.event}</span>
                   </div>
                   <span className="text-slate-500">{rev.city}</span>
                 </div>
@@ -177,7 +180,7 @@ export default function AboutPage() {
       </section>
 
       {/* Ready to Book CTA */}
-      <section className="py-16 bg-gradient-to-r from-amber-950/30 via-slate-900 to-indigo-950/30 border-t border-white/10 text-center">
+      <section className="py-16 bg-gradient-to-r from-[#210609] via-[#0d0d10] to-[#170508] border-t border-[#df2531]/30 text-center shadow-2xl">
         <div className="max-w-3xl mx-auto px-4">
           <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2">
             Let Us Tell Your Story
@@ -188,7 +191,7 @@ export default function AboutPage() {
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Link
               to="/contact"
-              className="inline-flex items-center gap-2 px-7 py-3 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold text-sm shadow-lg shadow-amber-400/20"
+              className="inline-flex items-center gap-2 px-7 py-3 rounded-xl bg-[#df2531] hover:bg-[#b81b25] text-white font-bold text-sm shadow-lg shadow-[#df2531]/25"
             >
               <span>Contact Us Today</span>
               <ArrowRight className="w-4 h-4" />

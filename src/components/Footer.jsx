@@ -8,7 +8,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative bg-[#06070b] border-t border-white/10 pt-16 pb-12 overflow-hidden text-xs text-slate-400">
+    <footer className="relative bg-[#000000] border-t border-[#df2531]/20 pt-16 pb-12 overflow-hidden text-xs text-slate-400">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-white/10">
@@ -16,8 +16,8 @@ export default function Footer() {
           {/* Brand Info (5 cols) */}
           <div className="lg:col-span-5 space-y-4">
             <Link to="/" className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-xl bg-white/10 p-0.5 border border-white/20">
-                <div className="w-full h-full bg-[#090A0F] rounded-[9px] flex items-center justify-center overflow-hidden">
+              <div className="w-9 h-9 rounded-xl bg-[#df2531]/15 p-0.5 border border-[#df2531]/40">
+                <div className="w-full h-full bg-[#000000] rounded-[9px] flex items-center justify-center overflow-hidden">
                   <img
                     src="/images/logo.webp"
                     alt="Jumpclicks Photography"
@@ -26,10 +26,10 @@ export default function Footer() {
                       e.currentTarget.style.display = 'none';
                     }}
                   />
-                  <Camera className="w-4 h-4 text-slate-300" />
+                  <Camera className="w-4 h-4 text-[#df2531]" />
                 </div>
               </div>
-              <span className="font-heading font-extrabold text-lg tracking-wide text-white">
+              <span className="font-heading font-extrabold text-lg tracking-wider text-white">
                 JUMPCLICKS PHOTOGRAPHY
               </span>
             </Link>
@@ -38,7 +38,7 @@ export default function Footer() {
               Founded in 2020, Jumpclicks Photography is a premier photography and cinematography studio capturing genuine, heartfelt moments across weddings, pre-weddings, portraits, and family milestones in India.
             </p>
 
-            <div className="flex items-center gap-2 text-amber-300 text-[11px] font-medium">
+            <div className="flex items-center gap-2 text-[#df2531] text-[11px] font-semibold tracking-wider">
               <span>ESTABLISHED 2020 • PAN-INDIA COVERAGE</span>
             </div>
           </div>
@@ -59,7 +59,7 @@ export default function Footer() {
                 <li key={link.path}>
                   <Link
                     to={link.path}
-                    className="hover:text-white transition-colors cursor-pointer text-slate-400"
+                    className="hover:text-[#df2531] transition-colors cursor-pointer text-slate-400"
                   >
                     {link.label}
                   </Link>
@@ -75,32 +75,32 @@ export default function Footer() {
             </h4>
             <ul className="space-y-2 text-slate-400">
               <li>
-                <Link to="/services" className="hover:text-white transition-colors">
+                <Link to="/services" className="hover:text-[#df2531] transition-colors">
                   Wedding & Reception
                 </Link>
               </li>
               <li>
-                <Link to="/services" className="hover:text-white transition-colors">
+                <Link to="/services" className="hover:text-[#df2531] transition-colors">
                   Pre-Wedding & Couple Sessions
                 </Link>
               </li>
               <li>
-                <Link to="/services" className="hover:text-white transition-colors">
+                <Link to="/services" className="hover:text-[#df2531] transition-colors">
                   Bridal & Groom Portraits
                 </Link>
               </li>
               <li>
-                <Link to="/services" className="hover:text-white transition-colors">
+                <Link to="/services" className="hover:text-[#df2531] transition-colors">
                   Maternity & Newborn
                 </Link>
               </li>
               <li>
-                <Link to="/services" className="hover:text-white transition-colors">
+                <Link to="/services" className="hover:text-[#df2531] transition-colors">
                   Baby Milestones
                 </Link>
               </li>
               <li>
-                <Link to="/services" className="hover:text-white transition-colors">
+                <Link to="/services" className="hover:text-[#df2531] transition-colors">
                   Events & Birthdays
                 </Link>
               </li>

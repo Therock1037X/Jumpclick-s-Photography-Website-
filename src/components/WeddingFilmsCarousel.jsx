@@ -13,10 +13,23 @@ function PlayIcon({ className = "w-5 h-5" }) {
 export default function WeddingFilmsCarousel() {
   const carouselRef = useRef(null);
   const [selectedFilm, setSelectedFilm] = useState(null);
+  const [isPaused, setIsPaused] = useState(false);
+  const [reducedMotion, setReducedMotion] = useState(false);
   const isResettingRef = useRef(false);
 
   // Tripled dataset to support butter-smooth infinite looping in both directions
   const displayFilms = [...weddingFilmsData, ...weddingFilmsData, ...weddingFilmsData];
+
+  // Check reduced-motion preference
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    setReducedMotion(mediaQuery.matches);
+
+    const handler = (e) => setReducedMotion(e.matches);
+    mediaQuery.addEventListener('change', handler);
+    return () => mediaQuery.removeEventListener('change', handler);
+  }, []);
 
   // Initialize carousel scroll position to the middle segment on mount
   useEffect(() => {
@@ -51,19 +64,33 @@ export default function WeddingFilmsCarousel() {
     }
   }, []);
 
-  // Smooth scroll handler for circular arrows
-  const scroll = (direction) => {
-    if (carouselRef.current) {
-      const container = carouselRef.current;
-      const cardWidth = container.clientWidth / (window.innerWidth >= 1024 ? 4 : window.innerWidth >= 640 ? 2 : 1.25);
-      const scrollAmount = cardWidth * 1.5;
+  // Smooth scroll handler: advances by exactly one card width + gap
+  const scrollOneCard = useCallback((direction = 'right') => {
+    if (!carouselRef.current) return;
+    const container = carouselRef.current;
+    
+    // Get exact width of a single card
+    const card = container.querySelector('.film-card');
+    const cardWidth = card ? card.getBoundingClientRect().width : 300;
+    const gap = window.innerWidth >= 1024 ? 24 : window.innerWidth >= 640 ? 20 : 16;
+    const scrollStep = cardWidth + gap;
 
-      container.scrollBy({
-        left: direction === 'left' ? -scrollAmount : scrollAmount,
-        behavior: 'smooth',
-      });
-    }
-  };
+    container.scrollBy({
+      left: direction === 'left' ? -scrollStep : scrollStep,
+      behavior: 'smooth',
+    });
+  }, []);
+
+  // 4-Second Automatic Carousel Movement (Autoplay)
+  useEffect(() => {
+    if (isPaused || selectedFilm || reducedMotion) return;
+
+    const timer = setInterval(() => {
+      scrollOneCard('right');
+    }, 4000);
+
+    return () => clearInterval(timer);
+  }, [isPaused, selectedFilm, reducedMotion, scrollOneCard]);
 
   // Close modal on escape key & lock body scroll
   useEffect(() => {
@@ -96,7 +123,13 @@ export default function WeddingFilmsCarousel() {
   };
 
   return (
-    <section className="relative w-full bg-[#000000] text-white py-20 sm:py-24 md:py-28 overflow-hidden select-none border-none">
+    <section 
+      className="relative w-full bg-[#000000] text-white py-20 sm:py-24 md:py-28 overflow-hidden select-none border-none"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+      onTouchStart={() => setIsPaused(true)}
+      onTouchEnd={() => setIsPaused(false)}
+    >
       
       {/* 1. Header Section (Matches User Reference Typography) */}
       <div className="max-w-5xl mx-auto px-4 sm:px-6 text-center mb-12 sm:mb-16">
@@ -118,25 +151,25 @@ export default function WeddingFilmsCarousel() {
       {/* 2. Infinite Carousel Container with Edge-Overlapping Navigation Arrows */}
       <div className="relative max-w-[1450px] mx-auto px-4 sm:px-6 lg:px-10">
         
-        {/* Left Circular Arrow Button (Always Active in Infinite Loop) */}
+        {/* Left Circular Arrow Button (Always Active in Infinite Loop, No Red Hover) */}
         <button
-          onClick={() => scroll('left')}
-          className="absolute left-2 sm:left-4 lg:left-3 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white text-slate-900 hover:bg-[#df2531] hover:text-white shadow-2xl flex items-center justify-center transition-all duration-300 cursor-pointer hover:scale-105 active:scale-95 opacity-90 hover:opacity-100"
-          aria-label="Previous wedding films (infinite loop)"
+          onClick={() => scrollOneCard('left')}
+          className="absolute left-2 sm:left-4 lg:left-3 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white text-slate-900 hover:bg-slate-200 shadow-2xl flex items-center justify-center transition-all duration-300 cursor-pointer hover:scale-105 active:scale-95 opacity-90 hover:opacity-100 border border-black/10"
+          aria-label="Previous wedding film"
         >
           <ChevronLeft className="w-5 h-5 stroke-[2.5]" />
         </button>
 
-        {/* Right Circular Arrow Button (Always Active in Infinite Loop) */}
+        {/* Right Circular Arrow Button (Always Active in Infinite Loop, No Red Hover) */}
         <button
-          onClick={() => scroll('right')}
-          className="absolute right-2 sm:right-4 lg:right-3 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white text-slate-900 hover:bg-[#df2531] hover:text-white shadow-2xl flex items-center justify-center transition-all duration-300 cursor-pointer hover:scale-105 active:scale-95 opacity-90 hover:opacity-100"
-          aria-label="Next wedding films (infinite loop)"
+          onClick={() => scrollOneCard('right')}
+          className="absolute right-2 sm:right-4 lg:right-3 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white text-slate-900 hover:bg-slate-200 shadow-2xl flex items-center justify-center transition-all duration-300 cursor-pointer hover:scale-105 active:scale-95 opacity-90 hover:opacity-100 border border-black/10"
+          aria-label="Next wedding film"
         >
           <ChevronRight className="w-5 h-5 stroke-[2.5]" />
         </button>
 
-        {/* Horizontal Infinite Scrolling Track (4 cards visible on desktop) */}
+        {/* Horizontal Infinite Scrolling Track (Strict 9:16 Cards, 4 cards visible on desktop) */}
         <div
           ref={carouselRef}
           onScroll={handleScroll}
@@ -147,25 +180,33 @@ export default function WeddingFilmsCarousel() {
             <div
               key={`${film.id}-${index}`}
               onClick={() => setSelectedFilm(film)}
-              className="snap-start flex-shrink-0 w-[82%] sm:w-[47%] md:w-[31%] lg:w-[calc(25%-18px)] group relative aspect-[9/14.5] rounded-xl overflow-hidden cursor-pointer bg-[#0e0e12] border border-white/10 hover:border-[#df2531]/70 transition-all duration-500 shadow-xl hover:shadow-2xl hover:shadow-[#df2531]/20 hover:-translate-y-1.5"
+              className="film-card snap-start flex-shrink-0 w-[82%] sm:w-[47%] md:w-[31%] lg:w-[calc(25%-18px)] group relative aspect-[9/16] rounded-xl overflow-hidden cursor-pointer bg-[#0e0e12] border border-white/10 hover:border-white/25 transition-all duration-500 shadow-xl hover:shadow-2xl shadow-black/80 hover:-translate-y-1.5"
+              style={{ aspectRatio: '9 / 16' }}
             >
-              {/* Poster Image */}
+              {/* Poster Image (object-cover without distortion) */}
               <img
                 src={film.poster}
                 alt={`${film.title} - ${film.couple}`}
-                className={`w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105 ${
+                className={`w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.03] ${
                   film.styleVariant === 'monochrome' ? 'grayscale contrast-125' : ''
                 }`}
+                style={{ objectFit: 'cover' }}
                 loading="lazy"
               />
 
-              {/* Cinematic Vignette Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/35 to-black/25 transition-opacity duration-300" />
+              {/* Permanent Base Vignette for Text Contrast */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-black/25 pointer-events-none z-0" />
 
-              {/* Poster Artwork Overlay (Matches Reference Aesthetic) */}
-              <div className="absolute inset-0 p-5 flex flex-col justify-between text-white z-10">
+              {/* Requirement 3: Translucent Charcoal Overlay Sliding Vertically Across Poster on Hover (350-500ms) */}
+              <div 
+                className="absolute inset-0 bg-neutral-900/40 backdrop-brightness-95 -translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out pointer-events-none z-10"
+                aria-hidden="true"
+              />
+
+              {/* Poster Artwork & Typography Overlay */}
+              <div className="absolute inset-0 p-5 flex flex-col justify-between text-white z-20">
                 
-                {/* Top Badge & Tag */}
+                {/* Top Badge & Duration Tag */}
                 <div className="flex items-center justify-between text-[10px] tracking-[0.22em] uppercase font-mono text-white/80">
                   <span className="px-2 py-0.5 rounded bg-black/60 backdrop-blur-md border border-white/10">
                     {film.badge}
@@ -175,10 +216,10 @@ export default function WeddingFilmsCarousel() {
                   </span>
                 </div>
 
-                {/* Center: Glowing Glassmorphic Play Button */}
+                {/* Center: Clean Cinematic Play Button (Neutral Monochrome, Zero Red Hover) */}
                 <div className="my-auto flex items-center justify-center">
-                  <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-black/50 backdrop-blur-md border border-white/30 group-hover:border-[#df2531] group-hover:bg-[#df2531] text-white flex items-center justify-center transition-all duration-300 shadow-2xl group-hover:scale-110">
-                    <PlayIcon className="w-5 h-5 sm:w-6 sm:h-6 fill-white ml-0.5 drop-shadow" />
+                  <div className="w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-black/60 backdrop-blur-md border border-white/30 text-white flex items-center justify-center transition-all duration-300 shadow-2xl group-hover:scale-110 group-hover:bg-white group-hover:text-black group-hover:border-white">
+                    <PlayIcon className="w-5 h-5 fill-current ml-0.5 drop-shadow" />
                   </div>
                 </div>
 
@@ -204,7 +245,7 @@ export default function WeddingFilmsCarousel() {
                   {film.styleVariant === 'crimsonArch' && (
                     <div className="space-y-0.5">
                       <h3 
-                        className="text-2xl sm:text-3xl font-black tracking-tight text-[#df2531] uppercase leading-tight drop-shadow"
+                        className="text-2xl sm:text-3xl font-black tracking-tight text-white uppercase leading-tight drop-shadow"
                         style={{ fontFamily: "'Cormorant Garamond', 'Playfair Display', Georgia, serif" }}
                       >
                         {film.title}
@@ -266,9 +307,9 @@ export default function WeddingFilmsCarousel() {
                     </div>
                   )}
 
-                  {/* Watch Film CTA On Hover */}
+                  {/* Watch Film CTA (Clean White Text on Hover, Zero Red) */}
                   <div className="pt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <span className="inline-flex items-center gap-1.5 text-[10px] uppercase tracking-[0.2em] font-semibold text-[#df2531]">
+                    <span className="inline-flex items-center gap-1.5 text-[10px] uppercase tracking-[0.2em] font-semibold text-white/90">
                       <span>Watch Film</span>
                       <span>→</span>
                     </span>
@@ -295,7 +336,7 @@ export default function WeddingFilmsCarousel() {
             {/* Modal Header */}
             <div className="flex items-center justify-between px-5 py-4 border-b border-white/10 bg-black/70">
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg bg-[#df2531]/20 border border-[#df2531]/40 flex items-center justify-center text-[#df2531]">
+                <div className="w-8 h-8 rounded-lg bg-white/10 border border-white/20 flex items-center justify-center text-white">
                   <Film className="w-4 h-4" />
                 </div>
                 <div>
@@ -314,7 +355,7 @@ export default function WeddingFilmsCarousel() {
               {/* Close Button */}
               <button
                 onClick={() => setSelectedFilm(null)}
-                className="w-9 h-9 rounded-full bg-white/10 hover:bg-[#df2531] text-white flex items-center justify-center transition-colors cursor-pointer"
+                className="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors cursor-pointer"
                 aria-label="Close video player"
               >
                 <X className="w-5 h-5" />
@@ -333,8 +374,8 @@ export default function WeddingFilmsCarousel() {
                 />
               ) : (
                 <div className="w-full h-full flex flex-col items-center justify-center p-8 text-center bg-gradient-to-b from-[#14141a] to-[#08080a]">
-                  <div className="w-16 h-16 rounded-full bg-[#df2531]/20 border border-[#df2531]/40 flex items-center justify-center text-[#df2531] mb-4 shadow-lg shadow-[#df2531]/20">
-                    <PlayIcon className="w-7 h-7 fill-[#df2531] ml-0.5" />
+                  <div className="w-16 h-16 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white mb-4 shadow-lg">
+                    <PlayIcon className="w-7 h-7 fill-white ml-0.5" />
                   </div>
                   <h5 
                     className="text-xl sm:text-2xl font-normal text-white uppercase tracking-wider"
@@ -352,8 +393,8 @@ export default function WeddingFilmsCarousel() {
             {/* Modal Footer Controls */}
             <div className="px-5 py-3.5 bg-black/80 border-t border-white/5 flex items-center justify-between text-xs text-slate-400">
               <div className="flex items-center gap-2 text-[11px] text-slate-400">
-                <Volume2 className="w-3.5 h-3.5 text-[#df2531]" />
-                <span className="text-[#df2531] font-semibold uppercase tracking-wider">
+                <Volume2 className="w-3.5 h-3.5 text-white/80" />
+                <span className="text-white/90 font-semibold uppercase tracking-wider">
                   JumpClicks Wedding Cinema
                 </span>
               </div>

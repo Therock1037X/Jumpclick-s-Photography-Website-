@@ -24,15 +24,13 @@ export default function Footer() {
       <div className="w-full py-6 sm:py-7 border-none">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 flex flex-col md:flex-row items-center justify-between gap-4 text-xs sm:text-[13px]">
           
-          {/* Left: Navigation Links + WhatsApp Chat */}
-          <div className="flex flex-wrap items-center justify-center md:justify-start gap-x-5 sm:gap-x-6 gap-y-2.5 text-slate-300 font-normal">
+          {/* Left: Navigation Tabs (Same as main tabs) + WhatsApp Chat */}
+          <div className="flex flex-wrap items-center justify-center md:justify-start gap-x-6 sm:gap-x-7 gap-y-2.5 text-slate-300 font-normal">
             <Link to="/" className="hover:text-[#df2531] transition-colors">Home</Link>
-            <Link to="/gallery" className="hover:text-[#df2531] transition-colors">Photography</Link>
-            <Link to="/wedding-films" className="hover:text-[#df2531] transition-colors">Films</Link>
-            <Link to="/wedding-stories" className="hover:text-[#df2531] transition-colors">Blog</Link>
             <Link to="/about" className="hover:text-[#df2531] transition-colors">About Us</Link>
-            <Link to="/contact" className="hover:text-[#df2531] transition-colors">Contact</Link>
-            <Link to="/faq" className="hover:text-[#df2531] transition-colors">FAQ</Link>
+            <Link to="/services" className="hover:text-[#df2531] transition-colors">Services</Link>
+            <Link to="/gallery" className="hover:text-[#df2531] transition-colors">Gallery</Link>
+            <Link to="/contact" className="hover:text-[#df2531] transition-colors">Contact Us</Link>
 
             {/* WhatsApp Chat Link */}
             <a

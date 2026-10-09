@@ -86,19 +86,19 @@ export default function InstagramFeed({
           ))}
         </div>
 
-        {/* 3. Instagram Icon and Handle Link Below Grid */}
+        {/* 3. Instagram Icon and Handle Link Below Grid (Borderless, clean, matching reference) */}
         <div className="mt-6 sm:mt-8 text-center relative z-10 flex items-center justify-center">
           <a
             href={profileUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2.5 px-6 py-2.5 rounded-full bg-white/[0.03] hover:bg-white/[0.08] border border-white/10 hover:border-[#df2531]/60 text-slate-300 hover:text-white transition-all duration-300 group shadow-md"
+            className="inline-flex items-center gap-2.5 text-slate-300 hover:text-white transition-colors duration-300 group cursor-pointer border-none bg-transparent"
             aria-label={`Visit Jumpclicks Instagram profile ${handle}`}
           >
             {/* Instagram Gradient Logo */}
-            <div className="w-6 h-6 rounded-lg bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 p-[1.5px] flex items-center justify-center shadow-sm">
-              <div className="w-full h-full bg-[#000000] rounded-[6px] flex items-center justify-center">
-                <InstagramIcon className="w-3.5 h-3.5 text-white group-hover:scale-110 transition-transform duration-300" />
+            <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-md sm:rounded-lg bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 p-[1.5px] flex items-center justify-center shadow-sm">
+              <div className="w-full h-full bg-[#000000] rounded-[4px] sm:rounded-[6px] flex items-center justify-center">
+                <InstagramIcon className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-white group-hover:scale-110 transition-transform duration-300" />
               </div>
             </div>
             

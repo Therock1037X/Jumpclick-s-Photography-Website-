@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Star, Calendar, MessageCircle } from 'lucide-react';
 import Hero from '../components/Hero';
 import IntimateWeddingShowcase from '../components/IntimateWeddingShowcase';
+import WeddingFilmsCarousel from '../components/WeddingFilmsCarousel';
 import InstagramFeed from '../components/InstagramFeed';
 import { servicesData, clientReviews, socialConfig } from '../data/contentData';
 import { galleryItems } from '../data/galleryData';
@@ -18,6 +19,9 @@ export default function HomePage() {
 
       {/* Editorial Intimate Wedding Showcase (Matches User Reference) */}
       <IntimateWeddingShowcase />
+
+      {/* Cinematic Wedding Films Carousel (Matches User Reference) */}
+      <WeddingFilmsCarousel />
 
       {/* Featured Gallery Preview - Pure Photography, Zero Text Below Images */}
       <section className="py-16 bg-[#000000] border-none">

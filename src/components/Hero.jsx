@@ -9,7 +9,7 @@ export default function Hero() {
         <img
           src="/images/hero-silhouette.webp"
           alt="Jumpclicks Photography"
-          className="w-full h-full object-cover object-[center_28%] sm:object-center"
+          className="w-full h-full object-cover object-[28%_35%] sm:object-center"
         />
         {/* Soft gradient vignette for text contrast, and deep feather fade at bottom to blend with next section */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30 pointer-events-none" />

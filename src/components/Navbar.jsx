@@ -16,16 +16,13 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // KnotsbyAMP exact navigation menu items
+  // Requested tabs: Home, About Us, Services, Gallery, Contact Us
   const navLinks = [
     { path: '/', label: 'Home' },
-    { path: '/wedding-stories', label: 'Wedding Stories' },
-    { path: '/wedding-films', label: 'Wedding Films' },
-    { path: '/couple-shoot', label: 'Couple Shoot' },
-    { path: '/about', label: 'About' },
-    { path: '/testimonials', label: 'Testimonials' },
-    { path: '/contact', label: 'Contact' },
-    { path: '/faq', label: 'FAQ' },
+    { path: '/about', label: 'About Us' },
+    { path: '/services', label: 'Services' },
+    { path: '/gallery', label: 'Gallery' },
+    { path: '/contact', label: 'Contact Us' },
   ];
 
   return (
@@ -81,7 +78,7 @@ export default function Navbar() {
           </Link>
 
           {/* KnotsbyAMP Style Pure Title Case Text Navigation */}
-          <nav className="hidden lg:flex items-center gap-7 xl:gap-9">
+          <nav className="hidden md:flex items-center gap-7 md:gap-8 lg:gap-11">
             {navLinks.map((link) => {
               const isActive = 
                 link.path === '/' 
@@ -106,7 +103,7 @@ export default function Navbar() {
           </nav>
 
           {/* Mobile Menu Toggle Button */}
-          <div className="lg:hidden flex items-center">
+          <div className="md:hidden flex items-center">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="p-2 text-white/90 hover:text-white outline-none focus:outline-none"
@@ -120,7 +117,7 @@ export default function Navbar() {
 
       {/* Mobile Drawer - Seamless Borderless Design */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-black/98 backdrop-blur-2xl px-6 pt-5 pb-8 space-y-4 mt-3 border-none shadow-none">
+        <div className="md:hidden bg-black/98 backdrop-blur-2xl px-6 pt-5 pb-8 space-y-4 mt-3 border-none shadow-none">
           {navLinks.map((link) => {
             const isActive = 
               link.path === '/' 

@@ -183,11 +183,11 @@ export default function WeddingFilmsCarousel() {
               className="film-card snap-start flex-shrink-0 w-[82%] sm:w-[47%] md:w-[31%] lg:w-[calc(25%-18px)] group relative aspect-[9/16] rounded-none overflow-hidden cursor-pointer bg-[#0e0e12] border border-white/10 hover:border-white/25 transition-colors duration-500 shadow-2xl shadow-black"
               style={{ aspectRatio: '9 / 16' }}
             >
-              {/* Poster Image (object-cover without distortion, zero image zoom) */}
+              {/* Poster Image (object-cover without distortion, subtle enlargement on hover) */}
               <img
                 src={film.poster}
                 alt={`${film.title} - ${film.couple}`}
-                className={`w-full h-full object-cover object-center ${
+                className={`w-full h-full object-cover object-center transition-transform duration-500 ease-out group-hover:scale-[1.03] ${
                   film.styleVariant === 'monochrome' ? 'grayscale contrast-125' : ''
                 }`}
                 style={{ objectFit: 'cover' }}
@@ -197,27 +197,25 @@ export default function WeddingFilmsCarousel() {
               {/* Permanent Base Vignette for Text Contrast */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/25 to-black/25 pointer-events-none z-0" />
 
-              {/* Requirement 3: Exact Center-Expanding Translucent Charcoal/Grey Hover Curtain (450-600ms) */}
+              {/* Requirement 1: Center-Expanding Dark Translucent Charcoal/Black Hover Curtain (450-600ms) */}
               <div 
                 className="film-hover-curtain"
                 aria-hidden="true"
               />
 
-              {/* Poster Artwork & Typography Overlay */}
-              <div className="absolute inset-0 p-5 flex flex-col justify-between text-white z-20 pointer-events-none">
-                
-                {/* Top Row: Category Label (Top-Left) & Duration (Top-Right) */}
-                <div className="flex items-center justify-between text-[10px] tracking-[0.22em] uppercase font-mono text-white/80">
-                  <span className="px-2.5 py-1 rounded-none bg-black/60 backdrop-blur-md border border-white/15 text-white/90">
-                    {film.badge}
-                  </span>
-                  <span className="px-2 py-0.5 rounded-none font-semibold text-white/95 tracking-widest text-[11px] bg-black/40 backdrop-blur-sm border border-white/10">
-                    {film.duration}
-                  </span>
+              {/* Requirement 2: Clean Centered Play Icon smoothly revealed on hover (matching reference screenshot) */}
+              <div className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
+                <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-white shadow-2xl flex items-center justify-center opacity-0 scale-75 group-hover:opacity-100 group-hover:scale-100 transition-all duration-400 ease-out">
+                  <svg className="w-4 h-4 fill-[#666666] ml-0.5 drop-shadow-sm" viewBox="0 0 24 24">
+                    <polygon points="6 4 20 12 6 20 6 4" />
+                  </svg>
                 </div>
+              </div>
 
+              {/* Poster Artwork & Typography Overlay (Top metadata completely removed, titles at bottom) */}
+              <div className="absolute inset-0 p-5 flex flex-col justify-end text-white z-20 pointer-events-none">
                 {/* Bottom Poster Title & Credits */}
-                <div className="space-y-1 text-center mt-auto">
+                <div className="space-y-1 text-center pb-1">
                   {film.styleVariant === 'monochrome' && (
                     <div className="space-y-0.5">
                       <span className="text-[10px] uppercase tracking-[0.3em] text-white/70 block">

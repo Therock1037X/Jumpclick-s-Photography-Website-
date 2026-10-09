@@ -159,3 +159,10 @@ export const faqs = [
     a: 'Yes! Every wedding and celebration is unique. Whether you need single-day candid coverage, multi-day coverage, drone cinematography, or special heirloom albums, we customize packages to fit your exact vision and schedule.'
   }
 ];
+
+export const socialConfig = {
+  instagramHandle: '@jumpclicksphotography',
+  instagramUrl: 'https://instagram.com/jumpclicksphotography',
+  whatsappNumber: '+91 91723 22302',
+  whatsappUrl: 'https://wa.me/919172322302',
+};

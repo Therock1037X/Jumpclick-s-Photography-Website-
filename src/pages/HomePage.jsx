@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Star, Calendar, MessageCircle } from 'lucide-react';
 import Hero from '../components/Hero';
 import IntimateWeddingShowcase from '../components/IntimateWeddingShowcase';
-import { servicesData, clientReviews } from '../data/contentData';
+import InstagramFeed from '../components/InstagramFeed';
+import { servicesData, clientReviews, socialConfig } from '../data/contentData';
 import { galleryItems } from '../data/galleryData';
 
 export default function HomePage() {
@@ -208,6 +209,12 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Premium Instagram-Style Photography Feed (Inspired by User Reference) */}
+      <InstagramFeed 
+        handle={socialConfig.instagramHandle} 
+        profileUrl={socialConfig.instagramUrl} 
+      />
     </div>
   );
 }

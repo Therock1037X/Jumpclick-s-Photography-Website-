@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
-import { ChevronLeft, ChevronRight, X } from 'lucide-react';
+import { ChevronLeft, ChevronRight, X, Film, Volume2 } from 'lucide-react';
+import { weddingFilmsData } from '../data/weddingFilmsData';
 
 function PlayIcon({ className = "w-5 h-5" }) {
   return (
@@ -14,85 +15,8 @@ export default function WeddingFilmsCarousel() {
   const [selectedFilm, setSelectedFilm] = useState(null);
   const isResettingRef = useRef(false);
 
-  // 6 Curated Wedding Film Posters (Desktop displays 4 side-by-side)
-  // Integrated with actual JumpClicks YouTube wedding films provided by the user
-  const baseFilms = [
-    {
-      id: 1,
-      title: 'JOURNEY OF LOVE',
-      chapter: 'THE ROYAL CHAPTER',
-      couple: 'Rohan & Ananya',
-      location: 'Udaipur, Rajasthan',
-      duration: '4:15',
-      badge: 'Candid Cinema',
-      poster: '/gallery/web/wedding/wedding_20.webp',
-      youtubeId: 'gM8xTFNO_Wg',
-      styleVariant: 'monochrome', // Moody high contrast B&W feel
-    },
-    {
-      id: 2,
-      title: 'THANK YOU',
-      chapter: 'THE 2025 CHAPTER',
-      couple: 'Siddharth & Meera',
-      location: 'Goa Heritage',
-      duration: '3:45',
-      badge: 'Wedding Teaser',
-      poster: '/gallery/web/wedding/wedding_21.webp',
-      youtubeId: '0UJ8HspyFiE',
-      styleVariant: 'crimsonArch', // Red architectural title
-    },
-    {
-      id: 3,
-      title: 'Hey Nijame',
-      chapter: 'AN UNSCRIPTED ROMANCE',
-      couple: 'Vikram & Priya',
-      location: 'Bangalore Palace',
-      duration: '3:20',
-      badge: 'Couple Story',
-      poster: '/gallery/web/prewedding/prewedding_36.webp',
-      youtubeId: 'gM8xTFNO_Wg',
-      styleVariant: 'script', // Handwritten script look
-    },
-    {
-      id: 4,
-      title: 'A SCHOOL LOVE STORY',
-      chapter: 'FROM CLASSROOMS TO FOREVER',
-      couple: 'Viddhi 🤍 Saschit',
-      location: 'Pune & Lonavala',
-      duration: '4:50',
-      badge: 'Pre-Wedding Cinema',
-      poster: '/gallery/web/prewedding/prewedding_27.webp',
-      youtubeId: '0UJ8HspyFiE',
-      styleVariant: 'polaroid', // Vintage chalkboard story
-    },
-    {
-      id: 5,
-      title: 'FOREVER & ALWAYS',
-      chapter: 'TWO SOULS, ONE PROMISE',
-      couple: 'Aditya & Neha',
-      location: 'Mahabaleshwar',
-      duration: '5:10',
-      badge: 'Grand Wedding Film',
-      poster: '/gallery/web/wedding/wedding_3.webp',
-      youtubeId: 'gM8xTFNO_Wg',
-      styleVariant: 'editorial',
-    },
-    {
-      id: 6,
-      title: 'GOLDEN HOUR VOWS',
-      chapter: 'SUNSET PHERAS BY THE LAKE',
-      couple: 'Kabir & Radhika',
-      location: 'Jaipur Fort',
-      duration: '3:30',
-      badge: 'Ceremony Cinema',
-      poster: '/gallery/web/wedding/wedding_27.webp',
-      youtubeId: '0UJ8HspyFiE',
-      styleVariant: 'editorial',
-    },
-  ];
-
-  // Tripled dataset for seamless infinite loop
-  const displayFilms = [...baseFilms, ...baseFilms, ...baseFilms];
+  // Tripled dataset to support butter-smooth infinite looping in both directions
+  const displayFilms = [...weddingFilmsData, ...weddingFilmsData, ...weddingFilmsData];
 
   // Initialize carousel scroll position to the middle segment on mount
   useEffect(() => {
@@ -109,7 +33,7 @@ export default function WeddingFilmsCarousel() {
     const container = carouselRef.current;
     const oneThird = container.scrollWidth / 3;
 
-    // If scrolled past 2/3, jump back to 1/3
+    // If scrolled past 2/3, silently jump back to 1/3
     if (container.scrollLeft >= oneThird * 2) {
       isResettingRef.current = true;
       container.scrollLeft -= oneThird;
@@ -117,7 +41,7 @@ export default function WeddingFilmsCarousel() {
         isResettingRef.current = false;
       }, 50);
     }
-    // If scrolled before 1/3, jump ahead to 2/3
+    // If scrolled before 1/3, silently jump ahead to 2/3
     else if (container.scrollLeft <= 10) {
       isResettingRef.current = true;
       container.scrollLeft += oneThird;
@@ -141,7 +65,7 @@ export default function WeddingFilmsCarousel() {
     }
   };
 
-  // Close modal on escape key
+  // Close modal on escape key & lock body scroll
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') setSelectedFilm(null);
@@ -157,6 +81,19 @@ export default function WeddingFilmsCarousel() {
       document.body.style.overflow = '';
     };
   }, [selectedFilm]);
+
+  // Navigate between films inside modal
+  const handlePrevFilm = () => {
+    const currentIndex = weddingFilmsData.findIndex(f => f.id === selectedFilm.id);
+    const prevIndex = (currentIndex - 1 + weddingFilmsData.length) % weddingFilmsData.length;
+    setSelectedFilm(weddingFilmsData[prevIndex]);
+  };
+
+  const handleNextFilm = () => {
+    const currentIndex = weddingFilmsData.findIndex(f => f.id === selectedFilm.id);
+    const nextIndex = (currentIndex + 1) % weddingFilmsData.length;
+    setSelectedFilm(weddingFilmsData[nextIndex]);
+  };
 
   return (
     <section className="relative w-full bg-[#000000] text-white py-20 sm:py-24 md:py-28 overflow-hidden select-none border-none">
@@ -270,7 +207,7 @@ export default function WeddingFilmsCarousel() {
                         className="text-2xl sm:text-3xl font-black tracking-tight text-[#df2531] uppercase leading-tight drop-shadow"
                         style={{ fontFamily: "'Cormorant Garamond', 'Playfair Display', Georgia, serif" }}
                       >
-                        THANK YOU
+                        {film.title}
                       </h3>
                       <span className="text-[10px] uppercase tracking-[0.25em] text-white/90 font-medium block">
                         {film.chapter}
@@ -301,7 +238,7 @@ export default function WeddingFilmsCarousel() {
                   {film.styleVariant === 'polaroid' && (
                     <div className="space-y-0.5">
                       <span className="text-[10px] uppercase tracking-[0.2em] text-white/80 block">
-                        A SCHOOL LOVE STORY
+                        {film.title}
                       </span>
                       <h3 
                         className="text-xl sm:text-2xl font-bold tracking-wide text-white uppercase"
@@ -348,7 +285,7 @@ export default function WeddingFilmsCarousel() {
       {/* 3. YouTube Cinematic Video Modal Player */}
       {selectedFilm && (
         <div 
-          className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 lg:p-8 animate-in fade-in duration-300"
+          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 lg:p-8 animate-in fade-in duration-300"
           onClick={() => setSelectedFilm(null)}
         >
           <div 
@@ -356,19 +293,25 @@ export default function WeddingFilmsCarousel() {
             onClick={(e) => e.stopPropagation()}
           >
             {/* Modal Header */}
-            <div className="flex items-center justify-between px-5 py-4 border-b border-white/10 bg-black/50">
-              <div>
-                <h4 
-                  className="text-lg sm:text-xl font-normal text-white uppercase tracking-wider"
-                  style={{ fontFamily: "'Cormorant Garamond', 'Playfair Display', Georgia, serif" }}
-                >
-                  {selectedFilm.title} — {selectedFilm.couple}
-                </h4>
-                <p className="text-xs text-slate-400 font-mono">
-                  {selectedFilm.chapter} • {selectedFilm.location}
-                </p>
+            <div className="flex items-center justify-between px-5 py-4 border-b border-white/10 bg-black/70">
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-lg bg-[#df2531]/20 border border-[#df2531]/40 flex items-center justify-center text-[#df2531]">
+                  <Film className="w-4 h-4" />
+                </div>
+                <div>
+                  <h4 
+                    className="text-base sm:text-lg font-normal text-white uppercase tracking-wider leading-tight"
+                    style={{ fontFamily: "'Cormorant Garamond', 'Playfair Display', Georgia, serif" }}
+                  >
+                    {selectedFilm.title} — {selectedFilm.couple}
+                  </h4>
+                  <p className="text-[11px] text-slate-400 font-mono">
+                    {selectedFilm.chapter} • {selectedFilm.location}
+                  </p>
+                </div>
               </div>
 
+              {/* Close Button */}
               <button
                 onClick={() => setSelectedFilm(null)}
                 className="w-9 h-9 rounded-full bg-white/10 hover:bg-[#df2531] text-white flex items-center justify-center transition-colors cursor-pointer"
@@ -378,23 +321,21 @@ export default function WeddingFilmsCarousel() {
               </button>
             </div>
 
-            {/* Video Player Area */}
+            {/* Video Player Area: Lazy Loaded Responsive 16:9 YouTube Iframe */}
             <div className="relative aspect-video w-full bg-black">
               {selectedFilm.youtubeId ? (
                 <iframe
                   src={`https://www.youtube.com/embed/${selectedFilm.youtubeId}?autoplay=1&rel=0&modestbranding=1`}
-                  title={`${selectedFilm.title} Wedding Film`}
+                  title={`${selectedFilm.title} - ${selectedFilm.couple} Wedding Film`}
                   className="w-full h-full border-none"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                 />
               ) : (
-                /* Elegant fallback prompt when video URL is not yet connected */
                 <div className="w-full h-full flex flex-col items-center justify-center p-8 text-center bg-gradient-to-b from-[#14141a] to-[#08080a]">
                   <div className="w-16 h-16 rounded-full bg-[#df2531]/20 border border-[#df2531]/40 flex items-center justify-center text-[#df2531] mb-4 shadow-lg shadow-[#df2531]/20">
                     <PlayIcon className="w-7 h-7 fill-[#df2531] ml-0.5" />
                   </div>
-                  
                   <h5 
                     className="text-xl sm:text-2xl font-normal text-white uppercase tracking-wider"
                     style={{ fontFamily: "'Cormorant Garamond', 'Playfair Display', Georgia, serif" }}
@@ -408,12 +349,32 @@ export default function WeddingFilmsCarousel() {
               )}
             </div>
 
-            {/* Modal Footer Info */}
-            <div className="px-5 py-3.5 bg-black/60 flex items-center justify-between text-xs text-slate-400">
-              <span className="text-[#df2531] font-semibold tracking-wider uppercase text-[11px]">
-                JumpClicks Wedding Cinema
-              </span>
-              <span>Press ESC to close</span>
+            {/* Modal Footer Controls */}
+            <div className="px-5 py-3.5 bg-black/80 border-t border-white/5 flex items-center justify-between text-xs text-slate-400">
+              <div className="flex items-center gap-2 text-[11px] text-slate-400">
+                <Volume2 className="w-3.5 h-3.5 text-[#df2531]" />
+                <span className="text-[#df2531] font-semibold uppercase tracking-wider">
+                  JumpClicks Wedding Cinema
+                </span>
+              </div>
+
+              {/* Prev / Next Film Switcher */}
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={handlePrevFilm}
+                  className="px-3 py-1 rounded-lg bg-white/5 hover:bg-white/10 text-white text-[11px] flex items-center gap-1 transition-colors cursor-pointer"
+                >
+                  <ChevronLeft className="w-3 h-3" />
+                  <span>Prev Film</span>
+                </button>
+                <button
+                  onClick={handleNextFilm}
+                  className="px-3 py-1 rounded-lg bg-white/5 hover:bg-white/10 text-white text-[11px] flex items-center gap-1 transition-colors cursor-pointer"
+                >
+                  <span>Next Film</span>
+                  <ChevronRight className="w-3 h-3" />
+                </button>
+              </div>
             </div>
 
           </div>

@@ -26,10 +26,10 @@ export default function Hero() {
         </h1>
 
         <p 
-          className="text-lg sm:text-2xl md:text-3xl text-white/95 mt-2 sm:mt-4 tracking-[0.06em] font-light italic drop-shadow-[0_2px_14px_rgba(0,0,0,0.95)] max-w-3xl"
+          className="text-lg sm:text-2xl md:text-3xl text-white/95 mt-2 sm:mt-4 tracking-[0.06em] sm:tracking-[0.08em] font-light italic drop-shadow-[0_2px_14px_rgba(0,0,0,0.95)] max-w-3xl"
           style={{ fontFamily: "'Cormorant Garamond', 'Playfair Display', Georgia, serif" }}
         >
-          Stories of Love & Joy of Weddings
+          Every Frame, a Work of Art
         </p>
       </div>
 

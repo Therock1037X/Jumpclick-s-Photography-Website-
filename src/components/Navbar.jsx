@@ -1,119 +1,115 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink, Link } from 'react-router-dom';
-import { Camera, Menu, X, MessageCircle, ArrowUpRight } from 'lucide-react';
+import { NavLink, Link, useLocation } from 'react-router-dom';
+import { Menu, X } from 'lucide-react';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const location = useLocation();
+  const isHome = location.pathname === '/';
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      setScrolled(window.scrollY > 40);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // KnotsbyAMP exact navigation menu items
   const navLinks = [
     { path: '/', label: 'Home' },
-    { path: '/about', label: 'About Us' },
-    { path: '/services', label: 'Services' },
-    { path: '/gallery', label: 'Gallery' },
-    { path: '/contact', label: 'Contact Us' },
+    { path: '/wedding-stories', label: 'Wedding Stories' },
+    { path: '/wedding-films', label: 'Wedding Films' },
+    { path: '/couple-shoot', label: 'Couple Shoot' },
+    { path: '/about', label: 'About' },
+    { path: '/testimonials', label: 'Testimonials' },
+    { path: '/contact', label: 'Contact' },
+    { path: '/faq', label: 'FAQ' },
   ];
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? 'bg-[#000000]/92 backdrop-blur-md border-b border-[#df2531]/20 shadow-2xl py-3'
-          : 'bg-[#000000]/70 backdrop-blur-sm border-b border-white/5 py-4'
+      className={`fixed top-0 left-0 right-0 z-50 border-none outline-none select-none transition-all duration-500 ${
+        scrolled || !isHome
+          ? 'bg-black/90 backdrop-blur-md py-4 shadow-none'
+          : 'bg-gradient-to-b from-black/70 via-black/25 to-transparent py-6 sm:py-7'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-full max-w-[1700px] mx-auto px-6 sm:px-10 lg:px-14">
         <div className="flex items-center justify-between">
           
-          {/* Logo & Brand Identity */}
+          {/* Logo - KnotsbyAMP Style Circular Monogram Badge */}
           <Link 
             to="/"
             onClick={() => setMobileMenuOpen(false)}
-            className="flex items-center gap-3 group"
+            className="flex items-center gap-3.5 group outline-none focus:outline-none"
+            aria-label="Jumpclicks Home"
           >
-            <div className="relative w-10 h-10 rounded-xl overflow-hidden bg-[#df2531]/10 p-0.5 border border-[#df2531]/40 group-hover:border-[#df2531] transition-colors shadow-lg shadow-[#df2531]/10">
-              <div className="w-full h-full bg-[#000000] rounded-[9px] flex items-center justify-center overflow-hidden">
-                <img 
-                  src="/images/logo.webp" 
-                  alt="Jumpclicks Photography" 
-                  className="w-full h-full object-cover"
-                  onError={(e) => {
-                    e.currentTarget.style.display = 'none';
-                  }}
+            <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full border border-white/60 group-hover:border-white transition-all duration-300 flex items-center justify-center p-1 relative bg-black/20 backdrop-blur-[2px]">
+              <svg viewBox="0 0 100 100" className="w-full h-full">
+                <path
+                  id="circlePath"
+                  d="M 50, 50 m -35, 0 a 35,35 0 1,1 70,0 a 35,35 0 1,1 -70,0"
+                  fill="none"
                 />
-                <Camera className="w-5 h-5 text-[#df2531] group-hover:text-white transition-colors" />
-              </div>
+                <text className="text-[9.5px] fill-white tracking-[0.22em] uppercase font-light">
+                  <textPath href="#circlePath" startOffset="50%" textAnchor="middle">
+                    Jumpclicks
+                  </textPath>
+                </text>
+                <text
+                  x="50"
+                  y="55"
+                  textAnchor="middle"
+                  className="fill-white font-serif text-[20px] font-normal italic"
+                  style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}
+                >
+                  JC
+                </text>
+              </svg>
             </div>
 
-            <div>
-              <div className="flex items-center gap-2">
-                <span className="font-heading font-extrabold text-xl tracking-wider text-white group-hover:text-[#df2531] transition-colors">
-                  JUMPCLICKS
-                </span>
-                <span className="text-[10px] uppercase tracking-widest font-semibold px-2 py-0.5 rounded-full bg-[#df2531]/15 text-[#df2531] border border-[#df2531]/30">
-                  Studio
-                </span>
-              </div>
-              <p className="text-[10px] text-slate-400 font-medium tracking-widest uppercase">
-                PHOTOGRAPHY & CINEMA • EST. 2020
-              </p>
+            <div className="hidden sm:block">
+              <span 
+                className="text-xl sm:text-2xl text-white font-normal tracking-wide block leading-none drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]"
+                style={{ fontFamily: "'Cormorant Garamond', 'Playfair Display', Georgia, serif" }}
+              >
+                Jumpclicks
+              </span>
             </div>
           </Link>
 
-          {/* Desktop Navigation Tabs */}
-          <nav className="hidden md:flex items-center gap-1.5 bg-[#0d0d0f] border border-white/10 rounded-full px-3 py-1.5 backdrop-blur-md shadow-inner">
-            {navLinks.map((link) => (
-              <NavLink
-                key={link.path}
-                to={link.path}
-                end={link.path === '/'}
-                className={({ isActive }) =>
-                  `px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 cursor-pointer ${
+          {/* KnotsbyAMP Style Pure Title Case Text Navigation */}
+          <nav className="hidden lg:flex items-center gap-7 xl:gap-9">
+            {navLinks.map((link) => {
+              const isActive = 
+                link.path === '/' 
+                  ? location.pathname === '/' 
+                  : location.pathname.startsWith(link.path);
+
+              return (
+                <NavLink
+                  key={link.path}
+                  to={link.path}
+                  end={link.path === '/'}
+                  className={`text-[14.5px] xl:text-[15px] font-normal transition-all duration-200 outline-none focus:outline-none drop-shadow-[0_2px_6px_rgba(0,0,0,0.85)] cursor-pointer ${
                     isActive
-                      ? 'bg-[#df2531] text-white font-bold shadow-md shadow-[#df2531]/40'
-                      : 'text-slate-300 hover:text-white hover:bg-white/5'
-                  }`
-                }
-              >
-                {link.label}
-              </NavLink>
-            ))}
+                      ? 'text-white font-semibold'
+                      : 'text-white/85 hover:text-white'
+                  }`}
+                >
+                  {link.label}
+                </NavLink>
+              );
+            })}
           </nav>
 
-          {/* CTA Buttons */}
-          <div className="hidden lg:flex items-center gap-3">
-            <a
-              href="https://wa.me/919172322302?text=Hi%20Jumpclicks%20team,%20I%20would%20like%20to%20inquire%20about%20a%20photography%20shoot."
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-semibold text-emerald-400 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/25 transition-all cursor-pointer"
-            >
-              <MessageCircle className="w-3.5 h-3.5" />
-              <span>WhatsApp</span>
-            </a>
-
-            <Link
-              to="/contact"
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-semibold text-white bg-[#df2531] hover:bg-[#b81b25] shadow-lg shadow-[#df2531]/25 transition-all duration-300 cursor-pointer group"
-            >
-              <span>Book a Shoot</span>
-              <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-            </Link>
-          </div>
-
-          {/* Mobile menu button */}
-          <div className="md:hidden flex items-center gap-2">
+          {/* Mobile Menu Toggle Button */}
+          <div className="lg:hidden flex items-center">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-xl bg-white/5 border border-white/10 text-slate-300 hover:text-white"
+              className="p-2 text-white/90 hover:text-white outline-none focus:outline-none"
               aria-label="Toggle Menu"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -122,44 +118,31 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Menu Drawer */}
+      {/* Mobile Drawer - Seamless Borderless Design */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-[#0a0a0c]/98 border-b border-[#df2531]/20 backdrop-blur-xl px-4 pt-3 pb-6 space-y-2 mt-2">
-          {navLinks.map((link) => (
-            <NavLink
-              key={link.path}
-              to={link.path}
-              end={link.path === '/'}
-              onClick={() => setMobileMenuOpen(false)}
-              className={({ isActive }) =>
-                `block w-full text-left px-4 py-2.5 rounded-xl text-base font-medium transition-colors ${
+        <div className="lg:hidden bg-black/98 backdrop-blur-2xl px-6 pt-5 pb-8 space-y-4 mt-3 border-none shadow-none">
+          {navLinks.map((link) => {
+            const isActive = 
+              link.path === '/' 
+                ? location.pathname === '/' 
+                : location.pathname.startsWith(link.path);
+
+            return (
+              <NavLink
+                key={link.path}
+                to={link.path}
+                end={link.path === '/'}
+                onClick={() => setMobileMenuOpen(false)}
+                className={`block w-full text-left py-2 text-base font-normal tracking-wide transition-colors outline-none focus:outline-none ${
                   isActive
-                    ? 'bg-[#df2531] text-white font-bold'
-                    : 'text-slate-300 hover:text-white hover:bg-white/5'
-                }`
-              }
-            >
-              {link.label}
-            </NavLink>
-          ))}
-          <div className="pt-3 border-t border-white/10 flex flex-col gap-2">
-            <a
-              href="https://wa.me/919172322302?text=Hi%20Jumpclicks%20team,%20I%20would%20like%20to%20inquire%20about%20a%20photography%20shoot."
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl text-sm font-semibold text-emerald-400 bg-emerald-500/10 border border-emerald-500/20"
-            >
-              <MessageCircle className="w-4 h-4" />
-              <span>Chat on WhatsApp</span>
-            </a>
-            <Link
-              to="/contact"
-              onClick={() => setMobileMenuOpen(false)}
-              className="w-full py-2.5 rounded-xl text-sm font-semibold text-white bg-[#df2531] text-center shadow-md block"
-            >
-              Book a Shoot
-            </Link>
-          </div>
+                    ? 'text-white font-semibold'
+                    : 'text-white/75 hover:text-white'
+                }`}
+              >
+                {link.label}
+              </NavLink>
+            );
+          })}
         </div>
       )}
     </header>

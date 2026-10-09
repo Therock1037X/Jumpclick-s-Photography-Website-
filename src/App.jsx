@@ -13,7 +13,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <ScrollToTop />
-      <div className="min-h-screen bg-[#07090e] text-slate-100 flex flex-col font-sans selection:bg-amber-400 selection:text-slate-950">
+      <div className="min-h-screen bg-[#000000] text-slate-100 flex flex-col font-sans selection:bg-[#df2531] selection:text-white">
         
         {/* Top Fixed Header with Navigation Tabs */}
         <Navbar />
@@ -24,8 +24,13 @@ export default function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/services" element={<ServicesPage />} />
+            <Route path="/wedding-films" element={<ServicesPage />} />
             <Route path="/gallery" element={<GalleryPage />} />
+            <Route path="/wedding-stories" element={<GalleryPage />} />
+            <Route path="/couple-shoot" element={<GalleryPage />} />
+            <Route path="/testimonials" element={<AboutPage />} />
             <Route path="/contact" element={<ContactPage />} />
+            <Route path="/faq" element={<ContactPage />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </main>

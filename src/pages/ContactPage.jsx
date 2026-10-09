@@ -41,7 +41,7 @@ export default function ContactPage() {
     <div className="pt-24 pb-20 bg-[#000000] text-white">
       
       {/* Page Header */}
-      <section className="py-16 bg-[#000000] border-b border-white/5 relative overflow-hidden">
+      <section className="py-16 bg-[#000000] border-none relative overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[250px] bg-[#df2531]/10 rounded-full blur-[130px] pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">

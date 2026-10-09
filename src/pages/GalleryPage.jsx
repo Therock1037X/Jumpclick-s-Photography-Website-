@@ -1,13 +1,27 @@
-import React, { useState, useMemo } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useMemo, useEffect } from 'react';
+import { Link, useSearchParams, useLocation } from 'react-router-dom';
 import { Camera, Maximize2, MessageCircle, ArrowRight } from 'lucide-react';
 import { galleryCategories, galleryItems } from '../data/galleryData';
 import Lightbox from '../components/Lightbox';
 
 export default function GalleryPage() {
-  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [searchParams] = useSearchParams();
+  const location = useLocation();
+
+  const getActiveCategory = () => {
+    if (location.pathname === '/wedding-stories') return 'wedding';
+    if (location.pathname === '/couple-shoot') return 'prewedding';
+    return searchParams.get('category') || 'all';
+  };
+
+  const [selectedCategory, setSelectedCategory] = useState(getActiveCategory());
   const [visibleCount, setVisibleCount] = useState(24);
   const [activePhoto, setActivePhoto] = useState(null);
+
+  useEffect(() => {
+    setSelectedCategory(getActiveCategory());
+    setVisibleCount(24);
+  }, [location.pathname, searchParams]);
 
   const filteredItems = useMemo(() => {
     if (selectedCategory === 'all') return galleryItems;
@@ -31,7 +45,7 @@ export default function GalleryPage() {
     <div className="pt-24 pb-20 bg-[#000000] text-white min-h-screen">
       
       {/* Page Header */}
-      <section className="py-16 bg-[#000000] border-b border-white/5 relative overflow-hidden">
+      <section className="py-16 bg-[#000000] border-none relative overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[250px] bg-[#df2531]/10 rounded-full blur-[130px] pointer-events-none" />
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">

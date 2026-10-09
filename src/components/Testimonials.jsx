@@ -29,79 +29,6 @@ const editorialTestimonials = [
   },
 ];
 
-// Delicate Muted Botanical Branch Illustration for dark theme
-function WatercolorBotanicalLeaf({ className = "" }) {
-  return (
-    <svg 
-      viewBox="0 0 170 200" 
-      fill="none" 
-      xmlns="http://www.w3.org/2000/svg"
-      className={className}
-      aria-hidden="true"
-    >
-      <defs>
-        <radialGradient id="darkLeafGrad1" cx="30%" cy="30%" r="70%">
-          <stop offset="0%" stopColor="#7a946b" stopOpacity="0.75" />
-          <stop offset="60%" stopColor="#4e6342" stopOpacity="0.65" />
-          <stop offset="100%" stopColor="#2c3a25" stopOpacity="0.5" />
-        </radialGradient>
-        <radialGradient id="darkLeafGrad2" cx="35%" cy="35%" r="65%">
-          <stop offset="0%" stopColor="#9cb38c" stopOpacity="0.8" />
-          <stop offset="55%" stopColor="#647d55" stopOpacity="0.65" />
-          <stop offset="100%" stopColor="#35452d" stopOpacity="0.5" />
-        </radialGradient>
-        <linearGradient id="darkStemWatercolor" x1="0%" y1="100%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor="#5c5240" stopOpacity="0.7" />
-          <stop offset="60%" stopColor="#7a6f58" stopOpacity="0.6" />
-          <stop offset="100%" stopColor="#a39578" stopOpacity="0.5" />
-        </linearGradient>
-      </defs>
-
-      {/* Main Curved Twig Stem */}
-      <path 
-        d="M 20 195 C 38 155 65 110 115 50 C 132 30 148 16 156 8" 
-        stroke="url(#darkStemWatercolor)" 
-        strokeWidth="2.2" 
-        strokeLinecap="round"
-      />
-
-      {/* Bottom Leaf 1 (Left spreading) */}
-      <path 
-        d="M 38 162 C 16 160 2 174 12 188 C 26 191 42 181 40 166 Z" 
-        fill="url(#darkLeafGrad1)" 
-      />
-      <path d="M 36 165 C 26 174 18 182 16 186" stroke="#232e1e" strokeWidth="0.8" opacity="0.4" />
-
-      {/* Bottom Leaf 2 (Right spreading) */}
-      <path 
-        d="M 58 138 C 82 128 98 144 92 162 C 74 168 55 154 56 139 Z" 
-        fill="url(#darkLeafGrad2)" 
-      />
-      <path d="M 58 139 C 74 148 86 158 88 160" stroke="#232e1e" strokeWidth="0.8" opacity="0.4" />
-
-      {/* Mid Leaf 3 (Left spreading, elegant curve) */}
-      <path 
-        d="M 80 98 C 50 88 34 108 48 128 C 66 131 82 115 82 100 Z" 
-        fill="url(#darkLeafGrad1)" 
-      />
-      <path d="M 78 100 C 58 112 48 124 48 126" stroke="#232e1e" strokeWidth="0.8" opacity="0.4" />
-
-      {/* Upper Leaf 4 (Right spreading) */}
-      <path 
-        d="M 112 62 C 138 52 152 72 144 90 C 124 94 106 80 110 64 Z" 
-        fill="url(#darkLeafGrad2)" 
-      />
-      <path d="M 112 64 C 128 75 140 86 142 88" stroke="#232e1e" strokeWidth="0.8" opacity="0.4" />
-
-      {/* Topmost Tender Leaf 5 */}
-      <path 
-        d="M 142 26 C 158 10 172 24 166 38 C 152 41 138 34 140 26 Z" 
-        fill="url(#darkLeafGrad1)" 
-      />
-    </svg>
-  );
-}
-
 export default function Testimonials() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -160,11 +87,6 @@ export default function Testimonials() {
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
-      {/* Decorative Botanical Leaf Accent at Bottom Left in muted organic tones */}
-      <div className="absolute bottom-6 sm:bottom-8 left-4 sm:left-10 lg:left-14 pointer-events-none z-10 opacity-30 sm:opacity-40">
-        <WatercolorBotanicalLeaf className="w-24 sm:w-32 lg:w-36 h-auto" />
-      </div>
-
       <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-12 relative z-20">
         
         {/* Editorial Section Header with Top Vertical Tick in Dark Theme */}

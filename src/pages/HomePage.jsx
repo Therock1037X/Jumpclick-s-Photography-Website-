@@ -284,56 +284,44 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 3. Final Contact CTA — Clean Black Background with Subtle Crimson Accent */}
-      <section className="py-20 sm:py-24 bg-[#000000] border-none relative overflow-hidden">
-        {/* Restrained Background Glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[180px] bg-[#df2531]/[0.07] rounded-full blur-[110px] pointer-events-none" />
-
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 space-y-5">
-          {/* Subtle Crimson Accent Line */}
-          <div className="w-14 h-[2px] bg-[#df2531] mx-auto mb-4" />
-
-          <h2 
-            className="text-3xl sm:text-4xl md:text-5xl font-normal text-white uppercase tracking-[0.15em] leading-tight"
-            style={{ fontFamily: "'Cormorant Garamond', 'Playfair Display', Georgia, serif" }}
-          >
-            Let’s Create Timeless Memories Together
-          </h2>
-
-          <p 
-            className="text-sm sm:text-base text-neutral-300 font-light max-w-lg mx-auto leading-relaxed"
-            style={{ fontFamily: "'Cormorant Garamond', 'Playfair Display', Georgia, serif" }}
-          >
-            Tell us about your celebration, and let's create something unforgettable.
-          </p>
-
-          <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
-            <Link
-              to="/contact"
-              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-none bg-[#df2531] hover:bg-[#b81b25] active:bg-[#96131c] text-white font-semibold text-xs uppercase tracking-[0.2em] transition-all duration-300 shadow-xl shadow-[#df2531]/20 cursor-pointer"
-            >
-              <Calendar className="w-3.5 h-3.5" />
-              <span>BOOK A SHOOT</span>
-            </Link>
-
-            <a
-              href="https://wa.me/919172322302?text=Hi%20Jumpclicks%20team,%20I'd%20like%20to%20check%20availability%20for%20a%20shoot."
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-none bg-white/5 hover:bg-white/15 active:bg-white/20 border border-white/20 hover:border-white/40 text-white font-semibold text-xs uppercase tracking-[0.2em] transition-all duration-300 cursor-pointer"
-            >
-              <MessageCircle className="w-3.5 h-3.5 text-emerald-400" />
-              <span>WHATSAPP DIRECT</span>
-            </a>
-          </div>
-        </div>
-      </section>
-
       {/* Premium Instagram-Style Photography Feed (Inspired by User Reference) */}
       <InstagramFeed 
         handle={socialConfig.instagramHandle} 
         profileUrl={socialConfig.instagramUrl} 
       />
+
+      {/* Final Booking CTA Banner — Positioned at the very end with earlier signature crimson gradient */}
+      <section className="py-20 bg-gradient-to-r from-[#2a060a] via-[#0d0d10] to-[#1c0508] border-none">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
+          <h2 
+            className="text-3xl sm:text-5xl font-normal text-white"
+            style={{ fontFamily: "'Cormorant Garamond', 'Playfair Display', Georgia, serif" }}
+          >
+            Let’s Create Timeless Memories Together
+          </h2>
+          <p className="text-slate-300 text-sm max-w-xl mx-auto">
+            Contact us today to check our availability for your date and discuss customized packages.
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-4 pt-3">
+            <Link
+              to="/contact"
+              className="inline-flex items-center gap-2 px-7 py-3 rounded-full bg-[#df2531] hover:bg-[#b81b25] text-white font-bold text-xs uppercase tracking-wider shadow-xl shadow-[#df2531]/30 transition-all cursor-pointer"
+            >
+              <Calendar className="w-4 h-4" />
+              <span>Book a Shoot</span>
+            </Link>
+            <a
+              href="https://wa.me/919172322302?text=Hi%20Jumpclicks%20team,%20I'd%20like%20to%20check%20availability%20for%20a%20shoot."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs uppercase tracking-wider shadow-lg shadow-emerald-500/20 transition-all cursor-pointer"
+            >
+              <MessageCircle className="w-4 h-4 fill-slate-950" />
+              <span>WhatsApp Direct</span>
+            </a>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

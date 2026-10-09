@@ -506,9 +506,8 @@ export default function HomePage() {
                       loading="lazy"
                     />
 
-                    {/* Subtle Dark Gradient & Hover Veil for Contrast */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-black/25 pointer-events-none z-0" />
-                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/35 transition-colors duration-500 pointer-events-none z-0" />
+                    {/* Clean bottom gradient only behind text for legibility — zero dark overlay over the couple and photography */}
+                    <div className="absolute inset-x-0 bottom-0 h-[50%] bg-gradient-to-t from-black/95 via-black/55 to-transparent pointer-events-none z-0" />
 
                     {/* Card Top: Number & Category Badge */}
                     <div className="relative z-10 flex items-center justify-between select-none">

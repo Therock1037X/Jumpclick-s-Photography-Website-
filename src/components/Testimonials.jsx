@@ -29,7 +29,7 @@ const editorialTestimonials = [
   },
 ];
 
-// Delicate Watercolor Botanical Branch Illustration matching the reference screenshot bottom-left
+// Delicate Muted Botanical Branch Illustration for dark theme
 function WatercolorBotanicalLeaf({ className = "" }) {
   return (
     <svg 
@@ -40,68 +40,63 @@ function WatercolorBotanicalLeaf({ className = "" }) {
       aria-hidden="true"
     >
       <defs>
-        <radialGradient id="leafGradSoft1" cx="30%" cy="30%" r="70%">
-          <stop offset="0%" stopColor="#9fb38f" stopOpacity="0.9" />
-          <stop offset="60%" stopColor="#678056" stopOpacity="0.85" />
-          <stop offset="100%" stopColor="#435438" stopOpacity="0.95" />
+        <radialGradient id="darkLeafGrad1" cx="30%" cy="30%" r="70%">
+          <stop offset="0%" stopColor="#7a946b" stopOpacity="0.75" />
+          <stop offset="60%" stopColor="#4e6342" stopOpacity="0.65" />
+          <stop offset="100%" stopColor="#2c3a25" stopOpacity="0.5" />
         </radialGradient>
-        <radialGradient id="leafGradSoft2" cx="35%" cy="35%" r="65%">
-          <stop offset="0%" stopColor="#b8cba8" stopOpacity="0.88" />
-          <stop offset="55%" stopColor="#7a946b" stopOpacity="0.85" />
-          <stop offset="100%" stopColor="#4c5d3f" stopOpacity="0.95" />
+        <radialGradient id="darkLeafGrad2" cx="35%" cy="35%" r="65%">
+          <stop offset="0%" stopColor="#9cb38c" stopOpacity="0.8" />
+          <stop offset="55%" stopColor="#647d55" stopOpacity="0.65" />
+          <stop offset="100%" stopColor="#35452d" stopOpacity="0.5" />
         </radialGradient>
-        <linearGradient id="stemWatercolor" x1="0%" y1="100%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor="#4d4233" stopOpacity="0.9" />
-          <stop offset="60%" stopColor="#635845" stopOpacity="0.8" />
-          <stop offset="100%" stopColor="#7a6f5a" stopOpacity="0.7" />
+        <linearGradient id="darkStemWatercolor" x1="0%" y1="100%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor="#5c5240" stopOpacity="0.7" />
+          <stop offset="60%" stopColor="#7a6f58" stopOpacity="0.6" />
+          <stop offset="100%" stopColor="#a39578" stopOpacity="0.5" />
         </linearGradient>
       </defs>
 
       {/* Main Curved Twig Stem */}
       <path 
         d="M 20 195 C 38 155 65 110 115 50 C 132 30 148 16 156 8" 
-        stroke="url(#stemWatercolor)" 
-        strokeWidth="2.4" 
+        stroke="url(#darkStemWatercolor)" 
+        strokeWidth="2.2" 
         strokeLinecap="round"
       />
 
       {/* Bottom Leaf 1 (Left spreading) */}
       <path 
         d="M 38 162 C 16 160 2 174 12 188 C 26 191 42 181 40 166 Z" 
-        fill="url(#leafGradSoft1)" 
-        opacity="0.85"
+        fill="url(#darkLeafGrad1)" 
       />
-      <path d="M 36 165 C 26 174 18 182 16 186" stroke="#35442b" strokeWidth="0.8" opacity="0.5" />
+      <path d="M 36 165 C 26 174 18 182 16 186" stroke="#232e1e" strokeWidth="0.8" opacity="0.4" />
 
       {/* Bottom Leaf 2 (Right spreading) */}
       <path 
         d="M 58 138 C 82 128 98 144 92 162 C 74 168 55 154 56 139 Z" 
-        fill="url(#leafGradSoft2)" 
-        opacity="0.88"
+        fill="url(#darkLeafGrad2)" 
       />
-      <path d="M 58 139 C 74 148 86 158 88 160" stroke="#35442b" strokeWidth="0.8" opacity="0.5" />
+      <path d="M 58 139 C 74 148 86 158 88 160" stroke="#232e1e" strokeWidth="0.8" opacity="0.4" />
 
       {/* Mid Leaf 3 (Left spreading, elegant curve) */}
       <path 
         d="M 80 98 C 50 88 34 108 48 128 C 66 131 82 115 82 100 Z" 
-        fill="url(#leafGradSoft1)" 
-        opacity="0.9"
+        fill="url(#darkLeafGrad1)" 
       />
-      <path d="M 78 100 C 58 112 48 124 48 126" stroke="#35442b" strokeWidth="0.8" opacity="0.5" />
+      <path d="M 78 100 C 58 112 48 124 48 126" stroke="#232e1e" strokeWidth="0.8" opacity="0.4" />
 
       {/* Upper Leaf 4 (Right spreading) */}
       <path 
         d="M 112 62 C 138 52 152 72 144 90 C 124 94 106 80 110 64 Z" 
-        fill="url(#leafGradSoft2)" 
-        opacity="0.88"
+        fill="url(#darkLeafGrad2)" 
       />
-      <path d="M 112 64 C 128 75 140 86 142 88" stroke="#35442b" strokeWidth="0.8" opacity="0.5" />
+      <path d="M 112 64 C 128 75 140 86 142 88" stroke="#232e1e" strokeWidth="0.8" opacity="0.4" />
 
       {/* Topmost Tender Leaf 5 */}
       <path 
         d="M 142 26 C 158 10 172 24 166 38 C 152 41 138 34 140 26 Z" 
-        fill="url(#leafGradSoft1)" 
-        opacity="0.85"
+        fill="url(#darkLeafGrad1)" 
       />
     </svg>
   );
@@ -159,40 +154,32 @@ export default function Testimonials() {
 
   return (
     <section 
-      className="relative w-full bg-[#ffffff] text-[#1c1a17] py-20 sm:py-24 md:py-28 overflow-hidden select-none"
+      className="relative w-full bg-[#000000] text-white py-20 sm:py-24 md:py-28 overflow-hidden select-none border-none"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
-      {/* Two-Tier Grounded Background (Top White, Bottom Warm Sand/Beige matching Reference) */}
-      <div className="absolute inset-0 bg-[#ffffff] pointer-events-none" />
-      <div className="absolute bottom-0 inset-x-0 h-[40%] sm:h-[42%] lg:h-[40%] bg-[#f4ede4] pointer-events-none" />
-
-      {/* Atmospheric Top & Bottom Transition Overlays into Surrounding Dark Velvet Sections */}
-      <div className="absolute top-0 inset-x-0 h-16 sm:h-20 bg-gradient-to-b from-black via-black/40 to-transparent pointer-events-none z-10" />
-      <div className="absolute bottom-0 inset-x-0 h-16 sm:h-20 bg-gradient-to-t from-black via-black/40 to-transparent pointer-events-none z-10" />
-
-      {/* Decorative Botanical Leaf Accent at Bottom Left (matching user reference) */}
-      <div className="absolute bottom-6 sm:bottom-8 left-4 sm:left-10 lg:left-16 pointer-events-none z-20 opacity-80 sm:opacity-90">
+      {/* Decorative Botanical Leaf Accent at Bottom Left in muted organic tones */}
+      <div className="absolute bottom-6 sm:bottom-8 left-4 sm:left-10 lg:left-14 pointer-events-none z-10 opacity-30 sm:opacity-40">
         <WatercolorBotanicalLeaf className="w-24 sm:w-32 lg:w-36 h-auto" />
       </div>
 
       <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-12 relative z-20">
         
-        {/* Editorial Section Header with Top Vertical Tick (Exact Reference Screenshot) */}
+        {/* Editorial Section Header with Top Vertical Tick in Dark Theme */}
         <div className="text-center max-w-4xl mx-auto mb-14 sm:mb-16 md:mb-20 flex flex-col items-center">
           {/* Subtle 1px vertical tick at top center */}
-          <div className="w-[1px] h-5 sm:h-6 bg-[#9c968d] mb-4 sm:mb-5" aria-hidden="true" />
+          <div className="w-[1px] h-5 sm:h-6 bg-white/20 mb-4 sm:mb-5" aria-hidden="true" />
 
           <h2 
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.65rem] font-light text-[#22201d] uppercase tracking-[0.34em] sm:tracking-[0.38em] leading-tight"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.65rem] font-light text-white uppercase tracking-[0.34em] sm:tracking-[0.38em] leading-tight"
             style={{ fontFamily: "'Cormorant Garamond', 'Playfair Display', Georgia, serif" }}
           >
             What Our Clients Say
           </h2>
           <p 
-            className="mt-3 sm:mt-4 text-xs sm:text-sm md:text-[15px] text-[#6b665f] italic max-w-2xl mx-auto leading-relaxed"
+            className="mt-3 sm:mt-4 text-xs sm:text-sm md:text-[15px] text-neutral-400 italic max-w-2xl mx-auto leading-relaxed"
             style={{ fontFamily: "'Cormorant Garamond', 'Playfair Display', Georgia, serif" }}
           >
             “At the end of the day, people won't remember what you said or did, they will remember how you made them feel.”
@@ -204,7 +191,7 @@ export default function Testimonials() {
           
           {/* Left Column: Authentic Wedding Photograph (Large Landscape Frame) */}
           <div className="lg:col-span-6 xl:col-span-6 z-20">
-            <div className="relative aspect-[4/3] sm:aspect-[16/11] lg:aspect-[1.42] rounded-none overflow-hidden shadow-[0_16px_45px_rgba(0,0,0,0.14)] bg-[#12110f] border border-black/5">
+            <div className="relative aspect-[4/3] sm:aspect-[16/11] lg:aspect-[1.42] rounded-none overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.85)] bg-[#0e0e12] border border-white/10">
               <img
                 src={current.image}
                 alt={`${current.couple} Wedding Photography by Jumpclicks`}
@@ -215,29 +202,29 @@ export default function Testimonials() {
                 loading="lazy"
               />
               {/* Subtle ambient light vignette */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
             </div>
           </div>
 
-          {/* Right Column: Warm Off-White / Pale Grey-Beige Testimonial Panel */}
+          {/* Right Column: Dark Luxury Obsidian Testimonial Panel */}
           <div className="lg:col-span-6 xl:col-span-6 z-10 mt-6 lg:mt-0 lg:-ml-10 xl:-ml-14">
-            <div className="bg-[#f2f3f0] border border-black/5 rounded-none p-8 sm:p-12 lg:p-14 xl:p-16 lg:pl-16 xl:pl-20 shadow-[0_12px_36px_rgba(0,0,0,0.06)] relative flex flex-col justify-between min-h-[340px] sm:min-h-[370px]">
+            <div className="bg-[#0e0e13] border border-white/10 hover:border-white/20 transition-colors duration-500 rounded-none p-8 sm:p-12 lg:p-14 xl:p-16 lg:pl-16 xl:pl-20 shadow-[0_20px_50px_rgba(0,0,0,0.8)] relative flex flex-col justify-between min-h-[340px] sm:min-h-[370px]">
               
-              {/* Testimonial Quote and Couple Attribution (Centered Typography matching Reference) */}
+              {/* Testimonial Quote and Couple Attribution (Centered Typography in Dark Theme) */}
               <div className={`transition-all duration-500 ease-out text-center ${
                 isTransitioning ? 'opacity-0 translate-y-2' : 'opacity-100 translate-y-0'
               }`}>
                 <p 
-                  className="text-[#45423d] text-[13px] sm:text-[14px] md:text-[14.5px] lg:text-[15px] leading-[2.05] sm:leading-[2.2] font-normal text-center max-w-xl mx-auto"
+                  className="text-neutral-200 text-[13.5px] sm:text-[14px] md:text-[14.5px] lg:text-[15px] leading-[2.1] sm:leading-[2.2] font-normal text-center max-w-xl mx-auto"
                   style={{ fontFamily: "'Manrope', 'Plus Jakarta Sans', system-ui, sans-serif" }}
                 >
                   "{current.quote}"
                 </p>
 
-                {/* Couple Attribution in small spaced uppercase directly beneath, without divider line */}
+                {/* Couple Attribution in small spaced uppercase directly beneath */}
                 <div className="mt-8 sm:mt-10">
                   <span 
-                    className="block text-[11px] sm:text-xs font-semibold tracking-[0.32em] uppercase text-[#54504a]"
+                    className="block text-[11px] sm:text-xs font-semibold tracking-[0.32em] uppercase text-white/90"
                     style={{ fontFamily: "'Manrope', 'Plus Jakarta Sans', system-ui, sans-serif" }}
                   >
                     {current.couple}
@@ -250,7 +237,7 @@ export default function Testimonials() {
                 <button
                   onClick={handlePrev}
                   onMouseDown={(e) => e.preventDefault()}
-                  className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-white text-[#2b2824] shadow-sm hover:shadow-md hover:bg-neutral-50 active:scale-95 flex items-center justify-center transition-all duration-300 cursor-pointer border border-black/10 select-none caret-transparent"
+                  className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-white/5 hover:bg-white text-white hover:text-black shadow-lg hover:shadow-xl active:scale-95 flex items-center justify-center transition-all duration-300 cursor-pointer border border-white/15 hover:border-white select-none caret-transparent"
                   aria-label="Previous client testimonial"
                 >
                   <ArrowLeft className="w-4 h-4 stroke-[1.5]" />
@@ -258,7 +245,7 @@ export default function Testimonials() {
                 <button
                   onClick={handleNext}
                   onMouseDown={(e) => e.preventDefault()}
-                  className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-white text-[#2b2824] shadow-sm hover:shadow-md hover:bg-neutral-50 active:scale-95 flex items-center justify-center transition-all duration-300 cursor-pointer border border-black/10 select-none caret-transparent"
+                  className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-white/5 hover:bg-white text-white hover:text-black shadow-lg hover:shadow-xl active:scale-95 flex items-center justify-center transition-all duration-300 cursor-pointer border border-white/15 hover:border-white select-none caret-transparent"
                   aria-label="Next client testimonial"
                 >
                   <ArrowRight className="w-4 h-4 stroke-[1.5]" />
